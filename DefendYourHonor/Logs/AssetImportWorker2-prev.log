@@ -15,7 +15,7 @@ D:/Projects/DefendYourHonor/DefendYourHonor
 -logFile
 Logs/AssetImportWorker2.log
 -srvPort
-52520
+52682
 Successfully changed project path to: D:/Projects/DefendYourHonor/DefendYourHonor
 D:/Projects/DefendYourHonor/DefendYourHonor
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,7 +47,7 @@ D:/Projects/DefendYourHonor/DefendYourHonor
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 118.80 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 95.57 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.4f1 (cb45f9cae8b7)
 [Subsystems] Discovering subsystems at path D:/Unity/Versions/2021.3.4f1/Editor/Data/Resources/UnitySubsystems
@@ -63,92 +63,310 @@ Initialize mono
 Mono path[0] = 'D:/Unity/Versions/2021.3.4f1/Editor/Data/Managed'
 Mono path[1] = 'D:/Unity/Versions/2021.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'D:/Unity/Versions/2021.3.4f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56272
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56984
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Unity/Versions/2021.3.4f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: D:/Unity/Versions/2021.3.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003687 seconds.
+Registered in 0.002075 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 113.77 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 93.41 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.734 seconds
+- Completed reload, in  0.633 seconds
 Domain Reload Profiling:
-	ReloadAssembly (735ms)
-		BeginReloadAssembly (65ms)
+	ReloadAssembly (633ms)
+		BeginReloadAssembly (57ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (557ms)
-			LoadAssemblies (65ms)
+		EndReloadAssembly (462ms)
+			LoadAssemblies (57ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (119ms)
+			SetupTypeCache (106ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (36ms)
-			SetupLoadedEditorAssemblies (347ms)
+			RebuildScriptCaches (33ms)
+			SetupLoadedEditorAssemblies (279ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (60ms)
+				InitializePlatformSupportModulesInManaged (45ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (114ms)
-				BeforeProcessingInitializeOnLoad (2ms)
-				ProcessInitializeOnLoadAttributes (123ms)
-				ProcessInitializeOnLoadMethodAttributes (49ms)
+				RefreshPlugins (94ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (90ms)
+				ProcessInitializeOnLoadMethodAttributes (48ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.004309 seconds.
+Registered in 0.002672 seconds.
 Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\DefendYourHonor\DefendYourHonor\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\DefendYourHonor\DefendYourHonor\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 109.75 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 92.20 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.550 seconds
+- Completed reload, in  1.420 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1551ms)
-		BeginReloadAssembly (219ms)
+	ReloadAssembly (1420ms)
+		BeginReloadAssembly (184ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (121ms)
+		EndReloadAssembly (1141ms)
+			LoadAssemblies (57ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (304ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (62ms)
+			SetupLoadedEditorAssemblies (657ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (12ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (92ms)
+				BeforeProcessingInitializeOnLoad (87ms)
+				ProcessInitializeOnLoadAttributes (437ms)
+				ProcessInitializeOnLoadMethodAttributes (22ms)
+				AfterProcessingInitializeOnLoad (6ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.94 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4055 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 65 unused Assets / (0.7 MB). Loaded Objects now: 4543.
+Memory consumption went from 171.1 MB to 170.4 MB.
+Total: 5.224000 ms (FindLiveObjects: 0.343200 ms CreateObjectMapping: 0.201300 ms MarkObjects: 4.400600 ms  DeleteObjects: 0.276500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002900 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.82 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.307 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1308ms)
+		BeginReloadAssembly (136ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (6ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (129ms)
-		EndReloadAssembly (1209ms)
-			LoadAssemblies (79ms)
+			CreateAndSetChildDomain (48ms)
+		EndReloadAssembly (1067ms)
+			LoadAssemblies (65ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (322ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (69ms)
-			SetupLoadedEditorAssemblies (682ms)
+			SetupTypeCache (304ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (56ms)
+			SetupLoadedEditorAssemblies (571ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (13ms)
+				InitializePlatformSupportModulesInManaged (22ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (110ms)
-				BeforeProcessingInitializeOnLoad (109ms)
-				ProcessInitializeOnLoadAttributes (415ms)
-				ProcessInitializeOnLoadMethodAttributes (31ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (74ms)
+				ProcessInitializeOnLoadAttributes (443ms)
+				ProcessInitializeOnLoadMethodAttributes (28ms)
 				AfterProcessingInitializeOnLoad (3ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (7ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
 Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
-Refreshing native plugins compatible for Editor in 1.01 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 2.07 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3556 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 48 unused Assets / (0.6 MB). Loaded Objects now: 4030.
-Memory consumption went from 141.7 MB to 141.1 MB.
-Total: 7.534700 ms (FindLiveObjects: 0.439100 ms CreateObjectMapping: 0.318900 ms MarkObjects: 6.460800 ms  DeleteObjects: 0.314100 ms)
+Unloading 4013 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (0.7 MB). Loaded Objects now: 4558.
+Memory consumption went from 167.2 MB to 166.6 MB.
+Total: 2.902000 ms (FindLiveObjects: 0.271300 ms CreateObjectMapping: 0.100600 ms MarkObjects: 2.364500 ms  DeleteObjects: 0.164200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003151 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.295 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1296ms)
+		BeginReloadAssembly (136ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (38ms)
+		EndReloadAssembly (1046ms)
+			LoadAssemblies (81ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (298ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (61ms)
+			SetupLoadedEditorAssemblies (557ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (22ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (76ms)
+				ProcessInitializeOnLoadAttributes (427ms)
+				ProcessInitializeOnLoadMethodAttributes (28ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 2.19 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4013 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (0.7 MB). Loaded Objects now: 4573.
+Memory consumption went from 167.2 MB to 166.6 MB.
+Total: 3.736200 ms (FindLiveObjects: 0.402100 ms CreateObjectMapping: 0.431800 ms MarkObjects: 2.714100 ms  DeleteObjects: 0.187000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003710 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.71 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.258 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1259ms)
+		BeginReloadAssembly (137ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (46ms)
+		EndReloadAssembly (1028ms)
+			LoadAssemblies (75ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (311ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (48ms)
+			SetupLoadedEditorAssemblies (546ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (20ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (71ms)
+				ProcessInitializeOnLoadAttributes (423ms)
+				ProcessInitializeOnLoadMethodAttributes (27ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 2.14 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4013 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (0.7 MB). Loaded Objects now: 4588.
+Memory consumption went from 167.3 MB to 166.6 MB.
+Total: 3.038800 ms (FindLiveObjects: 0.255200 ms CreateObjectMapping: 0.099300 ms MarkObjects: 2.496000 ms  DeleteObjects: 0.187100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003825 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.70 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.287 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1288ms)
+		BeginReloadAssembly (149ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (48ms)
+		EndReloadAssembly (1019ms)
+			LoadAssemblies (75ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (279ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (50ms)
+			SetupLoadedEditorAssemblies (565ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (21ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (73ms)
+				ProcessInitializeOnLoadAttributes (439ms)
+				ProcessInitializeOnLoadMethodAttributes (28ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 2.00 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4013 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (0.7 MB). Loaded Objects now: 4603.
+Memory consumption went from 167.3 MB to 166.6 MB.
+Total: 3.371500 ms (FindLiveObjects: 0.361200 ms CreateObjectMapping: 0.205400 ms MarkObjects: 2.515300 ms  DeleteObjects: 0.287800 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -162,347 +380,135 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 1982.596284 seconds.
-  path: Assets/WW2 Armed Forces Demo/Prefabs/Carro_Armato_M13_40.prefab
-  artifactKey: Guid(223da80c35889c24c8850c6a4e112261) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Prefabs/Carro_Armato_M13_40.prefab using Guid(223da80c35889c24c8850c6a4e112261) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '599336a495d7385dbc8ab87381ec0fa6') in 0.447159 seconds 
+  Time since last request: 5166.439257 seconds.
+  path: Assets/Hand Painted Seamless Wood Texture
+  artifactKey: Guid(28bc31c3e6c46594fbc746d3a300de15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Hand Painted Seamless Wood Texture using Guid(28bc31c3e6c46594fbc746d3a300de15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd1f811f36949d0dab3f2fa409cfa56b') in 0.010745 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000079 seconds.
-  path: Assets/WW2 Armed Forces Demo/Prefabs/T_34_76.prefab
-  artifactKey: Guid(2ebf979aaaeff1a45966f55f233733e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Prefabs/T_34_76.prefab using Guid(2ebf979aaaeff1a45966f55f233733e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88bdad54c7623b0aa745edd1e75ecf97') in 0.041858 seconds 
+  Time since last request: 1.336710 seconds.
+  path: Assets/Samples
+  artifactKey: Guid(fee065f1884d3414ba8f014412e87095) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples using Guid(fee065f1884d3414ba8f014412e87095) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c23bd2732b95be12e176cd7614e165d') in 0.004513 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/WW2 Armed Forces Demo/Prefabs/Cromwell_IV.prefab
-  artifactKey: Guid(5f694739ee4c9494c905f4e9353cfe0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Prefabs/Cromwell_IV.prefab using Guid(5f694739ee4c9494c905f4e9353cfe0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a4323c4ea0b03d0a4cc32fb4faeb278') in 0.048860 seconds 
+  Time since last request: 3.677229 seconds.
+  path: Assets/Scripts/Launcher/Movement.cs
+  artifactKey: Guid(d414953ac917644458162b1af757a9cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Launcher/Movement.cs using Guid(d414953ac917644458162b1af757a9cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83e348b682a34aae6d2f93c513af0125') in 0.015660 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003468 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.338 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1339ms)
+		BeginReloadAssembly (154ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (46ms)
+		EndReloadAssembly (1097ms)
+			LoadAssemblies (87ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (291ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (58ms)
+			SetupLoadedEditorAssemblies (611ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (22ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (83ms)
+				ProcessInitializeOnLoadAttributes (472ms)
+				ProcessInitializeOnLoadMethodAttributes (27ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.60 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4012 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 35 unused Assets / (0.7 MB). Loaded Objects now: 4617.
+Memory consumption went from 167.3 MB to 166.6 MB.
+Total: 3.008200 ms (FindLiveObjects: 0.247800 ms CreateObjectMapping: 0.110600 ms MarkObjects: 2.428100 ms  DeleteObjects: 0.220800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/WW2 Armed Forces Demo/Prefabs/Chi_Ha.prefab
-  artifactKey: Guid(6b0b29e0168b61c4ab830ad250f7bf62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Prefabs/Chi_Ha.prefab using Guid(6b0b29e0168b61c4ab830ad250f7bf62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73b411da2119b79556d8246ad3fcf25b') in 0.056682 seconds 
+  Time since last request: 40.209827 seconds.
+  path: Assets/Scripts/Launcher/Launcher.cs
+  artifactKey: Guid(313a1502b220c3845b9bf2b187327545) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Launcher/Launcher.cs using Guid(313a1502b220c3845b9bf2b187327545) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7faf82f9880a46b90b420f1c8912628a') in 0.009446 seconds 
 ========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/WW2 Armed Forces Demo/Models/Chi_Ha.fbx
-  artifactKey: Guid(dd1b4de3b25189940abb94cfe4d913ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Models/Chi_Ha.fbx using Guid(dd1b4de3b25189940abb94cfe4d913ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41105362f4fe8305b30d4151883df3b5') in 0.347367 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/WW2 Armed Forces Demo/Models/KV_2.fbx
-  artifactKey: Guid(4cb42837d55985749928d2afa9672e24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Models/KV_2.fbx using Guid(4cb42837d55985749928d2afa9672e24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0275072a45d7ca746e806eca39325e18') in 0.069626 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/WW2 Armed Forces Demo/Models/Hotchkiss_H35.fbx
-  artifactKey: Guid(b6a8e96f709732d49b968642c76bea2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Models/Hotchkiss_H35.fbx using Guid(b6a8e96f709732d49b968642c76bea2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6dc9939fb6f8c9b3106567f6405baca4') in 0.070048 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/WW2 Armed Forces Demo/Models/Matilda_II.fbx
-  artifactKey: Guid(e18b4c17ee23ba7428d5166af77f7837) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Models/Matilda_II.fbx using Guid(e18b4c17ee23ba7428d5166af77f7837) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25ab1c2ac54643e7e0da0d3d3868a065') in 0.072185 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000046 seconds.
-  path: Assets/WW2 Armed Forces Demo/Prefabs/M5A1_Stuart.prefab
-  artifactKey: Guid(7aff9190f32585948a8d7838a859933a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Prefabs/M5A1_Stuart.prefab using Guid(7aff9190f32585948a8d7838a859933a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df916605698d09e1d5aafe94ac3045ac') in 0.029830 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/WW2 Armed Forces Demo/Prefabs/KV_2.prefab
-  artifactKey: Guid(639da28ec7bc5cc47837261c20a2685c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Prefabs/KV_2.prefab using Guid(639da28ec7bc5cc47837261c20a2685c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88704206676622027febf00021c8e6b7') in 0.032888 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/WW2 Armed Forces Demo/Models/Carro_Armato_M13_40.fbx
-  artifactKey: Guid(2d7ac3334bc653d40ac528cb566dad45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Models/Carro_Armato_M13_40.fbx using Guid(2d7ac3334bc653d40ac528cb566dad45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '923e0526f54bed8bd8826c91401cafae') in 0.070545 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 40.582371 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Carro_Armato_L6_40/Carro_Armato_L6_40_AlbedoTransparency_1.png
-  artifactKey: Guid(ae55b8decdad5cc46b2278452f41c4ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Carro_Armato_L6_40/Carro_Armato_L6_40_AlbedoTransparency_1.png using Guid(ae55b8decdad5cc46b2278452f41c4ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e5b4add3b7a48b8d8d3a7b14f3bc84b') in 0.043969 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Chi_Ha/Chi_Ha_AlbedoTransparency_1.png
-  artifactKey: Guid(c8a859d1bac90c64c8e8d6b4d89ac5fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Chi_Ha/Chi_Ha_AlbedoTransparency_1.png using Guid(c8a859d1bac90c64c8e8d6b4d89ac5fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb6d3b1f7327cd1c46f0b8200f2d359a') in 0.018302 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Ha_Go/Ha_Go_Normal.png
-  artifactKey: Guid(13819483f8fc38c48acb01b4eb119726) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Ha_Go/Ha_Go_Normal.png using Guid(13819483f8fc38c48acb01b4eb119726) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ae88e207d477fdf7ebd164f357e9d75') in 0.030790 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Cromwell_IV/Cromwell_IV_AlbedoTransparency_1.png
-  artifactKey: Guid(b27aa03a9bed6d147942bdf70e933a3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Cromwell_IV/Cromwell_IV_AlbedoTransparency_1.png using Guid(b27aa03a9bed6d147942bdf70e933a3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ce42f901258e84ee2024593a26d5a5b') in 0.016988 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower07.tga
-  artifactKey: Guid(5afd653e4d79b7a4c9523dd543c0bead) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower07.tga using Guid(5afd653e4d79b7a4c9523dd543c0bead) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3619f5384d9be69567330544aeb00012') in 0.027414 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/GrassFlowers/Textures/Ground/Grass01_BigUV.png
-  artifactKey: Guid(38bb15d6b378aff46b461e248592d1da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/Ground/Grass01_BigUV.png using Guid(38bb15d6b378aff46b461e248592d1da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9004900792b216bad8ff684dc72dec3') in 0.031607 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Cromwell_IV/Cromwell_IV_AO.png
-  artifactKey: Guid(83bd7451f5c7b4b4b9e8c760e3f318e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Cromwell_IV/Cromwell_IV_AO.png using Guid(83bd7451f5c7b4b4b9e8c760e3f318e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b012658c82c596d05c0d8c858c0201a9') in 0.018698 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Hotchkiss_H35/Hotchkiss_H35_AlbedoTransparency_1.png
-  artifactKey: Guid(d4fa06d1a72ab864f8c16e5def096b79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Hotchkiss_H35/Hotchkiss_H35_AlbedoTransparency_1.png using Guid(d4fa06d1a72ab864f8c16e5def096b79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9d48f13878e06b3c33a38986c164db6') in 0.018093 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower02.tga
-  artifactKey: Guid(b0601839c4520064bb61d58d088810bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower02.tga using Guid(b0601839c4520064bb61d58d088810bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90d7a2b3ce1189959d19b96e508fec03') in 0.015696 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Chi_Ha/Chi_Ha_AO.png
-  artifactKey: Guid(0d927e7e20868bd4ab85bb6e29334438) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Chi_Ha/Chi_Ha_AO.png using Guid(0d927e7e20868bd4ab85bb6e29334438) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39ea6dfe70d7cb2fb5d9c7743e3c398a') in 0.016443 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.276767 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/KV_2/KV_2_Normal.png
-  artifactKey: Guid(b2b407d0f7c3cd24488a42dd0eb1f263) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/KV_2/KV_2_Normal.png using Guid(b2b407d0f7c3cd24488a42dd0eb1f263) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ecb582de6fcdd9f033ab962d30fe5350') in 0.017433 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.423550 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/M5A1_Stuart/M5A1_Stuart_AlbedoTransparency_1.png
-  artifactKey: Guid(fe0855c6f96e4fb4e91091bae8e82085) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/M5A1_Stuart/M5A1_Stuart_AlbedoTransparency_1.png using Guid(fe0855c6f96e4fb4e91091bae8e82085) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1f3549bc0faf85a94bceb18879b6ec3') in 0.020926 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Matilda_II/Matilda_II_Metallic.png
-  artifactKey: Guid(aa7c37f3b16554640998ee51ac1b6c19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Matilda_II/Matilda_II_Metallic.png using Guid(aa7c37f3b16554640998ee51ac1b6c19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5cf41503ad2587199803b42adc241d5') in 0.018684 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000035 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Matilda_II/Matilda_II_Normal.png
-  artifactKey: Guid(f3b020647a2146842bea03858953146d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Matilda_II/Matilda_II_Normal.png using Guid(f3b020647a2146842bea03858953146d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df078b6940d8970214d3b7afecea297f') in 0.018780 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.360873 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Panzer_II_F/Panzer_II_F_Metallic.png
-  artifactKey: Guid(23c8c254ba71cac4eb380c9a0772cad1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Panzer_II_F/Panzer_II_F_Metallic.png using Guid(23c8c254ba71cac4eb380c9a0772cad1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a67c462e4a0404649b3bd392c4be142') in 0.021945 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/SOMUA_S35/SOMUA_S35_AlbedoTransparency_1.png
-  artifactKey: Guid(625a7e3a6a1b80e488e9d9d3ada81fc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/SOMUA_S35/SOMUA_S35_AlbedoTransparency_1.png using Guid(625a7e3a6a1b80e488e9d9d3ada81fc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '488b36eebef9b635f2e6f0e928d209a8') in 0.023600 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000041 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/T_34_76/T_34_76_AO.png
-  artifactKey: Guid(0b58f8a43a7bb954f8c1e32bf6a57e4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/T_34_76/T_34_76_AO.png using Guid(0b58f8a43a7bb954f8c1e32bf6a57e4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eaa3af08398e14739db8b2f5d1b055a7') in 0.018617 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000040 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/T_34_76/T_34_76_Normal.png
-  artifactKey: Guid(bb0f3dca9b0b4a94fb1d58caaeebcd36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/T_34_76/T_34_76_Normal.png using Guid(bb0f3dca9b0b4a94fb1d58caaeebcd36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '609ccf85117f71af598823a37c9f6d00') in 0.016184 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.255389 seconds.
-  path: Assets/WW2 Armed Forces Demo/Textures/Track/Track_AlbedoTransparency.png
-  artifactKey: Guid(4dd4dae0b888c5d4eae3bad58c72780f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Textures/Track/Track_AlbedoTransparency.png using Guid(4dd4dae0b888c5d4eae3bad58c72780f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf53625ce3c43a322cd4fb4febd9b039') in 0.013807 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/RTP Vol.1/Materials/tree1 bark.png
-  artifactKey: Guid(c9ad8df91c3559c4c8f2ab57e091f8fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTP Vol.1/Materials/tree1 bark.png using Guid(c9ad8df91c3559c4c8f2ab57e091f8fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f4d2a856f9ab128491b992dbd475d028') in 0.014220 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.019405 seconds.
-  path: Assets/RTP Vol.1/Materials/tree2 leaf.png
-  artifactKey: Guid(3fb06fe8beabf3247af916702c85bc5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTP Vol.1/Materials/tree2 leaf.png using Guid(3fb06fe8beabf3247af916702c85bc5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c5f4a81395d29a6dff9ebf3b6d23afe') in 0.011632 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 155.200663 seconds.
-  path: Assets/_TerrainAutoUpgrade/layer_Grass01_BigUVd261c09ae55ba1e3.terrainlayer
-  artifactKey: Guid(d15b929daf556994d9deb8b4c9add345) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_TerrainAutoUpgrade/layer_Grass01_BigUVd261c09ae55ba1e3.terrainlayer using Guid(d15b929daf556994d9deb8b4c9add345) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05a95d88e6e775aa7819481d2ac308af') in 0.032887 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1003.602706 seconds.
-  path: Assets/_TerrainAutoUpgrade
-  artifactKey: Guid(8dde95e3bd6cd2240a4f9768c3cc993f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_TerrainAutoUpgrade using Guid(8dde95e3bd6cd2240a4f9768c3cc993f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '920e670326928c8cbf56173a242e4ab4') in 0.005786 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.741085 seconds.
-  path: Assets/RTP Vol.1
-  artifactKey: Guid(4300f9603f99fa945a17e5eebf27064d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTP Vol.1 using Guid(4300f9603f99fa945a17e5eebf27064d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ae92a0408b25edef88b764f53f2c06f') in 0.005005 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.933635 seconds.
-  path: Assets/RTP Vol.1/models
-  artifactKey: Guid(e33a0d20d0e4bbb4998297586882a93a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTP Vol.1/models using Guid(e33a0d20d0e4bbb4998297586882a93a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb6913faadd602567f99a81806216e07') in 0.004903 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 3.430033 seconds.
-  path: Assets/GrassFlowers
-  artifactKey: Guid(cb3b8f497d8116c4e8f3c3978d217ac1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers using Guid(cb3b8f497d8116c4e8f3c3978d217ac1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a053bd21400bc44db82180d631b5d258') in 0.006131 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.341440 seconds.
-  path: Assets/Scenes
-  artifactKey: Guid(6ea315d0fd7389c41b19996891e99ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes using Guid(6ea315d0fd7389c41b19996891e99ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8193726cff86800c54781cdc6d54904') in 0.005182 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2647.262517 seconds.
-  path: Assets/Terrain
-  artifactKey: Guid(f4bae8ae5726e8642b2fd2ac1082b348) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Terrain using Guid(f4bae8ae5726e8642b2fd2ac1082b348) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f351042bed05882809b9e74700d08286') in 0.007129 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 5.242274 seconds.
-  path: Assets/GrassFlowers/Post-Processing For GrassFlowers.asset
-  artifactKey: Guid(150fbd13cfcddb34ebc82b228a769165) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Post-Processing For GrassFlowers.asset using Guid(150fbd13cfcddb34ebc82b228a769165) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47c964b2f79ca6216133463116856ada') in 0.017423 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.156720 seconds.
-  path: Assets/GrassFlowers/Demo
-  artifactKey: Guid(90a98d1ca0ff3f34b817aee6ee27e766) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Demo using Guid(90a98d1ca0ff3f34b817aee6ee27e766) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '578b7c538af08222a93f0cd9aa5e93c8') in 0.007056 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 4.340480 seconds.
-  path: Assets/WW2 Armed Forces Demo
-  artifactKey: Guid(aea426b8d4b96bf4eada7de367233c5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo using Guid(aea426b8d4b96bf4eada7de367233c5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '152658ccddc6a010eb1cb3ae8906d9da') in 0.005855 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.651352 seconds.
-  path: Assets/WW2 Armed Forces Demo/Models
-  artifactKey: Guid(d6de6109622423144a512c3653010505) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Models using Guid(d6de6109622423144a512c3653010505) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16ddc7ad42fee3c30b15ee699f173ef6') in 0.006327 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.819929 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials
-  artifactKey: Guid(2281484c8130f7d449ca48d380e82fb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials using Guid(2281484c8130f7d449ca48d380e82fb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fbfd351114c2cd58a9f44f6010faf45') in 0.005752 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.701349 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Track
-  artifactKey: Guid(c33245365ae58ab4d985a24d6ff5ebdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Track using Guid(c33245365ae58ab4d985a24d6ff5ebdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46cb067e1252f38eb019181dc219d512') in 0.006175 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.065705 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Track/Track.mat
-  artifactKey: Guid(50ae672eaf06e824d92418a698b1a6a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Track/Track.mat using Guid(50ae672eaf06e824d92418a698b1a6a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f79732bf3c6f45b2b70ab4beededf490') in 0.144070 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.164955 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks
-  artifactKey: Guid(345a2ed6eb0b0984c95a55174351cb75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks using Guid(345a2ed6eb0b0984c95a55174351cb75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3e6519b55f65a53a1bd43c6a4958792') in 0.005525 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.065263 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/Carro_Armato_L6_40.mat
-  artifactKey: Guid(e14ae0ce9ab78374d9dc7d2ba91e8ac4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/Carro_Armato_L6_40.mat using Guid(e14ae0ce9ab78374d9dc7d2ba91e8ac4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d44986385de07022ad8489e73f9cc25') in 0.046656 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/Panzer_II_F.mat
-  artifactKey: Guid(d3a779cdaf0400a488529288edf376a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/Panzer_II_F.mat using Guid(d3a779cdaf0400a488529288edf376a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df15244a93f9d6674e521d9d1d2e5470') in 0.068386 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/Matilda_II.mat
-  artifactKey: Guid(0eb8bd350930aea44a2246daa6f45e3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/Matilda_II.mat using Guid(0eb8bd350930aea44a2246daa6f45e3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73f240d595de8d7db9f56025c5931942') in 0.038482 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/Chi_Ha.mat
-  artifactKey: Guid(59d60f6360542e149b6cd2a2c273023f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/Chi_Ha.mat using Guid(59d60f6360542e149b6cd2a2c273023f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1d01dcac01c08bcc5b2701f8a7483e2') in 0.061914 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/SOMUA_S35.mat
-  artifactKey: Guid(15d5eea3ceb7c3d40bfb86e213f55e69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/SOMUA_S35.mat using Guid(15d5eea3ceb7c3d40bfb86e213f55e69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7372000032ac4aef9c5b3e3969bf9795') in 0.026169 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/M5A1_Stuart.mat
-  artifactKey: Guid(11f613ad7305ada4cbe4c7fe949d072c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/M5A1_Stuart.mat using Guid(11f613ad7305ada4cbe4c7fe949d072c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '550d74f313141ad609e59665b9150d0e') in 0.022094 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/KV_2.mat
-  artifactKey: Guid(cf6185aec2b5b204fbb479882ddab14f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/KV_2.mat using Guid(cf6185aec2b5b204fbb479882ddab14f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6c84d17bb60bf5c45f1f464027e171d') in 0.020457 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/M4A3(75)_Sherman.mat
-  artifactKey: Guid(cb4bc258acf06484dbdbb4990c3b9939) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/M4A3(75)_Sherman.mat using Guid(cb4bc258acf06484dbdbb4990c3b9939) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a774062ac332269054266d85aba2d8e4') in 0.021789 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/Ha_Go.mat
-  artifactKey: Guid(762c14f2643cfb34eaa8bc937c705382) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/Ha_Go.mat using Guid(762c14f2643cfb34eaa8bc937c705382) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2dd7cd3ac5e76ccb8383cd9971255d73') in 0.026215 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Assets/WW2 Armed Forces Demo/Materials/Tanks/Hotchkiss_H35.mat
-  artifactKey: Guid(ed2a834a165ba7c40b6cf79d2a393b6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/WW2 Armed Forces Demo/Materials/Tanks/Hotchkiss_H35.mat using Guid(ed2a834a165ba7c40b6cf79d2a393b6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b21590cc9d81f7020064257f04f46e66') in 0.020907 seconds 
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-AssetImportWorker is now disconnected from the server
-Process exiting
-Exiting without the bug reporter. Application will terminate with return code 0
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002541 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.364 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1365ms)
+		BeginReloadAssembly (140ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (39ms)
+		EndReloadAssembly (1126ms)
+			LoadAssemblies (90ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (306ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (57ms)
+			SetupLoadedEditorAssemblies (635ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (20ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (82ms)
+				ProcessInitializeOnLoadAttributes (491ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.81 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4012 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (0.7 MB). Loaded Objects now: 4632.
+Memory consumption went from 167.3 MB to 166.6 MB.
+Total: 3.122400 ms (FindLiveObjects: 0.241700 ms CreateObjectMapping: 0.102300 ms MarkObjects: 2.624800 ms  DeleteObjects: 0.152800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
