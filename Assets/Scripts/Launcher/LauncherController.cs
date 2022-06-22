@@ -12,8 +12,8 @@ public class LauncherController : MonoBehaviour
     public GameObject Explosion;
     public float BlastPower = 500;
     
-    private float yAxisTurnSpeed = 30f;
-    private float xAxisTurnSpeed = 20f;
+    private float yAxisTurnSpeed = 10f;
+    private float xAxisTurnSpeed = 10f;
     
     private void Update()
     {
