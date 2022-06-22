@@ -1,0 +1,69 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LauncherController : MonoBehaviour
+{
+    public Transform launcherBodyTransform;
+    public GameObject rotateAroundObjectY;
+    public GameObject Cannonball;
+    public Transform ShotPoint;
+    public GameObject Explosion;
+    public float BlastPower = 500;
+    
+    private float yAxisTurnSpeed = 30f;
+    private float xAxisTurnSpeed = 20f;
+    
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.RotateAround(rotateAroundObjectY.transform.position, Vector3.up, yAxisTurnSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.RotateAround(rotateAroundObjectY.transform.position, Vector3.up, -1 * yAxisTurnSpeed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.UpArrow) && launcherBodyTransform.localEulerAngles.x > 275)
+        {
+            launcherBodyTransform.localEulerAngles = new Vector3(launcherBodyTransform.localEulerAngles.x - xAxisTurnSpeed * Time.deltaTime, launcherBodyTransform.localEulerAngles.y, launcherBodyTransform.localEulerAngles.z);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) && launcherBodyTransform.localEulerAngles.x < 335)
+        {
+            launcherBodyTransform.localEulerAngles = new Vector3(launcherBodyTransform.localEulerAngles.x + xAxisTurnSpeed * Time.deltaTime, launcherBodyTransform.localEulerAngles.y, launcherBodyTransform.localEulerAngles.z);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
+            CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
+            
+            // Added explosion for added effect
+            Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
+
+        }
+    }
+    
+   
+    // private void Update()
+    // {
+    //     float HorizontalRotation = Input.GetAxis("Horizontal");
+    //     float VericalRotation = Input.GetAxis("Vertical");
+    //
+    //     transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
+    //                                           new Vector3(0, HorizontalRotation * rotationSpeed, VericalRotation * rotationSpeed));
+    //
+    //     if (Input.GetKeyDown(KeyCode.Space))
+    //     {
+    //         GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
+    //         CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
+    //         
+    //         // Added explosion for added effect
+    //         Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
+    //
+    //         // Shake the screen for added effect
+    //         Screenshake.ShakeAmount = 5;
+    //     }
+    // }
+}
