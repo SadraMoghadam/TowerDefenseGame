@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2958621155734018471}
   - component: {fileID: 2958621155734018470}
   - component: {fileID: 2958621155734018473}
+  - component: {fileID: 6235412141253490385}
   m_Layer: 6
-  m_Name: Wall (2)
-  m_TagString: Untagged
+  m_Name: Wall_South
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,8 +96,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5, y: 1, z: 1}
+  m_Center: {x: 1, y: 0, z: 0}
+--- !u!114 &6235412141253490385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958621155734018475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf35400210717741abc7a987a3501ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2958621156164597834
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +121,7 @@ GameObject:
   - component: {fileID: 2958621156164597835}
   m_Layer: 6
   m_Name: Stronghold
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,9 +157,10 @@ GameObject:
   - component: {fileID: 2958621156262432692}
   - component: {fileID: 2958621156262432695}
   - component: {fileID: 2958621156262432694}
+  - component: {fileID: 64762387102392727}
   m_Layer: 6
-  m_Name: Wall
-  m_TagString: Untagged
+  m_Name: Wall_East
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,8 +241,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5, y: 1, z: 1}
+  m_Center: {x: 1, y: 0, z: 0}
+--- !u!114 &64762387102392727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958621156262432696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf35400210717741abc7a987a3501ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2958621156591965298
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,9 +267,10 @@ GameObject:
   - component: {fileID: 2958621156591965294}
   - component: {fileID: 2958621156591965297}
   - component: {fileID: 2958621156591965296}
+  - component: {fileID: 8585323479235999975}
   m_Layer: 6
-  m_Name: Wall (3)
-  m_TagString: Untagged
+  m_Name: WallWest
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -324,8 +351,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5, y: 1, z: 1}
+  m_Center: {x: -1, y: 0, z: 0}
+--- !u!114 &8585323479235999975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958621156591965298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf35400210717741abc7a987a3501ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2958621157415974401
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,9 +377,10 @@ GameObject:
   - component: {fileID: 2958621157415974397}
   - component: {fileID: 2958621157415974396}
   - component: {fileID: 2958621157415974399}
+  - component: {fileID: 8518935082062747113}
   m_Layer: 6
-  m_Name: Wall (1)
-  m_TagString: Untagged
+  m_Name: Wall_North
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,5 +461,17 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5, y: 1, z: 1}
+  m_Center: {x: -1, y: 0, z: 0}
+--- !u!114 &8518935082062747113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958621157415974401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf35400210717741abc7a987a3501ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

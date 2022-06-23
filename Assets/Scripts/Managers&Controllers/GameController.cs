@@ -6,5 +6,32 @@ public class GameController : MonoBehaviour
 {
     public GameObject launcher;
     public List<GameObject> walls;
+    public int level;
     [HideInInspector] public int numberOfEnemiesAlive;
+
+
+    private void GetLevelInformation()
+    {
+        
+    }
+
+    public void LostProcess()
+    {
+        Time.timeScale = 0;
+        Debug.Log("You Lost");
+    }
+    
+    public void WonProcess()
+    {
+        
+    }
+    
+    public IEnumerator SlowMotion(float slowMotionCoefficient, float slowMotionTime)
+    {
+        Time.timeScale = slowMotionCoefficient;
+        yield return new WaitForSeconds(slowMotionTime);
+        Time.timeScale = 1;
+        StopAllCoroutines();
+    }
+    
 }

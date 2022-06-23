@@ -15,6 +15,10 @@ public class DrawProjection : MonoBehaviour
     {
         launcherController = GetComponent<LauncherController>();
         lineRenderer = GetComponent<LineRenderer>();
+        if (!GameManager.instance.gameSetting.drawProjectionLine)
+        {
+            this.enabled= false;
+        }
     }
 
 
