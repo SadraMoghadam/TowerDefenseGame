@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonBallSmoke
       objectReference: {fileID: 0}
+    - target: {fileID: 7123128856648428327, guid: 173dbf4ba90ee3545b222e62f4ef7380, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 173dbf4ba90ee3545b222e62f4ef7380, type: 3}
 --- !u!4 &7821206400211481404 stripped

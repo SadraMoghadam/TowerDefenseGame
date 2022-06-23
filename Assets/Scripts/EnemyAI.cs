@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private List<Transform> bodyParts;
-    private float speed = 0.5f;
-    private float strength = 5f;
+    private float speed = 0.7f;
+    private float strength = 1f;
     private Animator enemyAnimator;
     private Rigidbody rigidbody;
     private Transform target;
@@ -34,7 +34,6 @@ public class EnemyAI : MonoBehaviour
         reachedWalls = false;
         walls = gameManager.gameController.walls;
         SetBodyActivation(false);
-        
     }
 
     private void Update()
@@ -42,7 +41,9 @@ public class EnemyAI : MonoBehaviour
         if (gameObject.activeSelf && !reachedWalls)
         {
             var step =  speed * Time.deltaTime; 
-            transform.position = Vector3.MoveTowards(transform.position, target.position, step);   
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            Vector3 direction = (target.position - transform.position).normalized;
+            transform.rotation = Quaternion.LookRotation(direction);
         }
     }
 
@@ -54,6 +55,7 @@ public class EnemyAI : MonoBehaviour
             reachedWallName = collision.collider.gameObject.name;
             SelectRandomHit();
         }
+        if(collision.collider.gameObject.tag != "Enemy")
         SetBodyActivation(true);
     }
 
@@ -73,21 +75,21 @@ public class EnemyAI : MonoBehaviour
 
     public void DamageWall()
     {
-        Wall reachedWall = GetReachedWall();
+        WallController reachedWall = GetReachedWall();
         reachedWall.Damage(strength);
     }
 
-    private Wall GetReachedWall()
+    private WallController GetReachedWall()
     {
         foreach (var wall in walls)
         {
             if (wall.name == reachedWallName)
             {
-                return wall.GetComponent<Wall>();
+                return wall.GetComponent<WallController>();
             }
         }
 
-        return new Wall();
+        return new WallController();
     }
     
     public void SelectRandomHit()

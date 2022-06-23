@@ -23,9 +23,10 @@ public class CannonBallController : MonoBehaviour
         if (!slowMotionHappened && gameManager.gameSetting.SlowMotionOnExplosion)
         {
             slowMotionHappened = true;
-            StartCoroutine(GameManager.instance.gameController.SlowMotion(0.5f, 0.2f));
+            StartCoroutine(GameManager.instance.gameController.SlowMotion(0.2f, 0.8f));
         }
         Destroy(Instantiate(Explosion, transform.position, transform.rotation), 2);
-        Destroy(this.gameObject, 0.3f);
+        this.transform.localScale = Vector3.zero;
+        Destroy(this.gameObject, 0.9f);
     }
 }
