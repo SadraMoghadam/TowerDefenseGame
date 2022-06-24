@@ -10,8 +10,8 @@ public class LauncherController : MonoBehaviour
     public GameObject Cannonball;
     public Transform ShotPoint;
     public GameObject Explosion;
-    public float BlastPower = 20;
     public Camera mainCamera;
+    public float blastPower;
     
     private float rotationSpeed = 1;
     // private float yAxisTurnSpeed = 2f;
@@ -62,10 +62,10 @@ public class LauncherController : MonoBehaviour
         }
     }
 
-    private void Shot()
+    public void Shot()
     {
         GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
-        CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
+        CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * blastPower;
         Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
         StartCoroutine(mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .2f));
     }
