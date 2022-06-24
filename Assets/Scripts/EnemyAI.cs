@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private List<Transform> bodyParts;
     [SerializeField] private Slider healthBar;
     private float speed = 1f;
-    private float strength = 1f;
+    private float strength = 5f;
     private Animator enemyAnimator;
     private Transform target;
     private bool reachedWalls;

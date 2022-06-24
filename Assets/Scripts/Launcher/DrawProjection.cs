@@ -17,15 +17,23 @@ public class DrawProjection : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         if (!GameManager.instance.gameSetting.drawProjectionLine)
         {
-            this.enabled= false;
+            lineRenderer.enabled = false;
         }
     }
 
 
     void Update()
     {
-        lineRenderer.positionCount = (int)numPoints;
         List<Vector3> points = new List<Vector3>();
+        if (!GameManager.instance.gameSetting.drawProjectionLine)
+        {
+            lineRenderer.enabled = false;
+        }
+        else
+        {
+            lineRenderer.enabled = true;   
+        }
+        lineRenderer.positionCount = (int)numPoints;
         Vector3 startingPosition = launcherController.ShotPoint.position;
         Vector3 startingVelocity = launcherController.ShotPoint.up * launcherController.blastPower;
         for (float t = 0; t < numPoints; t += timeBetweenPoints)

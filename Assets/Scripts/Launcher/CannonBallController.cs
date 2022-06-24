@@ -6,7 +6,7 @@ using UnityEngine;
 public class CannonBallController : MonoBehaviour
 {
     public GameObject explosion;
-    private bool slowMotionHappened;
+    private bool explosionHappened;
     private GameManager gameManager;
     [SerializeField] private float explosionForce = 500f;
     [SerializeField] private float explosionRadius = 10f;
@@ -14,7 +14,7 @@ public class CannonBallController : MonoBehaviour
 
     private void Start()
     {
-        slowMotionHappened = false;
+        explosionHappened = false;
         gameManager = GameManager.instance;
     }
 
@@ -22,10 +22,15 @@ public class CannonBallController : MonoBehaviour
     {
         if(collision.gameObject.name == "Launcher")
             return;
-        if (!slowMotionHappened && gameManager.gameSetting.SlowMotionOnExplosion)
+        if (!explosionHappened && !gameManager.gameSetting.slowMotionOnExplosion)
         {
             ExplosionProcess();
-            slowMotionHappened = true;
+            explosionHappened = true;
+        }
+        else if (!explosionHappened && gameManager.gameSetting.slowMotionOnExplosion)
+        {
+            ExplosionProcess();
+            explosionHappened = true;
             StartCoroutine(GameManager.instance.gameController.SlowMotion(0.2f, 0.8f));
         }
         Destroy(Instantiate(explosion, transform.position, transform.rotation), 2);

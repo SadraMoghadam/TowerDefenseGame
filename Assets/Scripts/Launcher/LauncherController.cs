@@ -12,8 +12,7 @@ public class LauncherController : MonoBehaviour
     public GameObject Explosion;
     public Camera mainCamera;
     public float blastPower;
-    
-    private float rotationSpeed = 1;
+    private float rotationSpeed = .5f;
     // private float yAxisTurnSpeed = 2f;
     // private float xAxisTurnSpeed = 25f;
     
@@ -22,14 +21,27 @@ public class LauncherController : MonoBehaviour
         float HorizontalRotation = Input.GetAxis("Horizontal");
         float VericalRotation = Input.GetAxis("Vertical");
 
+        float HorizontalJoystickRotation = GameUIController.instance.joystick.Horizontal;
+        float VericalJoystickRotation = GameUIController.instance.joystick.Vertical;
+
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
                                               new Vector3(0, HorizontalRotation * rotationSpeed, 0));
+        if (HorizontalJoystickRotation > .4f || HorizontalJoystickRotation < -.4f)
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
+                                                  new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));   
+        }
         if (launcherBodyTransform.rotation.eulerAngles.x <= 335 && launcherBodyTransform.rotation.eulerAngles.x >= 272)
         {
             launcherBodyTransform.rotation = Quaternion.Euler(launcherBodyTransform.rotation.eulerAngles + 
-                                                              new Vector3(VericalRotation * rotationSpeed, 0, 0));   
+                                                              new Vector3(VericalRotation * rotationSpeed, 0, 0));
+            if (VericalJoystickRotation > .4f || VericalJoystickRotation < -.4f)
+            {
+                launcherBodyTransform.rotation = Quaternion.Euler(launcherBodyTransform.rotation.eulerAngles + 
+                                                                  new Vector3(VericalJoystickRotation * rotationSpeed, 0, 0));
+            }
         }
-        else if (launcherBodyTransform.rotation.eulerAngles.x > 334)
+        if (launcherBodyTransform.rotation.eulerAngles.x > 334)
         {
             launcherBodyTransform.rotation = Quaternion.Euler(new Vector3(334,
                 launcherBodyTransform.rotation.eulerAngles.y, launcherBodyTransform.rotation.eulerAngles.z));

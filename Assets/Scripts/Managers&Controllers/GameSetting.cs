@@ -6,9 +6,9 @@ using UnityEngine;
 public class GameSetting : MonoBehaviour
 {
     public bool drawProjectionLine = true;
-    public bool SlowMotionOnExplosion = true;
+    public bool slowMotionOnExplosion = true;
     public bool miniMap = true;
-    public bool music = false;
-    public bool sfx = false;
+    public float music = 0.5f;
+    public float sfx = 0.5f;
 
 }
