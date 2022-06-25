@@ -23,4 +23,10 @@ public class LevelData
         this.numberOfGroups = numberOfGroups;
         this.enemyTypeIds = enemyTypeIds;
     }
+
+    public override string ToString()
+    {
+        return "level: " + level + " ||| cannon balls: " + numberOfCannonBalls + " ||| enemies: " + numberOfEnemies + "|" +
+               numberOfGroups;
+    }
 }

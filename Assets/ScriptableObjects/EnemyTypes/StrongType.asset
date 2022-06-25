@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9805914f14c6a4a99adc79a7825638, type: 3}
   m_Name: StrongType
   m_EditorClassIdentifier: 
-  id: 3
+  id: 2
   name: Mighty Warrior
+  prefab: {fileID: 9218395805329446902, guid: 4a3e3f9f62101ec469ae27be3d82fbd4, type: 3}
   speed: 0.5
   strength: 15
   maxHealth: 120

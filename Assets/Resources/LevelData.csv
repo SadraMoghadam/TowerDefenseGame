@@ -1,5 +1,5 @@
 Level,Difficulty,NumberOfCannonBalls,NumberOfRewinds,NumberOfEnemies,NumberOfGroups,EnemyTypeIds
-0,Easy,10,1,10,2,1
-1,Easy,10,1,19,3,1
-2,Easy,15,2,25,5,1
-3,Easy,15,2,25,5,1&2
+0,Easy,10,1,10,2,0
+1,Easy,10,1,81,9,0
+2,Easy,15,2,25,5,0
+3,Easy,15,2,25,5,0&1

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9805914f14c6a4a99adc79a7825638, type: 3}
   m_Name: DasherType
   m_EditorClassIdentifier: 
-  id: 2
+  id: 1
   name: Dasher
+  prefab: {fileID: 7585236815826477250, guid: 9ff52a65ca8a2de4f8cf05f0ab38f965, type: 3}
   speed: 4
   strength: 2
   maxHealth: 80

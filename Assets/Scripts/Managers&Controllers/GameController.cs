@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,13 @@ public class GameController : MonoBehaviour
     public List<GameObject> walls;
     public int level;
     [HideInInspector] public int numberOfEnemiesAlive;
+    [HideInInspector] public LevelDataReader levelDataReader;
 
+
+    private void Awake()
+    {
+        levelDataReader = gameObject.GetComponent<LevelDataReader>();
+    }
 
     private void GetLevelInformation()
     {

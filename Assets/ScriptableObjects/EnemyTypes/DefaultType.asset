@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9805914f14c6a4a99adc79a7825638, type: 3}
   m_Name: DefaultType
   m_EditorClassIdentifier: 
-  id: 1
+  id: 0
   name: Curious
+  prefab: {fileID: 6530855267760821738, guid: 8d02b1043b4a03c45b96215e60ad517b, type: 3}
   speed: 1
   strength: 5
   maxHealth: 100
