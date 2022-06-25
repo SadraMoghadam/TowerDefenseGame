@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameSetting : MonoBehaviour
 {
+    public bool DebugMode = true;
     public bool drawProjectionLine = true;
     public bool slowMotionOnExplosion = true;
     public bool miniMap = true;
