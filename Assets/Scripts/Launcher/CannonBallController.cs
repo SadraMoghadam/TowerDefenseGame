@@ -9,7 +9,7 @@ public class CannonBallController : MonoBehaviour
     private bool explosionHappened;
     private GameManager gameManager;
     [SerializeField] private float explosionForce = 500f;
-    [SerializeField] private float explosionRadius = 10f;
+    [SerializeField] private float explosionRadius = 5f;
 
 
     private void Start()

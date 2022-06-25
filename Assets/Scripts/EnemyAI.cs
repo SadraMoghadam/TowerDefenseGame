@@ -12,22 +12,23 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector] public bool isAlive;
     [SerializeField] private List<Transform> bodyParts;
     [SerializeField] private Slider healthBar;
-    private float speed = 1f;
-    private float strength = 5f;
+    [SerializeField] private EnemyType enemyType;
     private Animator enemyAnimator;
     private Transform target;
     private bool reachedWalls;
     private string reachedWallName;
     private GameManager gameManager;
     private List<GameObject> walls;
-    private float maxHealth = 100;
     private float health;
     
     public enum HitType
     {
-        RightHook = 1,
-        LeftUpper = 2,
-        Kick = 3
+        RightPunch = 1,
+        LeftPunch = 2,
+        LeftKick = 3,
+        RightKick = 4,
+        Head = 5,
+        Body = 6
     }
 
     private void Awake()
@@ -40,15 +41,15 @@ public class EnemyAI : MonoBehaviour
         reachedWalls = false;
         walls = gameManager.gameController.walls;
         SetBodyActivation(false);
-        health = 100;
-        healthBar.value = health / maxHealth;
+        health = enemyType.maxHealth;
+        healthBar.value = health / enemyType.maxHealth;
     }
 
     private void Update()
     {
         if (gameObject.activeSelf && !reachedWalls && isAlive)
         {
-            var step =  speed * Time.deltaTime; 
+            var step =  enemyType.speed * Time.deltaTime; 
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
             Vector3 direction = (target.position - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(direction);
@@ -91,7 +92,7 @@ public class EnemyAI : MonoBehaviour
         if (!isAlive)
             return;
         WallController reachedWall = GetReachedWall();
-        reachedWall.Damage(strength);
+        reachedWall.Damage(enemyType.strength);
     }
 
     private WallController GetReachedWall()
@@ -115,15 +116,15 @@ public class EnemyAI : MonoBehaviour
         int hitType = 1;
         if (random <= 33)
         {
-            hitType = (int)HitType.RightHook;
+            hitType = (int)HitType.RightPunch;
         }
         else if (random <= 66)
         {
-            hitType = (int)HitType.LeftUpper;
+            hitType = (int)HitType.LeftPunch;
         }
         else if (random <= 100)
         {
-            hitType = (int)HitType.Kick;
+            hitType = (int)HitType.LeftKick;
         }
         enemyAnimator.SetInteger("HitType", hitType);
     }
@@ -131,7 +132,7 @@ public class EnemyAI : MonoBehaviour
     public void Damage(float strength)
     {
         health -= strength;
-        healthBar.value = health / maxHealth;
+        healthBar.value = health / enemyType.maxHealth;
         if (healthBar.value <= 0)
         {
             rigidbody.freezeRotation = false;
