@@ -27,6 +27,7 @@ public class SettingPanel : MonoBehaviour
 
     private void OnEnable()
     {
+        Time.timeScale = 1;
         projectionLine.onValueChanged.AddListener((value) => gameManager.gameSetting.drawProjectionLine = value);
         slowMotion.onValueChanged.AddListener((value) => gameManager.gameSetting.slowMotionOnExplosion = value);
         miniMap.onValueChanged.AddListener((value) =>

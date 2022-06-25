@@ -9,6 +9,8 @@ public class GameUIController : MonoBehaviour
 {
     public Slider blastPowerSlider;
     public Button launch;
+    public Button reload;
+    public TMP_Text ammoInfo;
     public Button settingsButton;
     public Joystick joystick;
     public GameObject miniMap;
@@ -16,10 +18,12 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private TMP_Text blastPowerSliderValue;
 
     public static GameUIController instance;
+    [HideInInspector] public AmmoController ammoController;
 
     private void Awake()
     {
         instance = this;
+        ammoController = GetComponent<AmmoController>();
     }
 
     private void Start()
@@ -27,6 +31,7 @@ public class GameUIController : MonoBehaviour
         LauncherController launcherController = GameManager.instance.gameController.launcher.GetComponent<LauncherController>();
         launch.onClick.AddListener(launcherController.Shot);
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));
+        reload.onClick.AddListener((() => ammoController.Reload()));
         blastPowerSlider.value = 17;
         launcherController.blastPower = blastPowerSlider.value;
         blastPowerSlider.onValueChanged.AddListener((value) =>

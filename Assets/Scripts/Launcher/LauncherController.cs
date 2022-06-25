@@ -12,10 +12,16 @@ public class LauncherController : MonoBehaviour
     public GameObject Explosion;
     public Camera mainCamera;
     public float blastPower;
-    private float rotationSpeed = .5f;
+    [HideInInspector] public bool ableToShot;
+    private float rotationSpeed = 1f;
     // private float yAxisTurnSpeed = 2f;
     // private float xAxisTurnSpeed = 25f;
-    
+
+    private void Start()
+    {
+        ableToShot = true;
+    }
+
     private void Update()
     {
         float HorizontalRotation = Input.GetAxis("Horizontal");
@@ -68,7 +74,7 @@ public class LauncherController : MonoBehaviour
         //     launcherBodyTransform.localEulerAngles = new Vector3(launcherBodyTransform.localEulerAngles.x + xAxisTurnSpeed * Time.deltaTime, launcherBodyTransform.localEulerAngles.y, launcherBodyTransform.localEulerAngles.z);
         // }
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && ableToShot)
         {
             Shot();
         }
@@ -76,8 +82,17 @@ public class LauncherController : MonoBehaviour
 
     public void Shot()
     {
+        StartCoroutine(ShotProcess());
+    }
+
+    private IEnumerator ShotProcess()
+    {
+        ableToShot = false;
+        yield return new WaitForSeconds(1f);
+        ableToShot = true;
         GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
         CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * blastPower;
+        GameUIController.instance.ammoController.DecreaseAmmo();
         Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
         StartCoroutine(mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .2f));
     }

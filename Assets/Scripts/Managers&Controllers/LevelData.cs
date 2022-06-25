@@ -6,7 +6,7 @@ public class LevelData
 {
     public int level;
     public string difficulty;
-    public int numberOfCannonBalls;
+    public int numberOfAmmos;
     public int numberOfRewinds;
     public int numberOfEnemies;
     public int numberOfGroups;
@@ -17,7 +17,7 @@ public class LevelData
     {
         this.level = level;
         this.difficulty = difficulty;
-        this.numberOfCannonBalls = numberOfCannonBalls;
+        this.numberOfAmmos = numberOfCannonBalls;
         this.numberOfRewinds = numberOfRewinds;
         this.numberOfEnemies = numberOfEnemies;
         this.numberOfGroups = numberOfGroups;
@@ -26,7 +26,7 @@ public class LevelData
 
     public override string ToString()
     {
-        return "level: " + level + " ||| cannon balls: " + numberOfCannonBalls + " ||| enemies: " + numberOfEnemies + "|" +
+        return "level: " + level + " ||| cannon balls: " + numberOfAmmos + " ||| enemies: " + numberOfEnemies + "|" +
                numberOfGroups;
     }
 }
