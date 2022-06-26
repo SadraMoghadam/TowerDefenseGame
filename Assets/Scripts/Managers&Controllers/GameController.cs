@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public int level;
     [HideInInspector] public int numberOfEnemiesAlive;
     [HideInInspector] public LevelDataReader levelDataReader;
+    [HideInInspector] public LevelData levelData;
 
 
     private void Awake()
@@ -17,20 +18,25 @@ public class GameController : MonoBehaviour
         levelDataReader = gameObject.GetComponent<LevelDataReader>();
     }
 
+    private void OnEnable()
+    {
+        GetLevelInformation();
+    }
+
     private void GetLevelInformation()
     {
-        
+        levelData = levelDataReader.GetLevelData(level);
+        numberOfEnemiesAlive = levelData.numberOfEnemies;
     }
 
     public void LostProcess()
     {
-        Time.timeScale = 0;
-        Debug.Log("You Lost");
+        GameUIController.instance.endOfGamePanel.EOGPanelShow(false);
     }
     
     public void WonProcess()
     {
-        
+        GameUIController.instance.endOfGamePanel.EOGPanelShow(true);
     }
     
     public IEnumerator SlowMotion(float slowMotionCoefficient, float slowMotionTime)

@@ -14,6 +14,7 @@ public class GameUIController : MonoBehaviour
     public Button settingsButton;
     public Joystick joystick;
     public GameObject miniMap;
+    public EndOfGamePanel endOfGamePanel;
     [SerializeField] private SettingPanel settingPanel;
     [SerializeField] private TMP_Text blastPowerSliderValue;
 

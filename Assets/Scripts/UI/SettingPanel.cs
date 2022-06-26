@@ -22,7 +22,12 @@ public class SettingPanel : MonoBehaviour
         miniMap.isOn = gameManager.gameSetting.miniMap;
         music.value = gameManager.gameSetting.music;
         sfx.value = gameManager.gameSetting.sfx;
-        quit.onClick.AddListener((() => Debug.Log("Quit To Menu")));
+        quit.onClick.AddListener((() =>
+        {
+            gameObject.SetActive(false);
+            Time.timeScale = 1;
+            Debug.Log("Quit To Menu");
+        }));
     }
 
     private void OnEnable()

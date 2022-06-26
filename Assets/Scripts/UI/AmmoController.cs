@@ -33,10 +33,13 @@ public class AmmoController : MonoBehaviour
         GameUIController.instance.ammoInfo.text = inMagAmmo.ToString() + "/" + pocketAmmoCount;
         int index = inMagAmmo % magazineSpace;
         ammos[index].SetActive(false);
-        
-        
-        if(totalAmmo <= 0)
-            gameManager.gameController.launcher.GetComponent<LauncherController>().ableToShot = false;
+
+
+        if (totalAmmo <= 0)
+        {
+            gameManager.gameController.launcher.GetComponent<LauncherController>().ableToShot = false;   
+            gameManager.gameController.LostProcess();
+        }
         if (index <= 0 && totalAmmo > 0)
         {
             Reload();

@@ -12,6 +12,7 @@ public class LauncherController : MonoBehaviour
     public GameObject Explosion;
     public Camera mainCamera;
     public float blastPower;
+    public GameObject filterFire;
     [HideInInspector] public bool ableToShot;
     private float rotationSpeed = 1f;
     // private float yAxisTurnSpeed = 2f;
@@ -20,6 +21,7 @@ public class LauncherController : MonoBehaviour
     private void Start()
     {
         ableToShot = true;
+        filterFire.SetActive(false);
     }
 
     private void Update()
@@ -88,7 +90,9 @@ public class LauncherController : MonoBehaviour
     private IEnumerator ShotProcess()
     {
         ableToShot = false;
+        filterFire.SetActive(true);
         yield return new WaitForSeconds(1f);
+        filterFire.SetActive(false);
         ableToShot = true;
         GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
         CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * blastPower;

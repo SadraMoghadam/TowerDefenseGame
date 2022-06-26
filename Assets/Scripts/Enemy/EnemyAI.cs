@@ -72,6 +72,17 @@ public class EnemyAI : MonoBehaviour
             SetBodyActivation(true);   
         }
     }
+    
+    private void OnCollisionExit(Collision collision)
+    {
+        if (!isAlive)
+            return;
+        if (collision.collider.gameObject.tag == "Wall")
+        {
+            reachedWalls = false;
+            enemyAnimator.SetInteger("HitType", 0);
+        }
+    }
 
 
     private void SetupEnemy()
@@ -146,6 +157,11 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
+        int numOfEnemies = --gameManager.gameController.numberOfEnemiesAlive;
+        if (numOfEnemies <= 0)
+        {
+            gameManager.gameController.WonProcess();
+        }
     }
 
     private void RagdollActivation(bool activate)
