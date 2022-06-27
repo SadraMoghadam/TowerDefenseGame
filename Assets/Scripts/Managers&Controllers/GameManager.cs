@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,9 +17,29 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         instance = this;
         gameController = GetComponent<GameController>();
         gameSetting = GetComponent<GameSetting>();
         PlayerPrefsManager = GetComponent<PlayerPrefsManager>();
     }
+    
+    public async void LoadScene(string sceneName)
+    {
+        var scene = SceneManager.LoadSceneAsync(sceneName);
+        SceneManager.LoadScene("Loading");
+        scene.allowSceneActivation = false;
+        await Task.Delay(200);
+        var slider = FindObjectOfType<Slider>();
+        do
+        {
+            await Task.Delay(100);
+            slider.value = scene.progress;
+        } while (scene.progress < 0.9f);
+
+        await Task.Delay(1000);
+        scene.allowSceneActivation = true;
+        SceneManager.LoadScene(sceneName);
+    }
+    
 }

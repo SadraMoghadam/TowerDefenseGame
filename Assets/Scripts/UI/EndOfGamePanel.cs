@@ -24,25 +24,19 @@ public class EndOfGamePanel : MonoBehaviour
         nextLevelButton.gameObject.transform.parent.gameObject.SetActive(true);
         nextLevelButton.onClick.AddListener((() =>
         {
-            gameObject.SetActive(false);
-            Time.timeScale = 1;
             if (GameManager.instance.gameController.level <= levelsCompleted.Max())
             {
                 GameManager.instance.gameController.level++;   
             }
-            SceneManager.LoadScene("Game");
+            OnButtonClicked();
         }));
         quitButton.onClick.AddListener((() =>
         {
-            gameObject.SetActive(false);
-            Time.timeScale = 1;
-            SceneManager.LoadScene("Game");
+            OnButtonClicked();
         }));
         playAgainButton.onClick.AddListener((() =>
         {
-            gameObject.SetActive(false);
-            Time.timeScale = 1;
-            SceneManager.LoadScene("Game");
+            OnButtonClicked();
         }));
         if (result)
         {
@@ -60,6 +54,13 @@ public class EndOfGamePanel : MonoBehaviour
             nextLevelButton.gameObject.transform.parent.gameObject.SetActive(false);
         }
         Invoke("StopTime", .5f);
+    }
+
+    private void OnButtonClicked()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 1;
+        GameManager.instance.LoadScene("Game");
     }
     
     private void StopTime()
