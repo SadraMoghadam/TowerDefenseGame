@@ -4586,6 +4586,7 @@ GameObject:
   - component: {fileID: 1662460891}
   - component: {fileID: 1662460894}
   - component: {fileID: 1662460896}
+  - component: {fileID: 1662460897}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4628,6 +4629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
   gameSetting: {fileID: 0}
+  PlayerPrefsManager: {fileID: 0}
   GameMainColor: {r: 0, g: 99, b: 61, a: 1}
   gameRedColor: {r: 200, g: 24, b: 0, a: 1}
 --- !u!4 &1662460893
@@ -4689,6 +4691,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyTypes: {fileID: 11400000, guid: 0288f826f8144b24b9db56f90cf1aeee, type: 2}
   enemiesContainer: {fileID: 414288718}
+--- !u!114 &1662460897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662460889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c08422deba92424ebe9a6f2aa286b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1685895789 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 293376487073767113, guid: c324fa6eba6403d4b9d0a8a223370193, type: 3}
@@ -5870,6 +5884,17 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1908900585 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3943584633250094608, guid: a43b827b360e9ba48b6601df51b92eb8, type: 3}
+  m_PrefabInstance: {fileID: 2910250003738218525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1961485340
 GameObject:
   m_ObjectHideFlags: 0
@@ -6600,6 +6625,10 @@ PrefabInstance:
       propertyPath: loseBackground
       value: 
       objectReference: {fileID: 21300000, guid: 5af83aa1282a57d4b824314b3ac8f761, type: 3}
+    - target: {fileID: 8922919051266558437, guid: a43b827b360e9ba48b6601df51b92eb8, type: 3}
+      propertyPath: nextLevelButton
+      value: 
+      objectReference: {fileID: 1908900585}
     - target: {fileID: 8922919051266558442, guid: a43b827b360e9ba48b6601df51b92eb8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

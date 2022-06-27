@@ -11,5 +11,17 @@ public class GameSetting : MonoBehaviour
     public bool miniMap = true;
     public float music = 0.5f;
     public float sfx = 0.5f;
+    private PlayerPrefsManager playerPrefsManager;
 
+    private void Awake()
+    {
+        playerPrefsManager = GameManager.instance.PlayerPrefsManager;
+        drawProjectionLine =
+            playerPrefsManager.GetBool(PlayerPrefsManager.PlayerPrefsKeys.drawProjectionLine, drawProjectionLine);
+        slowMotionOnExplosion =
+            playerPrefsManager.GetBool(PlayerPrefsManager.PlayerPrefsKeys.slowMotionOnExplosion, slowMotionOnExplosion);
+        miniMap = playerPrefsManager.GetBool(PlayerPrefsManager.PlayerPrefsKeys.miniMap, miniMap);
+        music = playerPrefsManager.GetFloat(PlayerPrefsManager.PlayerPrefsKeys.music, music);
+        sfx = playerPrefsManager.GetFloat(PlayerPrefsManager.PlayerPrefsKeys.sfx, sfx);
+    }
 }

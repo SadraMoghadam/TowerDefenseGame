@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -11,11 +12,18 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int numberOfEnemiesAlive;
     [HideInInspector] public LevelDataReader levelDataReader;
     [HideInInspector] public LevelData levelData;
+    private GameManager gameManager;
 
 
     private void Awake()
     {
+        gameManager = GameManager.instance;
         levelDataReader = gameObject.GetComponent<LevelDataReader>();
+        level = gameManager.PlayerPrefsManager.GetLevelsCompleted() != null &&
+                gameManager.PlayerPrefsManager.GetLevelsCompleted().Count > 0
+            ? gameManager.PlayerPrefsManager.GetLevelsCompleted().Max() + 1
+            : 1;
+        Debug.Log("Level: " + level);
     }
 
     private void OnEnable()
@@ -36,6 +44,7 @@ public class GameController : MonoBehaviour
     
     public void WonProcess()
     {
+        GameManager.instance.PlayerPrefsManager.AddLevelsCompleted(level);
         GameUIController.instance.endOfGamePanel.EOGPanelShow(true);
     }
     
