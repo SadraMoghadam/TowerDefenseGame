@@ -15,7 +15,7 @@ public class GameSetting : MonoBehaviour
 
     private void Awake()
     {
-        playerPrefsManager = GameManager.instance.PlayerPrefsManager;
+        playerPrefsManager = GameManager.instance.playerPrefsManager;
         drawProjectionLine =
             playerPrefsManager.GetBool(PlayerPrefsManager.PlayerPrefsKeys.drawProjectionLine, drawProjectionLine);
         slowMotionOnExplosion =

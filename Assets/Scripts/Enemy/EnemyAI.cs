@@ -37,9 +37,9 @@ public class EnemyAI : MonoBehaviour
         gameManager = GameManager.instance;
         enemyAnimator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
-        target = gameManager.gameController.launcher.transform;
+        target = GameController.instance.launcher.transform;
         reachedWalls = false;
-        walls = gameManager.gameController.walls;
+        walls = GameController.instance.walls;
         SetBodyActivation(false);
         health = enemyType.maxHealth;
         healthBar.value = health / enemyType.maxHealth;
@@ -157,10 +157,10 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
-        int numOfEnemies = --gameManager.gameController.numberOfEnemiesAlive;
+        int numOfEnemies = --GameController.instance.numberOfEnemiesAlive;
         if (numOfEnemies <= 0)
         {
-            gameManager.gameController.WonProcess();
+            GameController.instance.WonProcess();
         }
     }
 

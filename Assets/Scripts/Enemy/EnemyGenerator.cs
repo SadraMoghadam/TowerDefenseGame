@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class EnemyGenerator : MonoBehaviour
@@ -21,13 +22,21 @@ public class EnemyGenerator : MonoBehaviour
     private float maxNegativeX = 120;
     private float minNegativeZ = 110;
     private float maxNegativeZ = 120;
-        
+
+
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().name != "Game")
+            enabled = false;
+        else
+            enabled = true;
+    }
 
     public void OnEnable()
     {
         gameManager =  GameManager.instance;
-        level = gameManager.gameController.level;
-        levelData = gameManager.gameController.levelDataReader.GetLevelData(level);
+        level = gameObject.GetComponent<GameController>().level;
+        levelData = gameManager.levelDataReader.GetLevelData(level);
         totalNumberOfEnemies = levelData.numberOfEnemies;
         Debug.Log(levelData.ToString());
         StartCoroutine(GenerateOnTime(totalNumberOfEnemies / levelData.numberOfGroups));

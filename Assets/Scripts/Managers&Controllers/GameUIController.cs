@@ -29,7 +29,7 @@ public class GameUIController : MonoBehaviour
 
     private void Start()
     {
-        LauncherController launcherController = GameManager.instance.gameController.launcher.GetComponent<LauncherController>();
+        LauncherController launcherController = GameController.instance.launcher.GetComponent<LauncherController>();
         launch.onClick.AddListener(launcherController.Shot);
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));
         reload.onClick.AddListener((() => ammoController.Reload()));

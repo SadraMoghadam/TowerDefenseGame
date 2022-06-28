@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelDataReader : MonoBehaviour
 {
     private string fileName = "LevelData";
-    private List<LevelData> levelData;
+    public List<LevelData> levelData;
     
     private void Awake()
     {

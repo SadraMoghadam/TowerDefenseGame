@@ -15,8 +15,8 @@ public class AmmoController : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.instance;
-        totalAmmo = gameManager.gameController.levelDataReader
-            .GetLevelData(gameManager.gameController.level).numberOfAmmos;
+        totalAmmo = gameManager.levelDataReader
+            .GetLevelData(GameController.instance.level).numberOfAmmos;
         pocketAmmoCount = totalAmmo - magazineSpace;
         pocketAmmoCount = pocketAmmoCount < 0 ? 0 : pocketAmmoCount;
         GameUIController.instance.ammoInfo.text = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo).ToString() + "/" + pocketAmmoCount;
@@ -37,8 +37,8 @@ public class AmmoController : MonoBehaviour
 
         if (totalAmmo <= 0)
         {
-            gameManager.gameController.launcher.GetComponent<LauncherController>().ableToShot = false;   
-            gameManager.gameController.LostProcess();
+            GameController.instance.launcher.GetComponent<LauncherController>().ableToShot = false;   
+            GameController.instance.LostProcess();
         }
         if (index <= 0 && totalAmmo > 0)
         {
@@ -54,9 +54,9 @@ public class AmmoController : MonoBehaviour
     private IEnumerator ReloadProcess()
     {
         int inMagAmmo = totalAmmo - pocketAmmoCount;
-        gameManager.gameController.launcher.GetComponent<LauncherController>().ableToShot = false;
+        GameController.instance.launcher.GetComponent<LauncherController>().ableToShot = false;
         yield return new WaitForSeconds((float)(magazineSpace - inMagAmmo) * .4f);
-        gameManager.gameController.launcher.GetComponent<LauncherController>().ableToShot = true;
+        GameController.instance.launcher.GetComponent<LauncherController>().ableToShot = true;
         int index = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo);
         for (int i = inMagAmmo; i < index; i++)
         {

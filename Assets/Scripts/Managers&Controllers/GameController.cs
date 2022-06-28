@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -10,19 +11,30 @@ public class GameController : MonoBehaviour
     public List<GameObject> walls;
     public int level;
     [HideInInspector] public int numberOfEnemiesAlive;
-    [HideInInspector] public LevelDataReader levelDataReader;
     [HideInInspector] public LevelData levelData;
     private GameManager gameManager;
+    public static GameController instance;
 
 
     private void Awake()
     {
+        if (SceneManager.GetActiveScene().name != "Game")
+            enabled = false;
+        else
+            enabled = true;
+        instance = this;
         gameManager = GameManager.instance;
-        levelDataReader = gameObject.GetComponent<LevelDataReader>();
-        level = gameManager.PlayerPrefsManager.GetLevelsCompleted() != null &&
-                gameManager.PlayerPrefsManager.GetLevelsCompleted().Count > 0
-            ? gameManager.PlayerPrefsManager.GetLevelsCompleted().Max() + 1
-            : 1;
+        if (gameManager.redirectFromMainMenu)
+        {
+            level = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, 1);
+        }
+        else
+        {
+            level = gameManager.playerPrefsManager.GetLevelsCompleted() != null &&
+                    gameManager.playerPrefsManager.GetLevelsCompleted().Count > 0
+                ? gameManager.playerPrefsManager.GetLevelsCompleted().Max() + 1
+                : 1;   
+        }
         Debug.Log("Level: " + level);
     }
 
@@ -33,7 +45,7 @@ public class GameController : MonoBehaviour
 
     private void GetLevelInformation()
     {
-        levelData = levelDataReader.GetLevelData(level);
+        levelData = gameManager.levelDataReader.GetLevelData(level);
         numberOfEnemiesAlive = levelData.numberOfEnemies;
     }
 
@@ -44,7 +56,7 @@ public class GameController : MonoBehaviour
     
     public void WonProcess()
     {
-        GameManager.instance.PlayerPrefsManager.AddLevelsCompleted(level);
+        GameManager.instance.playerPrefsManager.AddLevelsCompleted(level);
         GameUIController.instance.endOfGamePanel.EOGPanelShow(true);
     }
     

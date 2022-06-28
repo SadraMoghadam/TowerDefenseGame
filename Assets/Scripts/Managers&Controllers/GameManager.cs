@@ -8,25 +8,35 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector] public GameController gameController;
+    // [HideInInspector] public GameController gameController;
     [HideInInspector] public GameSetting gameSetting;
-    [HideInInspector] public PlayerPrefsManager PlayerPrefsManager;
+    [HideInInspector] public PlayerPrefsManager playerPrefsManager;
+    [HideInInspector] public LevelDataReader levelDataReader;
     [HideInInspector] public Color GameMainColor = new Color(0, 99, 61);
     [HideInInspector] public Color gameRedColor = new Color(200, 24, 0);
+    [HideInInspector] public bool redirectFromMainMenu;
     
     public static GameManager instance;
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-        instance = this;
-        gameController = GetComponent<GameController>();
+        if (instance != null) 
+            Destroy(gameObject);
+        redirectFromMainMenu = false;
+        // gameController = GetComponent<GameController>();
+        levelDataReader = GetComponent<LevelDataReader>();
         gameSetting = GetComponent<GameSetting>();
-        PlayerPrefsManager = GetComponent<PlayerPrefsManager>();
+        playerPrefsManager = GetComponent<PlayerPrefsManager>();
+        DontDestroyOnLoad(this.gameObject);
+        instance = this;
     }
     
     public async void LoadScene(string sceneName)
     {
         var scene = SceneManager.LoadSceneAsync(sceneName);
+        // if (sceneName == "Game")
+        // {
+        //     gameController = FindObjectOfType<GameController>();
+        // }
         SceneManager.LoadScene("Loading");
         scene.allowSceneActivation = false;
         await Task.Delay(200);

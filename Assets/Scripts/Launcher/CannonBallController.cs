@@ -31,7 +31,7 @@ public class CannonBallController : MonoBehaviour
         {
             ExplosionProcess();
             explosionHappened = true;
-            StartCoroutine(GameManager.instance.gameController.SlowMotion(0.2f, 0.8f));
+            StartCoroutine(GameController.instance.SlowMotion(0.2f, 0.8f));
         }
         Destroy(Instantiate(explosion, transform.position, transform.rotation), 2);
         this.transform.localScale = Vector3.zero;

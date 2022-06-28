@@ -29,7 +29,7 @@ public class WallController : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            gameManager.gameController.LostProcess();
+            GameController.instance.LostProcess();
         }
     }
 }

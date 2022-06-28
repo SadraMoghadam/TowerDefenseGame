@@ -11,7 +11,8 @@ public class PlayerPrefsManager : MonoBehaviour
         slowMotionOnExplosion,
         miniMap,
         music,
-        sfx
+        sfx,
+        ChosenLevel
     }
 
     public struct LevelsCompleted
@@ -41,12 +42,27 @@ public class PlayerPrefsManager : MonoBehaviour
     
     public float GetFloat(PlayerPrefsKeys playerPrefsKeys, float defaultValue)
     {
-        float floatNum = 0;
+        float value = defaultValue;
         if (PlayerPrefs.HasKey(playerPrefsKeys.ToString()))
         {
-            floatNum = PlayerPrefs.GetFloat(playerPrefsKeys.ToString());   
+            value = PlayerPrefs.GetFloat(playerPrefsKeys.ToString());   
         }
-        return floatNum;
+        return value;
+    }
+    
+    public void SetInt(PlayerPrefsKeys playerPrefsKeys, int value)
+    {
+        PlayerPrefs.SetInt(playerPrefsKeys.ToString(), value);
+    }
+    
+    public int GetInt(PlayerPrefsKeys playerPrefsKeys, int defaultValue)
+    {
+        int value = defaultValue;
+        if (PlayerPrefs.HasKey(playerPrefsKeys.ToString()))
+        {
+            value = PlayerPrefs.GetInt(playerPrefsKeys.ToString());   
+        }
+        return value;
     }
     
     public void AddLevelsCompleted(int level)

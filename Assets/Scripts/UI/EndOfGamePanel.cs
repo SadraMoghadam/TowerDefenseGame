@@ -20,13 +20,13 @@ public class EndOfGamePanel : MonoBehaviour
 
     public void OnEnable()
     {
-        List<int> levelsCompleted = GameManager.instance.PlayerPrefsManager.GetLevelsCompleted();
+        List<int> levelsCompleted = GameManager.instance.playerPrefsManager.GetLevelsCompleted();
         nextLevelButton.gameObject.transform.parent.gameObject.SetActive(true);
         nextLevelButton.onClick.AddListener((() =>
         {
-            if (GameManager.instance.gameController.level <= levelsCompleted.Max())
+            if (GameController.instance.level <= levelsCompleted.Max())
             {
-                GameManager.instance.gameController.level++;   
+                GameController.instance.level++;   
             }
             OnButtonClicked();
         }));
@@ -49,7 +49,7 @@ public class EndOfGamePanel : MonoBehaviour
             messageBackground.texture = loseBackground.texture;
         }
 
-        if (levelsCompleted.Max() <= GameManager.instance.gameController.level && !result)
+        if (levelsCompleted.Max() <= GameController.instance.level && !result)
         {
             nextLevelButton.gameObject.transform.parent.gameObject.SetActive(false);
         }
@@ -60,6 +60,7 @@ public class EndOfGamePanel : MonoBehaviour
     {
         gameObject.SetActive(false);
         Time.timeScale = 1;
+        GameManager.instance.redirectFromMainMenu = false;
         GameManager.instance.LoadScene("Game");
     }
     

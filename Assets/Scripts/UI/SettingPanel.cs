@@ -36,28 +36,28 @@ public class SettingPanel : MonoBehaviour
         
         projectionLine.onValueChanged.AddListener((value) =>
         {
-            gameManager.PlayerPrefsManager.SetBool(PlayerPrefsManager.PlayerPrefsKeys.drawProjectionLine, value);
+            gameManager.playerPrefsManager.SetBool(PlayerPrefsManager.PlayerPrefsKeys.drawProjectionLine, value);
             gameManager.gameSetting.drawProjectionLine = value;
         });
         slowMotion.onValueChanged.AddListener((value) =>
         {
-            gameManager.PlayerPrefsManager.SetBool(PlayerPrefsManager.PlayerPrefsKeys.slowMotionOnExplosion, value);
+            gameManager.playerPrefsManager.SetBool(PlayerPrefsManager.PlayerPrefsKeys.slowMotionOnExplosion, value);
             gameManager.gameSetting.slowMotionOnExplosion = value;
         });
         miniMap.onValueChanged.AddListener((value) =>
         {
-            gameManager.PlayerPrefsManager.SetBool(PlayerPrefsManager.PlayerPrefsKeys.miniMap, value);
+            gameManager.playerPrefsManager.SetBool(PlayerPrefsManager.PlayerPrefsKeys.miniMap, value);
             GameUIController.instance.miniMap.SetActive(value);
             gameManager.gameSetting.miniMap = value;
         });
         music.onValueChanged.AddListener((value) =>
         {
-            gameManager.PlayerPrefsManager.SetFloat(PlayerPrefsManager.PlayerPrefsKeys.music, value);
+            gameManager.playerPrefsManager.SetFloat(PlayerPrefsManager.PlayerPrefsKeys.music, value);
             gameManager.gameSetting.music = value;
         });
         sfx.onValueChanged.AddListener((value) =>
         {
-            gameManager.PlayerPrefsManager.SetFloat(PlayerPrefsManager.PlayerPrefsKeys.sfx, value);
+            gameManager.playerPrefsManager.SetFloat(PlayerPrefsManager.PlayerPrefsKeys.sfx, value);
             gameManager.gameSetting.sfx = value;
         });
         Invoke("StopTime", .5f);
