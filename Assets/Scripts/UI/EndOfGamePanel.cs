@@ -26,13 +26,17 @@ public class EndOfGamePanel : MonoBehaviour
         {
             if (GameController.instance.level <= levelsCompleted.Max())
             {
-                GameController.instance.level++;   
+                int level = GameManager.instance.playerPrefsManager.GetInt(
+                    PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, 1);
+                GameManager.instance.playerPrefsManager.SetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, level + 1);
             }
             OnButtonClicked();
         }));
         quitButton.onClick.AddListener((() =>
         {
-            OnButtonClicked();
+            gameObject.SetActive(false);
+            Time.timeScale = 1;
+            GameManager.instance.LoadScene("MainMenu");
         }));
         playAgainButton.onClick.AddListener((() =>
         {
@@ -49,7 +53,7 @@ public class EndOfGamePanel : MonoBehaviour
             messageBackground.texture = loseBackground.texture;
         }
 
-        if (levelsCompleted.Max() <= GameController.instance.level && !result)
+        if (levelsCompleted.Max()+1 == GameController.instance.level && !result)
         {
             nextLevelButton.gameObject.transform.parent.gameObject.SetActive(false);
         }

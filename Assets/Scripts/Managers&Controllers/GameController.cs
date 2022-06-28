@@ -14,7 +14,16 @@ public class GameController : MonoBehaviour
     [HideInInspector] public LevelData levelData;
     private GameManager gameManager;
     public static GameController instance;
+    // [SerializeField] private Camera camera;
+    // private int cameraFieldOfViewCoefficient = 3;
 
+    public enum EnemyTypes
+    {
+        Default = 0,
+        Dasher = 1,
+        Strong = 2,
+        Boss = 3
+    }
 
     private void Awake()
     {
@@ -24,17 +33,18 @@ public class GameController : MonoBehaviour
             enabled = true;
         instance = this;
         gameManager = GameManager.instance;
-        if (gameManager.redirectFromMainMenu)
-        {
-            level = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, 1);
-        }
-        else
-        {
-            level = gameManager.playerPrefsManager.GetLevelsCompleted() != null &&
-                    gameManager.playerPrefsManager.GetLevelsCompleted().Count > 0
-                ? gameManager.playerPrefsManager.GetLevelsCompleted().Max() + 1
-                : 1;   
-        }
+        level = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, 1);
+        // if (gameManager.redirectFromMainMenu)
+        // {
+        //     level = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, 1);
+        // }
+        // else
+        // {
+        //     level = gameManager.playerPrefsManager.GetLevelsCompleted() != null &&
+        //             gameManager.playerPrefsManager.GetLevelsCompleted().Count > 0
+        //         ? gameManager.playerPrefsManager.GetLevelsCompleted().Max() + 1
+        //         : 1;   
+        // }
         Debug.Log("Level: " + level);
     }
 
@@ -67,5 +77,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         StopAllCoroutines();
     }
+    
+    
     
 }

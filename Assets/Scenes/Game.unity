@@ -5942,7 +5942,6 @@ MonoBehaviour:
   - {fileID: 1868424076}
   level: 1
   numberOfEnemiesAlive: 0
-  levelDataReader: {fileID: 0}
 --- !u!4 &2053576509
 Transform:
   m_ObjectHideFlags: 0
@@ -6388,6 +6387,10 @@ PrefabInstance:
     - target: {fileID: 3080553297357066594, guid: 567da007688f5ed47a0fef1830985567, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116960187270026161, guid: 567da007688f5ed47a0fef1830985567, type: 3}
+      propertyPath: field of view
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4296252073326469643, guid: 567da007688f5ed47a0fef1830985567, type: 3}
       propertyPath: m_AnchoredPosition.y

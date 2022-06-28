@@ -367,7 +367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &690537701
 RectTransform:
   m_ObjectHideFlags: 0
@@ -400,6 +400,26 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3436442045365160684, guid: 1c172d28fc452ec4d85864a3d6fe04a6, type: 3}
   m_PrefabInstance: {fileID: 3436442045691594872}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &765395605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765395603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a314157a9aee748993e2c28e39177c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelsContainer: {fileID: 2077676824}
+  levelButtonObject: {fileID: 8126392311192417076, guid: 3114018d68d94ae45a1a948222ec9f2c, type: 3}
+  levelSelectPopUp: {fileID: 690537700}
+  levelText: {fileID: 1284864437}
+  enemiesText: {fileID: 1107674691}
+  ammoText: {fileID: 1883012078}
+  difficultyText: {fileID: 142455995}
+  startGame: {fileID: 1250601204}
 --- !u!1 &775561814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,9 +1054,9 @@ RectTransform:
   m_Father: {fileID: 690537701}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 155.65, y: -0.000030517578}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -104.350006, y: -0.000030517578}
   m_SizeDelta: {x: 194.0874, y: 109.448}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1250601202
@@ -1185,7 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9616883, g: 1, b: 0.38364774, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2005,8 +2025,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4287601985
+  m_fontColor: {r: 0.25490198, g: 0.6156863, b: 0.56078434, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2334,6 +2354,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2077676824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3436442045587549463, guid: 1c172d28fc452ec4d85864a3d6fe04a6, type: 3}
+  m_PrefabInstance: {fileID: 3436442045691594872}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3436442045691594872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2501,7 +2526,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3436442045365160685, guid: 1c172d28fc452ec4d85864a3d6fe04a6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1c172d28fc452ec4d85864a3d6fe04a6, type: 3}
 --- !u!1001 &3678480800421705607
 PrefabInstance:

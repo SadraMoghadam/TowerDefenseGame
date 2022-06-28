@@ -21,7 +21,12 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null) 
             Destroy(gameObject);
-        redirectFromMainMenu = false;
+        GameManager[] gameManagers = FindObjectsOfType<GameManager>();
+        if(gameManagers.Length > 1)
+            for (int i = 0; i < gameManagers.Length - 1; i++)
+            {
+                Destroy(gameManagers[i].gameObject);   
+            }
         // gameController = GetComponent<GameController>();
         levelDataReader = GetComponent<LevelDataReader>();
         gameSetting = GetComponent<GameSetting>();

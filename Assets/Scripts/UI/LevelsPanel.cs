@@ -7,6 +7,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class LevelsPanel : MonoBehaviour
 {
@@ -20,33 +22,69 @@ public class LevelsPanel : MonoBehaviour
     public Button startGame;
     private List<LevelData> levelsData;
     private List<Button> levelButtons;
-    
+    private ScrollRect scrollRect;
+    private float eachButtonSpace = 117.5f;
+
+
+    private void Awake()
+    {
+        levelsData = GameManager.instance.levelDataReader.levelData;
+        scrollRect = gameObject.GetComponentInChildren<ScrollRect>();
+    }
 
     private void OnEnable()
     {
-        if(levelsContainer.transform.GetChildCount() > 0)
-            return;
-        levelsData = GameManager.instance.levelDataReader.levelData;
         List<int> levelsCompleted = GameManager.instance.playerPrefsManager.GetLevelsCompleted();
         int levels = levelsData.Count - 1;
         RectTransform objectRect = levelsContainer.GetComponent<RectTransform>();
-        objectRect.sizeDelta = new Vector2(objectRect.sizeDelta.x, (float)levels * 117.5f);
+        objectRect.sizeDelta = new Vector2(objectRect.sizeDelta.x, (float)levels * eachButtonSpace);
+        bool firstTime = false;
         for (int i = 0; i < levels; i++)
         {
-            var buttonObject = Instantiate(levelButtonObject);
-            buttonObject.transform.parent = levelsContainer.transform;
-            buttonObject.GetComponentInChildren<TMP_Text>().text = "Level " + (i + 1).ToString();
-            if ((levelsCompleted == null || levelsCompleted.Count <= 0) && i == 0)
+            GameObject buttonObject;
+            if (levelsContainer.transform.GetChildCount() <= 0)
             {
-                buttonObject.GetComponent<Button>().interactable = true;
+                firstTime = true;
             }
-            else if (levelsCompleted.Max() >= i && i != levels - 1)
+
+            if (firstTime)
             {
-                buttonObject.GetComponent<Button>().interactable = true;
+                if (i == levels - 1)
+                {
+                    firstTime = false;
+                }
+                buttonObject = Instantiate(levelButtonObject);
             }
             else
             {
-                buttonObject.GetComponent<Button>().interactable = false;
+                buttonObject = levelsContainer.gameObject.GetComponentsInChildren<Button>()[i].gameObject;
+            }
+            buttonObject.transform.parent = levelsContainer.transform;
+            buttonObject.GetComponentInChildren<TMP_Text>().text = "Level " + (i + 1).ToString();
+            Button levelButton = buttonObject.GetComponent<Button>();
+            if (levelsCompleted == null || levelsCompleted.Count <= 0)
+            {
+                if (i == 0)
+                {
+                    levelButton.interactable = true; 
+                    SelectLevelButton(levelButton, false);
+                }
+                else
+                {
+                    levelButton.interactable = false;
+                }
+            }
+            else if (levelsCompleted.Max() >= i && i != levels - 1)
+            {
+                levelButton.interactable = true;
+                if (levelsCompleted.Max() == i)
+                {
+                    SelectLevelButton(levelButton, true);
+                }
+            }
+            else
+            {
+                levelButton.interactable = false;
             }
         }
         levelButtons = levelsContainer.GetComponentsInChildren<Button>().ToList();
@@ -68,7 +106,7 @@ public class LevelsPanel : MonoBehaviour
                 }
                 levelButton.gameObject.GetComponent<Animator>().Play("Idle");
             }
-            button.gameObject.GetComponent<Animator>().SetTrigger("Select");
+            button.gameObject.GetComponent<Animator>().Play("Select");
             SetUpLevelPopUp(button);
         }));
     }
@@ -89,5 +127,31 @@ public class LevelsPanel : MonoBehaviour
             GameManager.instance.LoadScene("Game");
         }));
     }
+
+    private void SelectLevelButton(Button levelButton, bool snap)
+    {
+        levelButton.Select();
+        levelButton.gameObject.GetComponent<Animator>().Play("Select");
+        SetUpLevelPopUp(levelButton);
+        if (snap)
+        {
+            SnapTo(scrollRect, levelButton.gameObject.GetComponent<RectTransform>());
+        }
+    }
+    
+    private void SnapTo( ScrollRect scroller, RectTransform child )
+    {
+        Canvas.ForceUpdateCanvases();
+
+        var contentPos = (Vector2)scroller.transform.InverseTransformPoint( scroller.content.position );
+        var childPos = (Vector2)scroller.transform.InverseTransformPoint( child.position );
+        var endPos = contentPos - childPos;
+        endPos.x = 0;
+        endPos.y -= eachButtonSpace;
+        scroller.content.anchoredPosition = endPos;
+        scroller.content.offsetMin = new Vector2(0, scroller.content.offsetMin.y);
+        scroller.content.offsetMax = new Vector2(0, scroller.content.offsetMax.y);
+    }
+    
     
 }
