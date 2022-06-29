@@ -17,10 +17,11 @@ public class EndOfGamePanel : MonoBehaviour
     public Sprite winBackground;
     public Sprite loseBackground;
     private bool result;
+    [SerializeField] private List<GameObject> stars;
 
     public void OnEnable()
     {
-        List<int> levelsCompleted = GameManager.instance.playerPrefsManager.GetLevelsCompleted();
+        List<int> levelsCompleted = GameManager.instance.playerPrefsManager.GetComletedLevelNumbers();
         nextLevelButton.gameObject.transform.parent.gameObject.SetActive(true);
         nextLevelButton.onClick.AddListener((() =>
         {
@@ -57,7 +58,8 @@ public class EndOfGamePanel : MonoBehaviour
         {
             nextLevelButton.gameObject.transform.parent.gameObject.SetActive(false);
         }
-        Invoke("StopTime", .5f);
+        // Invoke("StopTime", .5f);
+        Invoke("SetupStars", .5f);
     }
 
     private void OnButtonClicked()
@@ -78,5 +80,32 @@ public class EndOfGamePanel : MonoBehaviour
     {
         this.result = result;
         this.gameObject.SetActive(true);
+    }
+
+    public void SetupStars()
+    {
+        int levelStars = Math.Max(GameController.instance.stars, GameManager.instance.playerPrefsManager.GetStarsOfLevel(GameController.instance.level));
+        
+        if (levelStars == 0)
+        {
+            return;
+        }
+        for (int i = 0; i < stars.Count; i++)
+        {
+            if (i < GameController.instance.stars)
+            {
+                // Invoke("ActivateStar", i * .2f);/
+                stars[i].SetActive(true);
+            }
+            else
+            {
+                stars[i].SetActive(false);
+            }
+        }
+    }
+
+    public void ActivateStar(GameObject star)
+    {
+        star.SetActive(true);
     }
 }

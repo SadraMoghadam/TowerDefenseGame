@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class PlayerPrefsManager : MonoBehaviour
 {
     public enum PlayerPrefsKeys
     {
-        LevelsCompleted,
+        LevelsInformation,
         drawProjectionLine,
         slowMotionOnExplosion,
         miniMap,
@@ -17,7 +18,7 @@ public class PlayerPrefsManager : MonoBehaviour
 
     public struct LevelsCompleted
     {
-        public List<int> levelsCompleted;
+        public List<LevelInformation> levelsInformation;
     }
 
     public void SetBool(PlayerPrefsKeys playerPrefsKeys, bool value)
@@ -65,39 +66,85 @@ public class PlayerPrefsManager : MonoBehaviour
         return value;
     }
     
-    public void AddLevelsCompleted(int level)
+    public void AddLevelsCompleted(int level, int stars)
     {
         LevelsCompleted levelsCompleted = new LevelsCompleted();
-        List<int> levelsList = new List<int>();
+        List<LevelInformation> levelsList = new List<LevelInformation>();
+        List<int> CompletedLevelNumbers = new List<int>();
         string jsonLevels = "";
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.LevelsCompleted.ToString()))
+        LevelInformation levelInformation = new LevelInformation(level, stars);
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.LevelsInformation.ToString()))
         {
             levelsList = GetLevelsCompleted();
-            if (levelsList.Contains(level))
+            CompletedLevelNumbers = GetComletedLevelNumbers();
+            if (CompletedLevelNumbers.Contains(levelInformation.levelNumber))
             {
+                levelsList.Remove(levelInformation);
+                levelInformation.stars = Math.Max(levelInformation.stars, stars);
+                levelsList.Add(levelInformation);
+                levelsCompleted.levelsInformation = levelsList;
+                for (int i = 0; i < levelsCompleted.levelsInformation.Count; i++)
+                {
+                    jsonLevels += JsonUtility.ToJson(levelsCompleted.levelsInformation[i]);
+                }
+                PlayerPrefs.SetString(PlayerPrefsKeys.LevelsInformation.ToString(), jsonLevels);
                 return;   
             }
-            levelsList.Add(level);
-            levelsCompleted.levelsCompleted = levelsList;
-            jsonLevels = JsonUtility.ToJson(levelsCompleted);
-            PlayerPrefs.SetString(PlayerPrefsKeys.LevelsCompleted.ToString(), jsonLevels);
+            levelsList.Add(levelInformation);
+            levelsCompleted.levelsInformation = levelsList;
+            for (int i = 0; i < levelsCompleted.levelsInformation.Count; i++)
+            {
+                jsonLevels += JsonUtility.ToJson(levelsCompleted.levelsInformation[i]);
+            }
+            PlayerPrefs.SetString(PlayerPrefsKeys.LevelsInformation.ToString(), jsonLevels);
             return;
         }
-        levelsList.Add(level);
-        levelsCompleted.levelsCompleted = levelsList;
-        jsonLevels = JsonUtility.ToJson(levelsCompleted);
-        PlayerPrefs.SetString(PlayerPrefsKeys.LevelsCompleted.ToString(), jsonLevels);
+        levelsList.Add(levelInformation);
+        levelsCompleted.levelsInformation = levelsList;
+        for (int i = 0; i < levelsCompleted.levelsInformation.Count; i++)
+        {
+            jsonLevels += JsonUtility.ToJson(levelsCompleted.levelsInformation[i]);
+        }
+        PlayerPrefs.SetString(PlayerPrefsKeys.LevelsInformation.ToString(), jsonLevels);
     }
     
-    public List<int> GetLevelsCompleted()
+    public List<LevelInformation> GetLevelsCompleted()
     {
         LevelsCompleted levelsCompleted = new LevelsCompleted();
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.LevelsCompleted.ToString()))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.LevelsInformation.ToString()))
         {
-            string jsonLevels = PlayerPrefs.GetString(PlayerPrefsKeys.LevelsCompleted.ToString());
-            levelsCompleted = JsonUtility.FromJson<LevelsCompleted>(jsonLevels);
+            string jsonLevels = PlayerPrefs.GetString(PlayerPrefsKeys.LevelsInformation.ToString());
+            levelsCompleted.levelsInformation = new List<LevelInformation>();
+            levelsCompleted.levelsInformation.Add(JsonUtility.FromJson<LevelInformation>(jsonLevels));
         }
-        return levelsCompleted.levelsCompleted;
+        return levelsCompleted.levelsInformation;
+    }
+
+    public List<int> GetComletedLevelNumbers()
+    {
+        List<int> levelsCompleted = new List<int>();
+        List<LevelInformation> levelsInformation = GetLevelsCompleted();
+        for (int i = 0; i < levelsInformation.Count; i++)
+        {
+            levelsCompleted.Add(levelsInformation[i].levelNumber);
+        }
+        return levelsCompleted;
     }
     
+    public int GetStarsOfLevel(int level)
+    {
+        int stars = 0;
+        List<LevelInformation> levelsInformation = GetLevelsCompleted();
+        for (int i = 0; i < levelsInformation.Count; i++)
+        {
+            if (level == levelsInformation[i].levelNumber)
+            {
+                stars = levelsInformation[i].stars;
+                break;
+            }
+        }
+        return stars;
+    }
+    
+
 }

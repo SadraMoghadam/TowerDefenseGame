@@ -9,7 +9,8 @@ public class GameController : MonoBehaviour
 {
     public GameObject launcher;
     public List<GameObject> walls;
-    public int level;
+    [HideInInspector] public int level = 1;
+    [HideInInspector] public int stars = 2;
     [HideInInspector] public int numberOfEnemiesAlive;
     [HideInInspector] public LevelData levelData;
     private GameManager gameManager;
@@ -66,7 +67,8 @@ public class GameController : MonoBehaviour
     
     public void WonProcess()
     {
-        GameManager.instance.playerPrefsManager.AddLevelsCompleted(level);
+        stars = 3;
+        GameManager.instance.playerPrefsManager.AddLevelsCompleted(level, stars);
         GameUIController.instance.endOfGamePanel.EOGPanelShow(true);
     }
     

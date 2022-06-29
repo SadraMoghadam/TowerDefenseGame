@@ -34,7 +34,7 @@ public class LevelsPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        List<int> levelsCompleted = GameManager.instance.playerPrefsManager.GetLevelsCompleted();
+        List<int> levelsCompleted = GameManager.instance.playerPrefsManager.GetComletedLevelNumbers();
         int levels = levelsData.Count - 1;
         RectTransform objectRect = levelsContainer.GetComponent<RectTransform>();
         objectRect.sizeDelta = new Vector2(objectRect.sizeDelta.x, (float)levels * eachButtonSpace);
@@ -42,7 +42,7 @@ public class LevelsPanel : MonoBehaviour
         for (int i = 0; i < levels; i++)
         {
             GameObject buttonObject;
-            if (levelsContainer.transform.GetChildCount() <= 0)
+            if (levelsContainer.transform.childCount <= 0)
             {
                 firstTime = true;
             }
