@@ -68,6 +68,11 @@ public class GameController : MonoBehaviour
     public void WonProcess()
     {
         stars = 3;
+        if (!GameManager.instance.playerPrefsManager.GetComletedLevelNumbers().Contains(level))
+        {
+            int preStars = GameManager.instance.playerPrefsManager.GetNumberOfStars();
+            GameManager.instance.playerPrefsManager.SetNumberOfStars(preStars + stars);
+        }
         GameManager.instance.playerPrefsManager.AddLevelsCompleted(level, stars);
         GameUIController.instance.endOfGamePanel.EOGPanelShow(true);
     }

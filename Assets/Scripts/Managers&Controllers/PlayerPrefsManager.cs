@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerPrefsManager : MonoBehaviour
@@ -13,9 +14,11 @@ public class PlayerPrefsManager : MonoBehaviour
         miniMap,
         music,
         sfx,
-        ChosenLevel
+        ChosenLevel,
+        stars
     }
 
+    [Serializable]
     public struct LevelsCompleted
     {
         public List<LevelInformation> levelsInformation;
@@ -79,32 +82,37 @@ public class PlayerPrefsManager : MonoBehaviour
             CompletedLevelNumbers = GetComletedLevelNumbers();
             if (CompletedLevelNumbers.Contains(levelInformation.levelNumber))
             {
-                levelsList.Remove(levelInformation);
+                for (int i = 0; i < levelsList.Count; i++)
+                {
+                    if (levelsList[i].levelNumber == level)
+                    {
+                        levelsList.RemoveAt(i);
+                    }
+                }
                 levelInformation.stars = Math.Max(levelInformation.stars, stars);
                 levelsList.Add(levelInformation);
                 levelsCompleted.levelsInformation = levelsList;
-                for (int i = 0; i < levelsCompleted.levelsInformation.Count; i++)
-                {
-                    jsonLevels += JsonUtility.ToJson(levelsCompleted.levelsInformation[i]);
-                }
+                jsonLevels = JsonUtility.ToJson(levelsCompleted);
                 PlayerPrefs.SetString(PlayerPrefsKeys.LevelsInformation.ToString(), jsonLevels);
                 return;   
             }
             levelsList.Add(levelInformation);
             levelsCompleted.levelsInformation = levelsList;
-            for (int i = 0; i < levelsCompleted.levelsInformation.Count; i++)
-            {
-                jsonLevels += JsonUtility.ToJson(levelsCompleted.levelsInformation[i]);
-            }
+            jsonLevels = JsonUtility.ToJson(levelsCompleted);
+            // for (int i = 0; i < levelsList.Count; i++)
+            // {
+            //     jsonLevels += JsonUtility.ToJson(levelsList[i]);
+            // }
             PlayerPrefs.SetString(PlayerPrefsKeys.LevelsInformation.ToString(), jsonLevels);
             return;
         }
         levelsList.Add(levelInformation);
         levelsCompleted.levelsInformation = levelsList;
-        for (int i = 0; i < levelsCompleted.levelsInformation.Count; i++)
-        {
-            jsonLevels += JsonUtility.ToJson(levelsCompleted.levelsInformation[i]);
-        }
+        jsonLevels = JsonUtility.ToJson(levelsCompleted);
+        // for (int i = 0; i < levelsList.Count; i++)
+        // {
+        //     jsonLevels += JsonUtility.ToJson(levelsList[i]);
+        // }
         PlayerPrefs.SetString(PlayerPrefsKeys.LevelsInformation.ToString(), jsonLevels);
     }
     
@@ -114,8 +122,7 @@ public class PlayerPrefsManager : MonoBehaviour
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.LevelsInformation.ToString()))
         {
             string jsonLevels = PlayerPrefs.GetString(PlayerPrefsKeys.LevelsInformation.ToString());
-            levelsCompleted.levelsInformation = new List<LevelInformation>();
-            levelsCompleted.levelsInformation.Add(JsonUtility.FromJson<LevelInformation>(jsonLevels));
+            levelsCompleted = JsonUtility.FromJson<LevelsCompleted>(jsonLevels);
         }
         return levelsCompleted.levelsInformation;
     }
@@ -124,9 +131,12 @@ public class PlayerPrefsManager : MonoBehaviour
     {
         List<int> levelsCompleted = new List<int>();
         List<LevelInformation> levelsInformation = GetLevelsCompleted();
-        for (int i = 0; i < levelsInformation.Count; i++)
+        if (levelsInformation != null)
         {
-            levelsCompleted.Add(levelsInformation[i].levelNumber);
+            for (int i = 0; i < levelsInformation.Count; i++)
+            {
+                levelsCompleted.Add(levelsInformation[i].levelNumber);
+            }   
         }
         return levelsCompleted;
     }
@@ -145,6 +155,15 @@ public class PlayerPrefsManager : MonoBehaviour
         }
         return stars;
     }
+
+    public void SetNumberOfStars(int stars)
+    {
+        SetInt(PlayerPrefsKeys.stars, stars);
+    }
     
+    public int GetNumberOfStars()
+    {
+        return GetInt(PlayerPrefsKeys.stars, 0);
+    }
 
 }
