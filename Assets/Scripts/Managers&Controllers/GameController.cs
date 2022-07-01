@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     [HideInInspector] public LevelData levelData;
     private GameManager gameManager;
     public static GameController instance;
+
+    [HideInInspector] public float matchLength = 120;
     // [SerializeField] private Camera camera;
     // private int cameraFieldOfViewCoefficient = 3;
 
@@ -28,6 +30,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        matchLength = 120;
         if (SceneManager.GetActiveScene().name != "Game")
             enabled = false;
         else

@@ -11,6 +11,8 @@ public class AmmoController : MonoBehaviour
     private int pocketAmmoCount;
     private GameManager gameManager;
     private int totalAmmo;
+    [SerializeField] private GameObject reloadTextObject;
+    [SerializeField] private Animator reloadAnimation;
 
     private void Start()
     {
@@ -53,6 +55,8 @@ public class AmmoController : MonoBehaviour
     
     private IEnumerator ReloadProcess()
     {
+        reloadAnimation.gameObject.SetActive(true);
+        reloadTextObject.SetActive(false);
         int inMagAmmo = totalAmmo - pocketAmmoCount;
         GameController.instance.launcher.GetComponent<LauncherController>().ableToShot = false;
         yield return new WaitForSeconds((float)(magazineSpace - inMagAmmo) * .4f);
@@ -65,6 +69,8 @@ public class AmmoController : MonoBehaviour
             ammos[i].SetActive(true);
         }
 
+        reloadAnimation.gameObject.SetActive(false);
+        reloadTextObject.SetActive(true);
         pocketAmmoCount -= (index - inMagAmmo);
         GameUIController.instance.ammoInfo.text = (index).ToString() + "/" + pocketAmmoCount.ToString();
     }
