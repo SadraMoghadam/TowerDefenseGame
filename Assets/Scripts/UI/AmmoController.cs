@@ -39,7 +39,7 @@ public class AmmoController : MonoBehaviour
 
         if (totalAmmo <= 0)
         {
-            GameController.instance.launcher.GetComponent<LauncherController>().ableToShot = false;   
+            GameController.instance.launcher.ableToShot = false;   
             GameController.instance.LostProcess();
         }
         if (index <= 0 && totalAmmo > 0)
@@ -58,9 +58,9 @@ public class AmmoController : MonoBehaviour
         reloadAnimation.gameObject.SetActive(true);
         reloadTextObject.SetActive(false);
         int inMagAmmo = totalAmmo - pocketAmmoCount;
-        GameController.instance.launcher.GetComponent<LauncherController>().ableToShot = false;
+        GameController.instance.launcher.ableToShot = false;
         yield return new WaitForSeconds((float)(magazineSpace - inMagAmmo) * .4f);
-        GameController.instance.launcher.GetComponent<LauncherController>().ableToShot = true;
+        GameController.instance.launcher.ableToShot = true;
         int index = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo);
         for (int i = inMagAmmo; i < index; i++)
         {

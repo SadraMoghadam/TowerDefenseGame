@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,16 +10,20 @@ public class SettingPanel : MonoBehaviour
     public Toggle projectionLine;
     public Toggle slowMotion;
     public Toggle miniMap;
+    public TMP_Dropdown cameraPosition;
     public Slider music;
     public Slider sfx;
     public Button quit;
     private GameManager gameManager;
+    private GameController gameController;
 
     private void Awake()
     {
         gameManager = GameManager.instance;
+        gameController = GameController.instance;
         projectionLine.isOn = gameManager.gameSetting.drawProjectionLine;
         slowMotion.isOn = gameManager.gameSetting.slowMotionOnExplosion;
+        cameraPosition.value = gameManager.gameSetting.cameraPosition;
         miniMap.isOn = gameManager.gameSetting.miniMap;
         music.value = gameManager.gameSetting.music;
         sfx.value = gameManager.gameSetting.sfx;
@@ -49,6 +54,22 @@ public class SettingPanel : MonoBehaviour
             gameManager.playerPrefsManager.SetBool(PlayerPrefsManager.PlayerPrefsKeys.miniMap, value);
             GameUIController.instance.miniMap.SetActive(value);
             gameManager.gameSetting.miniMap = value;
+        });
+        cameraPosition.onValueChanged.AddListener((value) =>
+        {
+            gameManager.playerPrefsManager.SetInt(PlayerPrefsManager.PlayerPrefsKeys.cameraPosition, value);
+            gameManager.gameSetting.cameraPosition = value;
+            Vector3 cameraTransform = gameController.launcher.mainCamera.transform.localPosition;
+            float cameraZ = 0;
+            if (value == 1)
+            {
+                cameraZ = 3;
+            }
+            else if (value == 2)
+            {
+                cameraZ = -3;
+            }
+            gameController.launcher.mainCamera.transform.localPosition = new Vector3(cameraTransform.x, cameraTransform.y, cameraZ);
         });
         music.onValueChanged.AddListener((value) =>
         {

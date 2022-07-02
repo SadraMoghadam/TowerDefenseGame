@@ -36,7 +36,7 @@ public class GameUIController : MonoBehaviour
         timer = GameController.instance.matchLength;
         var timeSpan = TimeSpan.FromSeconds(timer);
         timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}";
-        LauncherController launcherController = GameController.instance.launcher.GetComponent<LauncherController>();
+        LauncherController launcherController = GameController.instance.launcher;
         StartCoroutine(StartCountdown(0));
         launch.onClick.AddListener(launcherController.Shot);
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));

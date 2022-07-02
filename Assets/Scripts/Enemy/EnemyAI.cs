@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour
         gameManager = GameManager.instance;
         enemyAnimator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
-        target = GameController.instance.launcher.transform;
+        target = GameController.instance.launcher.gameObject.transform;
         reachedWalls = false;
         walls = GameController.instance.walls;
         SetBodyActivation(false);
@@ -45,7 +45,7 @@ public class EnemyAI : MonoBehaviour
         healthBar.value = health / enemyType.maxHealth;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (gameObject.activeSelf && isAlive)
         {

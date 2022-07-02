@@ -9,6 +9,7 @@ public class GameSetting : MonoBehaviour
     public bool drawProjectionLine = true;
     public bool slowMotionOnExplosion = true;
     public bool miniMap = true;
+    public int cameraPosition = 0;
     public float music = 0.5f;
     public float sfx = 0.5f;
     private PlayerPrefsManager playerPrefsManager;
@@ -21,6 +22,7 @@ public class GameSetting : MonoBehaviour
         slowMotionOnExplosion =
             playerPrefsManager.GetBool(PlayerPrefsManager.PlayerPrefsKeys.slowMotionOnExplosion, slowMotionOnExplosion);
         miniMap = playerPrefsManager.GetBool(PlayerPrefsManager.PlayerPrefsKeys.miniMap, miniMap);
+        cameraPosition = playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.cameraPosition, cameraPosition);
         music = playerPrefsManager.GetFloat(PlayerPrefsManager.PlayerPrefsKeys.music, music);
         sfx = playerPrefsManager.GetFloat(PlayerPrefsManager.PlayerPrefsKeys.sfx, sfx);
     }

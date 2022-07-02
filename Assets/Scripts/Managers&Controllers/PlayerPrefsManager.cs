@@ -12,6 +12,7 @@ public class PlayerPrefsManager : MonoBehaviour
         drawProjectionLine,
         slowMotionOnExplosion,
         miniMap,
+        cameraPosition,
         music,
         sfx,
         ChosenLevel,
@@ -65,6 +66,21 @@ public class PlayerPrefsManager : MonoBehaviour
         if (PlayerPrefs.HasKey(playerPrefsKeys.ToString()))
         {
             value = PlayerPrefs.GetInt(playerPrefsKeys.ToString());   
+        }
+        return value;
+    }
+    
+    public void SetString(PlayerPrefsKeys playerPrefsKeys, string value)
+    {
+        PlayerPrefs.SetString(playerPrefsKeys.ToString(), value);
+    }
+    
+    public string GetString(PlayerPrefsKeys playerPrefsKeys, string defaultValue)
+    {
+        string value = defaultValue;
+        if (PlayerPrefs.HasKey(playerPrefsKeys.ToString()))
+        {
+            value = PlayerPrefs.GetString(playerPrefsKeys.ToString());   
         }
         return value;
     }

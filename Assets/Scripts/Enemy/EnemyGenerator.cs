@@ -76,11 +76,6 @@ public class EnemyGenerator : MonoBehaviour
         EnemyGroupGenerator(new Vector3(randomX, 0, randomZ), numberOfEnemies, 3 + numberOfEnemies / 20);
         totalNumberOfEnemies -= numberOfEnemies;
         yield return new WaitForSeconds(waitTime);
-        // int generatableEnemiesNumber = 0;
-        // if (totalNumberOfEnemies - numberOfEnemies <= numberOfEnemies)
-        // {
-        //     generatableEnemiesNumber = totalNumberOfEnemies;   
-        // }
         if (totalNumberOfEnemies > 0)
         {
             StartCoroutine(GenerateOnTime(levelData.numberOfEnemies / levelData.numberOfGroups));   

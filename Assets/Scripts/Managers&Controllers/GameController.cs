@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject launcher;
+    public LauncherController launcher;
     public List<GameObject> walls;
     [HideInInspector] public int level = 1;
     [HideInInspector] public int stars = 2;
@@ -40,23 +40,13 @@ public class GameController : MonoBehaviour
         instance = this;
         gameManager = GameManager.instance;
         level = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, 1);
-        // if (gameManager.redirectFromMainMenu)
-        // {
-        //     level = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, 1);
-        // }
-        // else
-        // {
-        //     level = gameManager.playerPrefsManager.GetLevelsCompleted() != null &&
-        //             gameManager.playerPrefsManager.GetLevelsCompleted().Count > 0
-        //         ? gameManager.playerPrefsManager.GetLevelsCompleted().Max() + 1
-        //         : 1;   
-        // }
         Debug.Log("Level: " + level);
     }
 
     private void OnEnable()
     {
         GetLevelInformation();
+        SetCamera(3);
     }
 
     private void GetLevelInformation()
@@ -102,7 +92,21 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         StopAllCoroutines();
     }
-    
-    
+
+    private void SetCamera(float cameraOffset)
+    {
+        int cameraPosition = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.cameraPosition, 0);
+        Vector3 cameraTransform = launcher.mainCamera.transform.localPosition;
+        float cameraZ = 0;
+        if (cameraPosition == 1)
+        {
+            cameraZ = cameraOffset;
+        }
+        else if (cameraPosition == 2)
+        {
+            cameraZ = -cameraOffset;
+        }
+        launcher.mainCamera.transform.localPosition = new Vector3(cameraTransform.x, cameraTransform.y, cameraZ);
+    }
     
 }
