@@ -14,7 +14,11 @@ public class LauncherController : MonoBehaviour
     public float blastPower;
     public GameObject filterFire;
     [HideInInspector] public bool ableToShot;
-    private float rotationSpeed = 1f;
+    private float rotationSpeed = 2f;
+    private float startRotationTime = 0;
+    private bool startToSpeedUp = false;
+
+    [SerializeField] private GameObject launcherArea;
     // private float yAxisTurnSpeed = 2f;
     // private float xAxisTurnSpeed = 25f;
 
@@ -22,6 +26,8 @@ public class LauncherController : MonoBehaviour
     {
         ableToShot = true;
         filterFire.SetActive(false);
+        startRotationTime = 0;
+        startToSpeedUp = false;
     }
 
     private void Update()
@@ -34,19 +40,58 @@ public class LauncherController : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
                                               new Vector3(0, HorizontalRotation * rotationSpeed, 0));
-        if (HorizontalJoystickRotation > .4f || HorizontalJoystickRotation < -.4f)
+        if (HorizontalJoystickRotation > .3f || HorizontalJoystickRotation < -.3f)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
-                                                  new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));   
+            if (HorizontalJoystickRotation >= .8f || HorizontalJoystickRotation <= -.8f)
+            {
+                if (!startToSpeedUp)
+                {
+                    startToSpeedUp = true;
+                    startRotationTime = Time.time;
+                }
+
+                float timeOut = Time.time - startRotationTime;
+
+                // if (Time.time - startRotationTime > 2f)
+                // {
+                //     transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
+                //                                           new Vector3(0, HorizontalJoystickRotation * rotationSpeed * 2f, 0));
+                // }
+                // else if(Time.time - startRotationTime > 1f)
+                // {
+                //     transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
+                //                                           new Vector3(0, HorizontalJoystickRotation * rotationSpeed * 1.5f, 0));
+                // }
+                if (timeOut > 1f)
+                {
+                    if (timeOut > 2f)
+                    {
+                        timeOut = 2f;
+                    }
+                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
+                                                          new Vector3(0, HorizontalJoystickRotation * rotationSpeed * timeOut, 0));
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
+                                                          new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
+                }
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
+                                                      new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
+                startToSpeedUp = false;
+            }
         }
         if (launcherBodyTransform.rotation.eulerAngles.x <= 335 && launcherBodyTransform.rotation.eulerAngles.x >= 272)
         {
             launcherBodyTransform.rotation = Quaternion.Euler(launcherBodyTransform.rotation.eulerAngles + 
                                                               new Vector3(VericalRotation * rotationSpeed, 0, 0));
-            if (VericalJoystickRotation > .4f || VericalJoystickRotation < -.4f)
+            if (VericalJoystickRotation > .3f || VericalJoystickRotation < -.3f)
             {
                 launcherBodyTransform.rotation = Quaternion.Euler(launcherBodyTransform.rotation.eulerAngles + 
-                                                                  new Vector3(VericalJoystickRotation * rotationSpeed, 0, 0));
+                                                                  new Vector3(VericalJoystickRotation * rotationSpeed * .5f, 0, 0));
             }
         }
         if (launcherBodyTransform.rotation.eulerAngles.x > 334)
@@ -79,6 +124,14 @@ public class LauncherController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && ableToShot)
         {
             Shot();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 

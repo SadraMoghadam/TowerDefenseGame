@@ -38,6 +38,16 @@ public class LevelsPanel : MonoBehaviour
         int levels = levelsData.Count - 1;
         RectTransform objectRect = levelsContainer.GetComponent<RectTransform>();
         objectRect.sizeDelta = new Vector2(objectRect.sizeDelta.x, (float)levels * eachButtonSpace);
+        SetupLevelButtons(levels, levelsCompleted);
+        levelButtons = levelsContainer.GetComponentsInChildren<Button>().ToList();
+        foreach (var levelButton in levelButtons)
+        {
+            SelectButtonAnimation(levelButton);
+        }
+    }
+
+    private void SetupLevelButtons(int levels, List<int> levelsCompleted)
+    {
         bool firstTime = false;
         for (int i = 0; i < levels; i++)
         {
@@ -62,6 +72,7 @@ public class LevelsPanel : MonoBehaviour
             buttonObject.transform.parent = levelsContainer.transform;
             buttonObject.GetComponentInChildren<TMP_Text>().text = "Level " + (i + 1).ToString();
             Button levelButton = buttonObject.GetComponent<Button>();
+            Stars stars = levelButton.gameObject.GetComponentInChildren<Stars>();
             if (levelsCompleted == null || levelsCompleted.Count <= 0)
             {
                 if (i == 0)
@@ -71,12 +82,21 @@ public class LevelsPanel : MonoBehaviour
                 }
                 else
                 {
+                    stars.gameObject.SetActive(false);
                     levelButton.interactable = false;
                 }
             }
             else if (levelsCompleted.Max() >= i && i != levels - 1)
             {
                 levelButton.interactable = true;
+                int levelStars = GameManager.instance.playerPrefsManager.GetStarsOfLevel(i + 1);
+                for (int j = 0; j < stars.stars.Count; j++)
+                {
+                    if (j < levelStars)
+                    {
+                        stars.stars[j].SetActive(true);
+                    }   
+                }
                 if (levelsCompleted.Max() == i)
                 {
                     SelectLevelButton(levelButton, true);
@@ -84,13 +104,15 @@ public class LevelsPanel : MonoBehaviour
             }
             else
             {
+                try
+                {
+                    stars.gameObject.SetActive(false);
+                }
+                catch (Exception e)
+                {
+                }
                 levelButton.interactable = false;
             }
-        }
-        levelButtons = levelsContainer.GetComponentsInChildren<Button>().ToList();
-        foreach (var levelButton in levelButtons)
-        {
-            SelectButtonAnimation(levelButton);
         }
     }
 

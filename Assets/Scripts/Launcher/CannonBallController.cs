@@ -8,7 +8,7 @@ public class CannonBallController : MonoBehaviour
     public GameObject explosion;
     private bool explosionHappened;
     private GameManager gameManager;
-    private float[] explosionForce = {300, 200, 100};
+    private float[] explosionForce = {200, 165, 135};
     private float[] explosionRadius = {4, 5, 6};
 
 
@@ -31,9 +31,9 @@ public class CannonBallController : MonoBehaviour
         {
             ExplosionProcess();
             explosionHappened = true;
-            StartCoroutine(GameController.instance.SlowMotion(0.2f, 0.8f));
+            StartCoroutine(GameController.instance.SlowMotion(0.3f, 0.6f));
         }
-        Destroy(Instantiate(explosion, transform.position, transform.rotation), 2);
+        Destroy(Instantiate(explosion, transform.position, transform.rotation), 1.8f);
         this.transform.localScale = Vector3.zero;
         Destroy(this.gameObject, 0.9f);
     }
@@ -53,7 +53,7 @@ public class CannonBallController : MonoBehaviour
                     {
                         return;
                     }
-                    enemy.Damage(explosionForce[i] / 10);
+                    enemy.Damage(explosionForce[i] / 10 * 1.5f);
                     rigidbody.AddExplosionForce(explosionForce[i], transform.position + Vector3.down, explosionRadius[i]);
                 }
             }

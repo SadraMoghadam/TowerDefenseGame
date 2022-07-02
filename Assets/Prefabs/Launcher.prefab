@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 4116960186748849909}
   - component: {fileID: 467658998004263737}
   - component: {fileID: 467658998004263738}
+  - component: {fileID: 1854251619280297701}
   m_Layer: 7
   m_Name: Launcher
   m_TagString: Launcher
@@ -251,6 +252,7 @@ MonoBehaviour:
   blastPower: 0
   filterFire: {fileID: 7172622910944392258}
   ableToShot: 0
+  launcherArea: {fileID: 0}
 --- !u!120 &467658998004263737
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -376,6 +378,19 @@ MonoBehaviour:
   CollidableLayers:
     serializedVersion: 2
     m_Bits: 0
+--- !u!65 &1854251619280297701
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773524779851454054}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &882225031579038836
 GameObject:
   m_ObjectHideFlags: 0

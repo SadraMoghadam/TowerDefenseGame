@@ -47,10 +47,13 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.activeSelf && !reachedWalls && isAlive)
+        if (gameObject.activeSelf && isAlive)
         {
-            var step =  enemyType.speed * Time.deltaTime; 
-            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            if (!reachedWalls)
+            {
+                var step =  enemyType.speed * Time.deltaTime; 
+                transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            }
             Vector3 direction = (target.position - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(direction);
         }
@@ -88,15 +91,18 @@ public class EnemyAI : MonoBehaviour
             SelectRandomHit();
         }
     }
-
     
-
-
-    private void SetupEnemy()
+    private void OnTriggerExit(Collider other)
     {
-        
+        if (!isAlive)
+            return;
+        if (other.gameObject.tag == "Wall")
+        {
+            reachedWalls = false;
+            enemyAnimator.SetInteger("HitType", 0);
+        }
     }
-    
+
     private void SetBodyActivation(bool activeself)
     {
         foreach (var bodyPart in bodyParts)

@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
     private GameManager gameManager;
     public static GameController instance;
 
-    [HideInInspector] public float matchLength = 120;
+    [HideInInspector] public float matchLength = 180;
     [HideInInspector] public bool endOfGame = false;
     // [SerializeField] private Camera camera;
     // private int cameraFieldOfViewCoefficient = 3;
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        matchLength = 120;
+        matchLength = 180;
         endOfGame = false;
         if (SceneManager.GetActiveScene().name != "Game")
             enabled = false;
@@ -71,9 +71,20 @@ public class GameController : MonoBehaviour
         endOfGame = true;
     }
     
-    public void WonProcess()
+    public void WonProcess(bool timeOut = false)
     {
-        stars = 3;
+        if (timeOut == true || GameUIController.instance.ammoController.totalAmmo < 3)
+        {
+            stars = 1;
+        }
+        else if (GameUIController.instance.ammoController.totalAmmo < 6)
+        {
+            stars = 2;
+        }
+        else
+        {
+            stars = 3;
+        }
         if (!GameManager.instance.playerPrefsManager.GetComletedLevelNumbers().Contains(level))
         {
             int preStars = GameManager.instance.playerPrefsManager.GetNumberOfStars();

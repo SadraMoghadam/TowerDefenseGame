@@ -98,6 +98,11 @@ public class GameUIController : MonoBehaviour
         {
             StartCoroutine(StartTimer());   
         }
+
+        if (timer == 0)
+        {
+            GameController.instance.WonProcess(true);
+        }
     }
     
 }

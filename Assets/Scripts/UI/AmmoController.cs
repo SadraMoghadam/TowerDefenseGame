@@ -10,7 +10,7 @@ public class AmmoController : MonoBehaviour
     private int magazineSpace = 8;
     private int pocketAmmoCount;
     private GameManager gameManager;
-    private int totalAmmo;
+    [HideInInspector] public int totalAmmo;
     [SerializeField] private GameObject reloadTextObject;
     [SerializeField] private Animator reloadAnimation;
 

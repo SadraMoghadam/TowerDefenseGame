@@ -82,14 +82,16 @@ public class PlayerPrefsManager : MonoBehaviour
             CompletedLevelNumbers = GetComletedLevelNumbers();
             if (CompletedLevelNumbers.Contains(levelInformation.levelNumber))
             {
+                int preLevelStars = 0; 
                 for (int i = 0; i < levelsList.Count; i++)
                 {
                     if (levelsList[i].levelNumber == level)
                     {
+                        preLevelStars = levelsList[i].stars;
                         levelsList.RemoveAt(i);
                     }
                 }
-                levelInformation.stars = Math.Max(levelInformation.stars, stars);
+                levelInformation.stars = Math.Max(preLevelStars, stars);
                 levelsList.Add(levelInformation);
                 levelsCompleted.levelsInformation = levelsList;
                 jsonLevels = JsonUtility.ToJson(levelsCompleted);

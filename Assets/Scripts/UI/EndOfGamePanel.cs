@@ -92,7 +92,7 @@ public class EndOfGamePanel : MonoBehaviour
         }
         for (int i = 0; i < stars.Count; i++)
         {
-            if (i < GameController.instance.stars)
+            if (i < levelStars)
             {
                 // Invoke("ActivateStar", i * .2f);/
                 stars[i].SetActive(true);

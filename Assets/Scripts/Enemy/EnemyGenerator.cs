@@ -47,7 +47,7 @@ public class EnemyGenerator : MonoBehaviour
     private IEnumerator GenerateOnTime(int numberOfEnemies)
     {
         yield return new WaitForSeconds(3f);
-        float waitTime = levelData.difficulty == "Hard" ? 5 : levelData.difficulty == "Normal" ? 9 : 13;
+        float waitTime = levelData.difficulty == "Hard" ? 5 : levelData.difficulty == "Normal" ? 9 : 12;
         float randomPosX = Random.Range(minPositiveX, maxPositiveX);
         float randomNegX = Random.Range(minNegativeX, maxNegativeX);
         float randomPosZ = Random.Range(minPositiveZ, maxPositiveZ);
@@ -76,12 +76,15 @@ public class EnemyGenerator : MonoBehaviour
         EnemyGroupGenerator(new Vector3(randomX, 0, randomZ), numberOfEnemies, 3 + numberOfEnemies / 20);
         totalNumberOfEnemies -= numberOfEnemies;
         yield return new WaitForSeconds(waitTime);
-        int generatableEnemiesNumber = numberOfEnemies;
-        if (totalNumberOfEnemies - numberOfEnemies <= numberOfEnemies)
+        // int generatableEnemiesNumber = 0;
+        // if (totalNumberOfEnemies - numberOfEnemies <= numberOfEnemies)
+        // {
+        //     generatableEnemiesNumber = totalNumberOfEnemies;   
+        // }
+        if (totalNumberOfEnemies > 0)
         {
-            generatableEnemiesNumber = totalNumberOfEnemies;   
+            StartCoroutine(GenerateOnTime(levelData.numberOfEnemies / levelData.numberOfGroups));   
         }
-        StartCoroutine(GenerateOnTime(generatableEnemiesNumber));
     }
 
     private void EnemyGroupGenerator(Vector3 firstEnemyPosition, int numberOfEnemies, int numberOfColumns)

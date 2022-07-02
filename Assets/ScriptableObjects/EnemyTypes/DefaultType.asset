@@ -16,6 +16,6 @@ MonoBehaviour:
   name: Curious
   prefab: {fileID: 6530855267760821738, guid: 8d02b1043b4a03c45b96215e60ad517b, type: 3}
   speed: 1
-  strength: 5
+  strength: 4
   maxHealth: 100
   HitTypes: 010000000200000003000000

@@ -25,7 +25,7 @@ public class WallController : MonoBehaviour
         health -= hitStrength;
         healthBar.value = health / maxHealth;
         healthBar.gameObject.GetComponentsInChildren<TMP_Text>()[0].text = (healthBar.value * 100).ToString() + "%";
-        Debug.Log(health);
+        // Debug.Log(health);
         if (health <= 0)
         {
             Destroy(gameObject);

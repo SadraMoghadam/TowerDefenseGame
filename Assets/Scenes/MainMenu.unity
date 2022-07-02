@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelsContainer: {fileID: 2077676824}
-  levelButtonObject: {fileID: 8126392311192417076, guid: 3114018d68d94ae45a1a948222ec9f2c, type: 3}
+  levelButtonObject: {fileID: 8673200945614187400, guid: 3114018d68d94ae45a1a948222ec9f2c, type: 3}
   levelSelectPopUp: {fileID: 690537700}
   levelText: {fileID: 1284864437}
   enemiesText: {fileID: 1107674691}
@@ -771,7 +771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 242, y: 0}
+  m_AnchoredPosition: {x: 227, y: 0}
   m_SizeDelta: {x: 276.8012, y: 201.5841}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &968952096
@@ -1351,7 +1351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0008544922, y: 0}
+  m_AnchoredPosition: {x: -0.0009765625, y: 0}
   m_SizeDelta: {x: 0.6699829, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422434994
@@ -1653,7 +1653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1896732847614074065, guid: c324fa6eba6403d4b9d0a8a223370193, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00012207031
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1896732847614074065, guid: c324fa6eba6403d4b9d0a8a223370193, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1933,7 +1933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7985600261997589076, guid: c324fa6eba6403d4b9d0a8a223370193, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 834.3171
+      value: 746.1774
       objectReference: {fileID: 0}
     - target: {fileID: 7985600261997589076, guid: c324fa6eba6403d4b9d0a8a223370193, type: 3}
       propertyPath: m_LocalScale.x
@@ -1949,7 +1949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7985600261997589076, guid: c324fa6eba6403d4b9d0a8a223370193, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38
+      value: 0.0000019073
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c324fa6eba6403d4b9d0a8a223370193, type: 3}
