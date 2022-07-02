@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     [HideInInspector] public float matchLength = 120;
+    [HideInInspector] public bool endOfGame = false;
     // [SerializeField] private Camera camera;
     // private int cameraFieldOfViewCoefficient = 3;
 
@@ -31,6 +32,7 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         matchLength = 120;
+        endOfGame = false;
         if (SceneManager.GetActiveScene().name != "Game")
             enabled = false;
         else
@@ -66,6 +68,7 @@ public class GameController : MonoBehaviour
     public void LostProcess()
     {
         GameUIController.instance.endOfGamePanel.EOGPanelShow(false);
+        endOfGame = true;
     }
     
     public void WonProcess()
@@ -78,6 +81,7 @@ public class GameController : MonoBehaviour
         }
         GameManager.instance.playerPrefsManager.AddLevelsCompleted(level, stars);
         GameUIController.instance.endOfGamePanel.EOGPanelShow(true);
+        endOfGame = true;
     }
     
     public IEnumerator SlowMotion(float slowMotionCoefficient, float slowMotionTime)

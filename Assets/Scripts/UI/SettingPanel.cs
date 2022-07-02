@@ -26,7 +26,7 @@ public class SettingPanel : MonoBehaviour
         {
             gameObject.SetActive(false);
             Time.timeScale = 1;
-            Debug.Log("Quit To Menu");
+            GameManager.instance.LoadScene("MainMenu");
         }));
     }
 

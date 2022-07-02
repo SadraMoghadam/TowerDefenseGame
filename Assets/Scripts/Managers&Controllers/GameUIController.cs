@@ -94,7 +94,10 @@ public class GameUIController : MonoBehaviour
         timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}";
         yield return new WaitForSeconds(1f);
         timer--;
-        StartCoroutine(StartTimer());
+        if (!GameController.instance.endOfGame)
+        {
+            StartCoroutine(StartTimer());   
+        }
     }
     
 }

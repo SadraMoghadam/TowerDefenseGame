@@ -8,8 +8,8 @@ public class CannonBallController : MonoBehaviour
     public GameObject explosion;
     private bool explosionHappened;
     private GameManager gameManager;
-    [SerializeField] private float explosionForce = 500f;
-    [SerializeField] private float explosionRadius = 5f;
+    private float[] explosionForce = {300, 200, 100};
+    private float[] explosionRadius = {4, 5, 6};
 
 
     private void Start()
@@ -40,20 +40,24 @@ public class CannonBallController : MonoBehaviour
 
     private void ExplosionProcess()
     {
-        var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius);
-        foreach (var surroundingObject in surroundingObjects)
+        for (int i = 0; i < explosionRadius.Length; i++)
         {
-            if (surroundingObject.gameObject.tag == "Enemy")
+            var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius[i]);
+            foreach (var surroundingObject in surroundingObjects)
             {
-                EnemyAI enemy = surroundingObject.gameObject.GetComponent<EnemyAI>();
-                Rigidbody rigidbody = surroundingObject.GetComponent<Rigidbody>();
-                if (enemy == null || rigidbody == null)
+                if (surroundingObject.gameObject.tag == "Enemy")
                 {
-                    return;
+                    EnemyAI enemy = surroundingObject.gameObject.GetComponent<EnemyAI>();
+                    Rigidbody rigidbody = surroundingObject.GetComponent<Rigidbody>();
+                    if (enemy == null || rigidbody == null)
+                    {
+                        return;
+                    }
+                    enemy.Damage(explosionForce[i] / 10);
+                    rigidbody.AddExplosionForce(explosionForce[i], transform.position + Vector3.down, explosionRadius[i]);
                 }
-                enemy.Damage(50);
-                rigidbody.AddExplosionForce(explosionForce, transform.position + Vector3.down, explosionRadius);
             }
         }
+        
     }
 }

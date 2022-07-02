@@ -59,30 +59,37 @@ public class EnemyAI : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!isAlive)
-            return;
-        if (collision.collider.gameObject.tag == "Wall")
-        {
-            reachedWalls = true;
-            reachedWallName = collision.collider.gameObject.name;
-            SelectRandomHit();
-        }
-
+            return;    
         if (collision.collider.gameObject.tag != "Enemy")
         {
             SetBodyActivation(true);   
         }
     }
     
-    private void OnCollisionExit(Collision collision)
+    // private void OnCollisionExit(Collision collision)
+    // {
+    //     if (!isAlive)
+    //         return;
+    //     if (collision.collider.gameObject.tag == "Wall")
+    //     {
+    //         reachedWalls = false;
+    //         enemyAnimator.SetInteger("HitType", 0);
+    //     }
+    // }
+
+    private void OnTriggerEnter(Collider other)
     {
         if (!isAlive)
             return;
-        if (collision.collider.gameObject.tag == "Wall")
+        if (other.gameObject.CompareTag("Wall"))
         {
-            reachedWalls = false;
-            enemyAnimator.SetInteger("HitType", 0);
+            reachedWalls = true;
+            reachedWallName = other.gameObject.transform.parent.name;
+            SelectRandomHit();
         }
     }
+
+    
 
 
     private void SetupEnemy()
