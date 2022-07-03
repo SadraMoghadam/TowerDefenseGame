@@ -21,6 +21,7 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private SettingPanel settingPanel;
     [SerializeField] private TMP_Text blastPowerSliderValue;
     [HideInInspector] private float timer;
+    [HideInInspector] public AudioSource audioSource;
 
     public static GameUIController instance;
     [HideInInspector] public AmmoController ammoController;
@@ -29,6 +30,7 @@ public class GameUIController : MonoBehaviour
     {
         instance = this;
         ammoController = GetComponent<AmmoController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -38,7 +40,11 @@ public class GameUIController : MonoBehaviour
         timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}";
         LauncherController launcherController = GameController.instance.launcher;
         StartCoroutine(StartCountdown(0));
-        launch.onClick.AddListener(launcherController.Shot);
+        launch.onClick.AddListener(() =>
+        {
+            if(GameController.instance.launcher.ableToShot)
+                launcherController.Shot();
+        });
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));
         reload.onClick.AddListener((() => ammoController.Reload()));
         blastPowerSlider.value = 17;
@@ -60,6 +66,10 @@ public class GameUIController : MonoBehaviour
         }
         CountdownNumbers[countdownNumber].SetActive(true);
         yield return new WaitForSeconds(1f);
+        if (countdownNumber == 0)
+        {
+            GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.StartGame);
+        }
         if(countdownNumber < 3)
             StartCoroutine(StartCountdown(++countdownNumber));
         else

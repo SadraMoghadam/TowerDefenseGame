@@ -75,6 +75,15 @@ public class SettingPanel : MonoBehaviour
         {
             gameManager.playerPrefsManager.SetFloat(PlayerPrefsManager.PlayerPrefsKeys.music, value);
             gameManager.gameSetting.music = value;
+            if (MainMenuUIController.instance != null)
+            {
+                gameManager.audioController.SetMusicVolume(MainMenuUIController.instance.audioSource, value);   
+            }
+
+            if (GameController.instance != null)
+            {
+                gameManager.audioController.SetMusicVolume(GameController.instance.audioSource, value);
+            }
         });
         sfx.onValueChanged.AddListener((value) =>
         {

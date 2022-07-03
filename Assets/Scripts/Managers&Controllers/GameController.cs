@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
 
     [HideInInspector] public float matchLength = 180;
     [HideInInspector] public bool endOfGame = false;
+    [HideInInspector] public AudioSource audioSource;
     // [SerializeField] private Camera camera;
     // private int cameraFieldOfViewCoefficient = 3;
 
@@ -39,6 +40,7 @@ public class GameController : MonoBehaviour
             enabled = true;
         instance = this;
         gameManager = GameManager.instance;
+        audioSource = GetComponent<AudioSource>();
         level = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, 1);
         Debug.Log("Level: " + level);
     }
@@ -47,6 +49,7 @@ public class GameController : MonoBehaviour
     {
         GetLevelInformation();
         SetCamera(3);
+        gameManager.audioController.PlayMusic(audioSource, AudioController.MusicType.Wind, true);
     }
 
     private void GetLevelInformation()

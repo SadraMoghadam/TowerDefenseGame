@@ -16,6 +16,6 @@ MonoBehaviour:
   name: Boss
   prefab: {fileID: 4453800594024848025, guid: 2ba6c92136d8d9a4e940d074f214aac9, type: 3}
   speed: 0.3
-  strength: 25
+  strength: 20
   maxHealth: 200
   HitTypes: 0400000003000000

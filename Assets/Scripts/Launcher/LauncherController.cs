@@ -14,6 +14,7 @@ public class LauncherController : MonoBehaviour
     public float blastPower;
     public GameObject filterFire;
     [HideInInspector] public bool ableToShot;
+    [HideInInspector] public AudioSource audioSource;
     private float rotationSpeed = 1.5f;
     private float startRotationTime = 0;
     private bool startToSpeedUp = false;
@@ -28,6 +29,7 @@ public class LauncherController : MonoBehaviour
         startRotationTime = 0;
         startToSpeedUp = false;
         joystick = GameUIController.instance.joystick;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -124,8 +126,10 @@ public class LauncherController : MonoBehaviour
     {
         ableToShot = false;
         filterFire.SetActive(true);
+        GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Wick);
         yield return new WaitForSeconds(1f);
         filterFire.SetActive(false);
+        GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Cannon);
         ableToShot = true;
         GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
         CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * blastPower;

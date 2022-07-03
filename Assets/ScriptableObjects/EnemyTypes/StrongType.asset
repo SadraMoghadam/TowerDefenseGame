@@ -16,6 +16,6 @@ MonoBehaviour:
   name: Mighty Warrior
   prefab: {fileID: 9218395805329446902, guid: 4a3e3f9f62101ec469ae27be3d82fbd4, type: 3}
   speed: 0.7
-  strength: 8
+  strength: 6
   maxHealth: 120
   HitTypes: 010000000200000003000000

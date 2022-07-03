@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7489939579705982603}
   - component: {fileID: 7489939579705982602}
   - component: {fileID: 7489939579705982645}
+  - component: {fileID: 8945192896779083868}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,11 +48,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8a046c8febb5c4880f2484d5395cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 0}
   gameSetting: {fileID: 0}
-  PlayerPrefsManager: {fileID: 0}
+  playerPrefsManager: {fileID: 0}
+  levelDataReader: {fileID: 0}
+  audioController: {fileID: 0}
   GameMainColor: {r: 0, g: 99, b: 61, a: 1}
   gameRedColor: {r: 200, g: 24, b: 0, a: 1}
+  redirectFromMainMenu: 0
 --- !u!114 &7489939579705982603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,8 +71,9 @@ MonoBehaviour:
   drawProjectionLine: 1
   slowMotionOnExplosion: 1
   miniMap: 1
-  music: 0.5
-  sfx: 0.5
+  cameraPosition: 0
+  music: 0.3
+  sfx: 0.3
 --- !u!114 &7489939579705982602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,3 +98,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c08422deba92424ebe9a6f2aa286b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8945192896779083868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7489939579705982605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e8aba9b194acd498206bc23a46186b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXAudioClips:
+  - {fileID: 8300000, guid: 78bd8fdb59dc00147ba99ccab25278c4, type: 3}
+  - {fileID: 8300000, guid: d94474b3de4c84844b0f9e72a81ed4d1, type: 3}
+  - {fileID: 8300000, guid: 90fdcff1c74663f45b2009dba1a8897f, type: 3}
+  - {fileID: 8300000, guid: 4a86d9e7fad29fd408c0fb07d11161bd, type: 3}
+  - {fileID: 8300000, guid: f190890ac4919964b843fcd43027b4a7, type: 3}
+  MusicAudioClips:
+  - {fileID: 8300000, guid: a70d0a7c88c1fb346b9cfd8eb57901a7, type: 3}
+  - {fileID: 8300000, guid: 2e895c2b2d9d97147bdcf74794368edb, type: 3}

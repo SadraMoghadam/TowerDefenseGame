@@ -10,7 +10,7 @@ public class GameSetting : MonoBehaviour
     public bool slowMotionOnExplosion = true;
     public bool miniMap = true;
     public int cameraPosition = 0;
-    public float music = 0.5f;
+    public float music = 0.3f;
     public float sfx = 0.5f;
     private PlayerPrefsManager playerPrefsManager;
 
