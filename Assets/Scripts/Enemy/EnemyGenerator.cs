@@ -47,7 +47,7 @@ public class EnemyGenerator : MonoBehaviour
     private IEnumerator GenerateOnTime(int numberOfEnemies)
     {
         yield return new WaitForSeconds(3f);
-        float waitTime = levelData.difficulty == "Hard" ? 5 : levelData.difficulty == "Normal" ? 9 : 12;
+        float waitTime = levelData.difficulty == "Hard" ? 8 : levelData.difficulty == "Normal" ? 10 : 12;
         float randomPosX = Random.Range(minPositiveX, maxPositiveX);
         float randomNegX = Random.Range(minNegativeX, maxNegativeX);
         float randomPosZ = Random.Range(minPositiveZ, maxPositiveZ);

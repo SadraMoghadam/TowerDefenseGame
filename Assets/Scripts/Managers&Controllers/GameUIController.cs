@@ -12,6 +12,7 @@ public class GameUIController : MonoBehaviour
     public Button launch;
     public Button reload;
     public TMP_Text ammoInfo;
+    public TMP_Text FPS;
     public Button settingsButton;
     public Joystick joystick;
     public GameObject miniMap;
@@ -25,6 +26,7 @@ public class GameUIController : MonoBehaviour
 
     public static GameUIController instance;
     [HideInInspector] public AmmoController ammoController;
+    private float fpsTimer, fpsRefresh, avgFramerate;
 
     private void Awake()
     {
@@ -54,6 +56,18 @@ public class GameUIController : MonoBehaviour
             launcherController.blastPower = value;
             blastPowerSliderValue.text = value.ToString();
         });
+    }
+
+    private void Update()
+    {
+        float timeLapse = Time.smoothDeltaTime;
+        fpsTimer = fpsTimer <= 0 ? fpsRefresh : fpsTimer - timeLapse;
+        if (fpsTimer <= 0)
+        {
+            avgFramerate = (int)(1f / timeLapse);
+        }
+
+        FPS.text = avgFramerate.ToString() + "fps";
     }
 
     private IEnumerator StartCountdown(int countdownNumber)

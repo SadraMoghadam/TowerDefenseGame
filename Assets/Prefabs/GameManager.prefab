@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 1
   drawProjectionLine: 1
-  slowMotionOnExplosion: 1
+  slowMotionOnExplosion: 0
   miniMap: 1
   cameraPosition: 0
   music: 0.3

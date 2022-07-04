@@ -9,11 +9,12 @@ public class WallController : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
     private float health;
-    private float maxHealth = 100;
+    private float maxHealth;
     private GameManager gameManager;
 
     private void Start()
     {
+        maxHealth = 100;
         health = maxHealth;
         gameManager = GameManager.instance;
         healthBar.value = health / maxHealth;
@@ -23,6 +24,10 @@ public class WallController : MonoBehaviour
     public void Damage(float hitStrength)
     {
         health -= hitStrength;
+        if (healthBar == null)
+        {
+            return;
+        }
         healthBar.value = health / maxHealth;
         healthBar.gameObject.GetComponentsInChildren<TMP_Text>()[0].text = (healthBar.value * 100).ToString() + "%";
         // Debug.Log(health);

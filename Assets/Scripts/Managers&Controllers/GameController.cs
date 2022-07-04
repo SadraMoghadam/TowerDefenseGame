@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        QualitySettings.vSyncCount = 2;
+        // Application.targetFrameRate = 60;
         matchLength = 180;
         endOfGame = false;
         if (SceneManager.GetActiveScene().name != "Game")

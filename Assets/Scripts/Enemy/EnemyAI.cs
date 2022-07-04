@@ -116,6 +116,10 @@ public class EnemyAI : MonoBehaviour
         if (!isAlive)
             return;
         WallController reachedWall = GetReachedWall();
+        if (reachedWall == null)
+        {
+            return;
+        }
         reachedWall.Damage(enemyType.strength);
     }
 
@@ -123,13 +127,13 @@ public class EnemyAI : MonoBehaviour
     {
         foreach (var wall in walls)
         {
-            if (wall.name == reachedWallName)
+            if (wall != null && wall.name == reachedWallName)
             {
                 return wall.GetComponent<WallController>();
             }
         }
 
-        return new WallController();
+        return null;
     }
     
     public void SelectRandomHit()

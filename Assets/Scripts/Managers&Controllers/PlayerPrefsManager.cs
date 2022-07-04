@@ -142,6 +142,10 @@ public class PlayerPrefsManager : MonoBehaviour
             string jsonLevels = PlayerPrefs.GetString(PlayerPrefsKeys.LevelsInformation.ToString());
             levelsCompleted = JsonUtility.FromJson<LevelsCompleted>(jsonLevels);
         }
+        else
+        {
+            return null;
+        }
         return levelsCompleted.levelsInformation;
     }
 
@@ -163,6 +167,10 @@ public class PlayerPrefsManager : MonoBehaviour
     {
         int stars = 0;
         List<LevelInformation> levelsInformation = GetLevelsCompleted();
+        if (levelsInformation == null)
+        {
+            return 0;
+        }
         for (int i = 0; i < levelsInformation.Count; i++)
         {
             if (level == levelsInformation[i].levelNumber)

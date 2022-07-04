@@ -18,18 +18,22 @@ public class EndOfGamePanel : MonoBehaviour
     public Sprite loseBackground;
     private bool result;
     [SerializeField] private List<GameObject> stars;
+    private GameController gameController;
+    private GameManager gameManager;
 
     public void OnEnable()
     {
+        gameController = GameController.instance;
+        gameManager = GameManager.instance;
         List<int> levelsCompleted = GameManager.instance.playerPrefsManager.GetComletedLevelNumbers();
         nextLevelButton.gameObject.transform.parent.gameObject.SetActive(true);
         nextLevelButton.onClick.AddListener((() =>
         {
-            if (GameController.instance.level <= levelsCompleted.Max())
+            if (gameController.level <= levelsCompleted.Max())
             {
-                int level = GameManager.instance.playerPrefsManager.GetInt(
+                int level = gameManager.playerPrefsManager.GetInt(
                     PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, 1);
-                GameManager.instance.playerPrefsManager.SetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, level + 1);
+                gameManager.playerPrefsManager.SetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, level + 1);
             }
             OnButtonClicked();
         }));
@@ -37,7 +41,7 @@ public class EndOfGamePanel : MonoBehaviour
         {
             gameObject.SetActive(false);
             Time.timeScale = 1;
-            GameManager.instance.LoadScene("MainMenu");
+            gameManager.LoadScene("MainMenu");
         }));
         playAgainButton.onClick.AddListener((() =>
         {
@@ -54,7 +58,7 @@ public class EndOfGamePanel : MonoBehaviour
             messageBackground.texture = loseBackground.texture;
         }
 
-        if (levelsCompleted.Max()+1 == GameController.instance.level && !result)
+        if (levelsCompleted.Count == 0 || (levelsCompleted.Max()+1 == gameController.level && !result))
         {
             nextLevelButton.gameObject.transform.parent.gameObject.SetActive(false);
         }
@@ -66,8 +70,8 @@ public class EndOfGamePanel : MonoBehaviour
     {
         gameObject.SetActive(false);
         Time.timeScale = 1;
-        GameManager.instance.redirectFromMainMenu = false;
-        GameManager.instance.LoadScene("Game");
+        gameManager.redirectFromMainMenu = false;
+        gameManager.LoadScene("Game");
     }
     
     private void StopTime()
@@ -84,7 +88,9 @@ public class EndOfGamePanel : MonoBehaviour
 
     public void SetupStars()
     {
-        int levelStars = Math.Max(GameController.instance.stars, GameManager.instance.playerPrefsManager.GetStarsOfLevel(GameController.instance.level));
+        int levelPreStars = gameManager.playerPrefsManager.GetStarsOfLevel(gameController.level);
+        int levelStars = 0;
+        levelStars = Math.Max(gameController.stars, levelPreStars);
         
         if (levelStars == 0)
         {
