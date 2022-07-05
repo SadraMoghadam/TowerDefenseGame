@@ -27,24 +27,28 @@ public class GameUIController : MonoBehaviour
     public static GameUIController instance;
     [HideInInspector] public AmmoController ammoController;
     private float fpsTimer, fpsRefresh, avgFramerate;
+    private GameManager gameManager;
+    private GameController gameController;
 
     private void Awake()
     {
         instance = this;
         ammoController = GetComponent<AmmoController>();
         audioSource = GetComponent<AudioSource>();
+        gameManager = GameManager.instance;
+        gameController = GameController.instance;
     }
 
     private void Start()
     {
-        timer = GameController.instance.matchLength;
+        timer = gameController.matchLength;
         var timeSpan = TimeSpan.FromSeconds(timer);
         timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}";
-        LauncherController launcherController = GameController.instance.launcher;
+        LauncherController launcherController = gameController.launcher;
         StartCoroutine(StartCountdown(0));
         launch.onClick.AddListener(() =>
         {
-            if(GameController.instance.launcher.ableToShot)
+            if(gameController.launcher.ableToShot)
                 launcherController.Shot();
         });
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));
@@ -60,14 +64,17 @@ public class GameUIController : MonoBehaviour
 
     private void Update()
     {
-        float timeLapse = Time.smoothDeltaTime;
-        fpsTimer = fpsTimer <= 0 ? fpsRefresh : fpsTimer - timeLapse;
-        if (fpsTimer <= 0)
+        if (gameManager.gameSetting.DebugMode)
         {
-            avgFramerate = (int)(1f / timeLapse);
-        }
+            float timeLapse = Time.smoothDeltaTime;
+            fpsTimer = fpsTimer <= 0 ? fpsRefresh : fpsTimer - timeLapse;
+            if (fpsTimer <= 0)
+            {
+                avgFramerate = (int)(1f / timeLapse);
+            }
 
-        FPS.text = avgFramerate.ToString() + "fps";
+            FPS.text = avgFramerate.ToString() + "fps";
+        }
     }
 
     private IEnumerator StartCountdown(int countdownNumber)
@@ -82,7 +89,7 @@ public class GameUIController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (countdownNumber == 0)
         {
-            GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.StartGame);
+            gameManager.audioController.PlaySfx(audioSource, AudioController.SFXType.StartGame);
         }
         if(countdownNumber < 3)
             StartCoroutine(StartCountdown(++countdownNumber));
@@ -118,14 +125,14 @@ public class GameUIController : MonoBehaviour
         timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}";
         yield return new WaitForSeconds(1f);
         timer--;
-        if (!GameController.instance.endOfGame)
+        if (!gameController.endOfGame)
         {
             StartCoroutine(StartTimer());   
         }
 
         if (timer == 0)
         {
-            GameController.instance.WonProcess(true);
+            gameController.WonProcess(true);
         }
     }
     
