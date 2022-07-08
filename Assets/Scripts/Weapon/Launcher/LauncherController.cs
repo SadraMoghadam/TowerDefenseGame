@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class LauncherController : MonoBehaviour
 {
-    public Transform launcherBodyTransform;
-    public GameObject rotateAroundObjectY;
-    public GameObject Cannonball;
+    public string name;
     public Transform ShotPoint;
     public GameObject Explosion;
     public Camera mainCamera;
-    public float blastPower;
-    public GameObject filterFire;
+    [SerializeField] private GameObject filterFire;
+    [SerializeField] private Transform launcherBodyTransform;
+    [SerializeField] private GameObject Cannonball;
     [HideInInspector] public bool ableToShot;
+    [HideInInspector] public float blastPower;
     [HideInInspector] public AudioSource audioSource;
     private float rotationSpeed = 1.5f;
     private float startRotationTime = 0;
