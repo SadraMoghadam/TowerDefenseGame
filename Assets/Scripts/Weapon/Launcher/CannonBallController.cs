@@ -63,7 +63,7 @@ public class CannonBallController : MonoBehaviour
 
                 if (surroundingObject.gameObject.tag == "Launcher")
                 {
-                    StartCoroutine(GameController.instance.launcher.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.3f, .2f));
+                    StartCoroutine(GameController.instance.weapon.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.3f, .2f));
                 }
             }
         }

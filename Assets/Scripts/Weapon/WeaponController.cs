@@ -1,16 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
     public List<Weapon> weapons;
-
+    private GameObject CurrentWeapon;
+    [HideInInspector] public bool ableToShot;
+    [HideInInspector] public Camera mainCamera;
+    [HideInInspector] public Weapon.WeaponType weaponType;
     private void Awake()
     {
-        Weapon.WeaponType weaponType = Weapon.WeaponType.Launcher;
+        ableToShot = true;
+        weaponType = Weapon.WeaponType.Launcher;
         string weaponName = "Default";
         foreach (var weapon in weapons)
         {
@@ -19,8 +24,24 @@ public class WeaponController : MonoBehaviour
                 var weaponObject = Instantiate(weapon.weaponGameObject);
                 weaponObject.transform.parent = this.transform;
                 weaponObject.transform.localPosition = Vector3.zero;
+                CurrentWeapon = weaponObject;
                 break;
             }
         }
+        
+        List<Camera> cameras = FindObjectsOfType<Camera>().ToList();
+        foreach (var camera in cameras)
+        {
+            if (camera.gameObject.CompareTag("MainCamera"))
+            {
+                mainCamera = camera;
+                break;
+            }
+        }
+    }
+
+    public GameObject GetWeapon()
+    {
+        return CurrentWeapon;
     }
 }

@@ -44,22 +44,28 @@ public class GameUIController : MonoBehaviour
         timer = gameController.matchLength;
         var timeSpan = TimeSpan.FromSeconds(timer);
         timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}";
-        LauncherController launcherController = gameController.launcher;
-        StartCoroutine(StartCountdown(0));
-        launch.onClick.AddListener(() =>
+        WeaponController weaponController = gameController.weapon;
+        if (weaponController.weaponType == Weapon.WeaponType.Launcher)
         {
-            if(gameController.launcher.ableToShot)
-                launcherController.Shot();
-        });
+            LauncherController launcherController = weaponController.GetWeapon().GetComponent<LauncherController>();
+            launch.onClick.AddListener(() =>
+            {
+                if(gameController.weapon.ableToShot)
+                    launcherController.Shot();
+            });
+            launcherController.blastPower = blastPowerSlider.value;
+            blastPowerSlider.onValueChanged.AddListener((value) =>
+            {
+                launcherController.blastPower = value;
+                blastPowerSliderValue.text = value.ToString();
+            });
+            blastPowerSlider.value = 17;
+        }
+        StartCoroutine(StartCountdown(0));
+        
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));
         reload.onClick.AddListener((() => ammoController.Reload()));
-        blastPowerSlider.value = 17;
-        launcherController.blastPower = blastPowerSlider.value;
-        blastPowerSlider.onValueChanged.AddListener((value) =>
-        {
-            launcherController.blastPower = value;
-            blastPowerSliderValue.text = value.ToString();
-        });
+        
     }
 
     private void Update()

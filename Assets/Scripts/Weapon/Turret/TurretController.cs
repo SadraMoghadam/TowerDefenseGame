@@ -1,33 +1,25 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LauncherController : MonoBehaviour, IWeapon
+public class TurretController : MonoBehaviour, IWeapon
 {
     public string name;
     public Transform ShotPoint;
-    public GameObject Explosion;
+    public GameObject HitParticle;
     public Camera mainCamera;
-    [SerializeField] private GameObject filterFire;
     [SerializeField] private Transform launcherBodyTransform;
-    [SerializeField] private GameObject Cannonball;
-    [HideInInspector] public float blastPower;
+    [SerializeField] private GameObject bullet;
+    [HideInInspector] public bool ableToShot;
     [HideInInspector] public AudioSource audioSource;
     private float rotationSpeed = 1.5f;
     private float startRotationTime = 0;
     private bool startToSpeedUp = false;
     private Joystick joystick;
 
-    private WeaponController weaponController;
-    // private float yAxisTurnSpeed = 2f;
-    // private float xAxisTurnSpeed = 25f;
-
     private void Start()
     {
-        weaponController = transform.parent.GetComponent<WeaponController>();
-        weaponController.ableToShot = true;
-        filterFire.SetActive(false);
+        ableToShot = true;
         startRotationTime = 0;
         startToSpeedUp = false;
         joystick = GameUIController.instance.joystick;
@@ -39,8 +31,6 @@ public class LauncherController : MonoBehaviour, IWeapon
         Move();
     }
     
-    
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -62,7 +52,7 @@ public class LauncherController : MonoBehaviour, IWeapon
             launcherBodyTransform.rotation = Quaternion.Euler(launcherBodyTransform.rotation.eulerAngles +
                                                               new Vector3(VericalRotation * rotationSpeed, 0, 0));
         }
-        if (Input.GetKeyDown(KeyCode.Space) && weaponController.ableToShot)
+        if (Input.GetKeyDown(KeyCode.Space) && ableToShot)
         {
             Shot();
         }
@@ -133,19 +123,14 @@ public class LauncherController : MonoBehaviour, IWeapon
 
     private IEnumerator ShotProcess()
     {
-        weaponController.ableToShot = false;
-        filterFire.SetActive(true);
+        ableToShot = false;
         GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Wick);
         yield return new WaitForSeconds(1f);
-        filterFire.SetActive(false);
         GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Cannon);
-        weaponController.ableToShot = true;
-        GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
-        CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * blastPower;
+        ableToShot = true;
+        GameObject CreatedBullet = Instantiate(bullet, ShotPoint.position, ShotPoint.rotation);
         GameUIController.instance.ammoController.DecreaseAmmo();
-        Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
+        Destroy(Instantiate(HitParticle, ShotPoint.position, ShotPoint.rotation), 2);
         StartCoroutine(mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .2f));
     }
-
-    
 }

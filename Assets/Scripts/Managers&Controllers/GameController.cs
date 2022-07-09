@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public LauncherController launcher;
+    public WeaponController weapon;
     public List<GameObject> walls;
     [HideInInspector] public int level = 1;
     [HideInInspector] public int stars = 2;
@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
     private void SetCamera(float cameraOffset)
     {
         int cameraPosition = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.cameraPosition, 0);
-        Vector3 cameraTransform = launcher.mainCamera.transform.localPosition;
+        Vector3 cameraTransform = weapon.mainCamera.transform.localPosition;
         float cameraZ = 0;
         if (cameraPosition == 1)
         {
@@ -111,7 +111,7 @@ public class GameController : MonoBehaviour
         {
             cameraZ = -cameraOffset;
         }
-        launcher.mainCamera.transform.localPosition = new Vector3(cameraTransform.x, cameraTransform.y, cameraZ);
+        weapon.mainCamera.transform.localPosition = new Vector3(cameraTransform.x, cameraTransform.y, cameraZ);
     }
     
 }

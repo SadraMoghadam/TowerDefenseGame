@@ -59,7 +59,7 @@ public class SettingPanel : MonoBehaviour
         {
             gameManager.playerPrefsManager.SetInt(PlayerPrefsManager.PlayerPrefsKeys.cameraPosition, value);
             gameManager.gameSetting.cameraPosition = value;
-            Vector3 cameraTransform = gameController.launcher.mainCamera.transform.localPosition;
+            Vector3 cameraTransform = gameController.weapon.mainCamera.transform.localPosition;
             float cameraZ = 0;
             if (value == 1)
             {
@@ -69,7 +69,7 @@ public class SettingPanel : MonoBehaviour
             {
                 cameraZ = -3;
             }
-            gameController.launcher.mainCamera.transform.localPosition = new Vector3(cameraTransform.x, cameraTransform.y, cameraZ);
+            gameController.weapon.mainCamera.transform.localPosition = new Vector3(cameraTransform.x, cameraTransform.y, cameraZ);
         });
         music.onValueChanged.AddListener((value) =>
         {

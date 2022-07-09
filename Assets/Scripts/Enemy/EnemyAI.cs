@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour
         gameManager = GameManager.instance;
         enemyAnimator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
-        target = GameController.instance.launcher.gameObject.transform;
+        target = GameController.instance.weapon.gameObject.transform;
         reachedWalls = false;
         walls = GameController.instance.walls;
         SetBodyActivation(false);
