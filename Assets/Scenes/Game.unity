@@ -2412,6 +2412,9 @@ MonoBehaviour:
   - weaponType: 1
     weaponName: Default
     weaponGameObject: {fileID: 1974423379087189579, guid: 26b0647eb7ba29a48b2a3a128fce575e, type: 3}
+  ableToShot: 0
+  mainCamera: {fileID: 0}
+  weaponType: 0
 --- !u!1 &554917399
 GameObject:
   m_ObjectHideFlags: 0
@@ -7814,7 +7817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf320c97f95e8d042a07012d84ea4676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launcher: {fileID: 0}
+  weapon: {fileID: 542993701}
   walls:
   - {fileID: 2067347526}
   - {fileID: 813203967}

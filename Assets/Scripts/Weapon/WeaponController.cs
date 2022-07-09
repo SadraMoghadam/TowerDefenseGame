@@ -15,7 +15,7 @@ public class WeaponController : MonoBehaviour
     private void Awake()
     {
         ableToShot = true;
-        weaponType = Weapon.WeaponType.Launcher;
+        weaponType = GameManager.instance.playerPrefsManager.GetWeaponType();
         string weaponName = "Default";
         foreach (var weapon in weapons)
         {

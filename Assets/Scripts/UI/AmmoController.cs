@@ -34,7 +34,10 @@ public class AmmoController : MonoBehaviour
             inMagAmmo = 0;
         GameUIController.instance.ammoInfo.text = inMagAmmo.ToString() + "/" + pocketAmmoCount;
         int index = inMagAmmo % magazineSpace;
-        ammos[index].SetActive(false);
+        if (GameController.instance.weapon.weaponType == Weapon.WeaponType.Launcher)
+        {
+            ammos[index].SetActive(false);
+        }
 
 
         if (totalAmmo <= 0)
@@ -62,11 +65,15 @@ public class AmmoController : MonoBehaviour
         yield return new WaitForSeconds((float)(magazineSpace - inMagAmmo) * .4f);
         GameController.instance.weapon.ableToShot = true;
         int index = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo);
-        for (int i = inMagAmmo; i < index; i++)
+
+        if (GameController.instance.weapon.weaponType == Weapon.WeaponType.Launcher)
         {
-            if(pocketAmmoCount == 0)
-                break;
-            ammos[i].SetActive(true);
+            for (int i = inMagAmmo; i < index; i++)
+            {
+                if (pocketAmmoCount == 0)
+                    break;
+                ammos[i].SetActive(true);
+            }
         }
 
         reloadAnimation.gameObject.SetActive(false);

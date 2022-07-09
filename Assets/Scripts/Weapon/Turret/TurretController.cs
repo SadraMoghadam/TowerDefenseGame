@@ -5,21 +5,25 @@ using UnityEngine;
 public class TurretController : MonoBehaviour, IWeapon
 {
     public string name;
-    public Transform ShotPoint;
-    public GameObject HitParticle;
-    public Camera mainCamera;
-    [SerializeField] private Transform launcherBodyTransform;
+    public List<Transform> shotPoints;
+    public GameObject hitParticle;
+    [SerializeField] private Transform TurretBodyTransform;
     [SerializeField] private GameObject bullet;
-    [HideInInspector] public bool ableToShot;
+    [HideInInspector] public float blastPower = 2;
     [HideInInspector] public AudioSource audioSource;
     private float rotationSpeed = 1.5f;
     private float startRotationTime = 0;
     private bool startToSpeedUp = false;
     private Joystick joystick;
+    private WeaponController weaponController;
+    private float RPM = .2f;
+    private float minX = 4;
+    private float maxX = 345;
 
     private void Start()
     {
-        ableToShot = true;
+        weaponController = transform.parent.GetComponent<WeaponController>();
+        weaponController.ableToShot = true;
         startRotationTime = 0;
         startToSpeedUp = false;
         joystick = GameUIController.instance.joystick;
@@ -31,6 +35,8 @@ public class TurretController : MonoBehaviour, IWeapon
         Move();
     }
     
+    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -45,14 +51,26 @@ public class TurretController : MonoBehaviour, IWeapon
         float HorizontalRotation = Input.GetAxis("Horizontal");
         float VericalRotation = Input.GetAxis("Vertical");
         
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
-                                              new Vector3(0, HorizontalRotation * rotationSpeed, 0));
-        if (launcherBodyTransform.rotation.eulerAngles.x <= 335 && launcherBodyTransform.rotation.eulerAngles.x >= 272)
+        TurretBodyTransform.rotation = Quaternion.Euler(TurretBodyTransform.rotation.eulerAngles + 
+                                                        new Vector3(0, HorizontalRotation * rotationSpeed, 0));
+        if (TurretBodyTransform.rotation.eulerAngles.x > maxX || TurretBodyTransform.rotation.eulerAngles.x < minX)
         {
-            launcherBodyTransform.rotation = Quaternion.Euler(launcherBodyTransform.rotation.eulerAngles +
-                                                              new Vector3(VericalRotation * rotationSpeed, 0, 0));
+            var newx = TurretBodyTransform.rotation.eulerAngles.x + -VericalRotation * rotationSpeed;
+            if (newx > minX && newx < minX + 2)
+            {
+                TurretBodyTransform.rotation = Quaternion.Euler(minX - .1f, TurretBodyTransform.rotation.eulerAngles.y, TurretBodyTransform.rotation.eulerAngles.z);
+            }
+            else if (newx < maxX && newx > maxX - 2)
+            {
+                TurretBodyTransform.rotation = Quaternion.Euler(maxX + .1f, TurretBodyTransform.rotation.eulerAngles.y, TurretBodyTransform.rotation.eulerAngles.z);
+            }
+            else
+            {
+                TurretBodyTransform.rotation = Quaternion.Euler(TurretBodyTransform.rotation.eulerAngles +
+                                                                new Vector3(-VericalRotation * rotationSpeed, 0, 0));
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && ableToShot)
+        if (Input.GetKeyDown(KeyCode.Space) && weaponController.ableToShot)
         {
             Shot();
         }
@@ -60,8 +78,7 @@ public class TurretController : MonoBehaviour, IWeapon
         
         float HorizontalJoystickRotation = joystick.Horizontal;
         float VericalJoystickRotation = joystick.Vertical;
-        var launcherBodyTransformRotation = launcherBodyTransform.rotation;
-        var transformRotation = transform.rotation;
+        var turretBodyTransformRotation = TurretBodyTransform.rotation;
         if (HorizontalJoystickRotation > .3f || HorizontalJoystickRotation < -.3f)
         {
             if (HorizontalJoystickRotation >= .8f || HorizontalJoystickRotation <= -.8f)
@@ -80,39 +97,41 @@ public class TurretController : MonoBehaviour, IWeapon
                     {
                         timeOut = 2f;
                     }
-                    transform.rotation = Quaternion.Euler(transformRotation.eulerAngles + 
-                                                          new Vector3(0, HorizontalJoystickRotation * rotationSpeed * timeOut, 0));
+                    TurretBodyTransform.rotation = Quaternion.Euler(turretBodyTransformRotation.eulerAngles + 
+                                                                    new Vector3(0, HorizontalJoystickRotation * rotationSpeed * timeOut, 0));
                 }
                 else
                 {
-                    transform.rotation = Quaternion.Euler(transformRotation.eulerAngles + 
-                                                          new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
+                    TurretBodyTransform.rotation = Quaternion.Euler(turretBodyTransformRotation.eulerAngles + 
+                                                                    new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
                 }
             }
             else
             {
-                transform.rotation = Quaternion.Euler(transformRotation.eulerAngles + 
-                                                      new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
+                TurretBodyTransform.rotation = Quaternion.Euler(turretBodyTransformRotation.eulerAngles + 
+                                                                new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
                 startToSpeedUp = false;
             }
         }
-        if (launcherBodyTransformRotation.x <= 335 && launcherBodyTransformRotation.eulerAngles.x >= 272)
+        if (TurretBodyTransform.rotation.eulerAngles.x > maxX || TurretBodyTransform.rotation.eulerAngles.x < minX)
         {
             if (VericalJoystickRotation > .3f || VericalJoystickRotation < -.3f)
             {
-                launcherBodyTransform.rotation = Quaternion.Euler(launcherBodyTransform.rotation.eulerAngles + 
-                                                                  new Vector3(VericalJoystickRotation * rotationSpeed * .5f, 0, 0));
+                var newx = TurretBodyTransform.rotation.eulerAngles.x - VericalJoystickRotation * rotationSpeed;
+                if (newx > minX && newx < minX + 2)
+                {
+                    TurretBodyTransform.rotation = Quaternion.Euler(minX - .1f, turretBodyTransformRotation.eulerAngles.y, turretBodyTransformRotation.eulerAngles.z);
+                }
+                else if (newx < maxX && newx > maxX - 2)
+                {
+                    TurretBodyTransform.rotation = Quaternion.Euler(maxX + .1f, turretBodyTransformRotation.eulerAngles.y, turretBodyTransformRotation.eulerAngles.z);
+                }
+                else
+                {
+                    TurretBodyTransform.rotation = Quaternion.Euler(turretBodyTransformRotation.eulerAngles +
+                                                                    new Vector3(-VericalJoystickRotation * rotationSpeed, 0, 0));
+                }
             }
-        }
-        if (launcherBodyTransformRotation.eulerAngles.x > 334)
-        {
-            launcherBodyTransform.rotation = Quaternion.Euler(new Vector3(334,
-                launcherBodyTransform.rotation.eulerAngles.y, launcherBodyTransform.rotation.eulerAngles.z));
-        }
-        else if (launcherBodyTransformRotation.eulerAngles.x < 273)
-        {
-            launcherBodyTransform.rotation = Quaternion.Euler(new Vector3(273,
-                launcherBodyTransform.rotation.eulerAngles.y, launcherBodyTransform.rotation.eulerAngles.z));
         }
     }
 
@@ -123,14 +142,24 @@ public class TurretController : MonoBehaviour, IWeapon
 
     private IEnumerator ShotProcess()
     {
-        ableToShot = false;
-        GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Wick);
-        yield return new WaitForSeconds(1f);
+        weaponController.ableToShot = false;
         GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Cannon);
-        ableToShot = true;
-        GameObject CreatedBullet = Instantiate(bullet, ShotPoint.position, ShotPoint.rotation);
+        yield return new WaitForSeconds(RPM);
+        weaponController.ableToShot = true;
+        shotABullet(shotPoints[0]);
+        if (shotPoints.Count > 1)
+        {
+            yield return new WaitForSeconds(RPM);
+            shotABullet(shotPoints[1]);
+        }
+        
+    }
+
+    private void shotABullet(Transform shotPoint)
+    {
+        GameObject createdBullet = Instantiate(bullet, shotPoint.position, shotPoint.rotation);
+        createdBullet.GetComponent<Rigidbody>().velocity = shotPoint.transform.up * blastPower;
         GameUIController.instance.ammoController.DecreaseAmmo();
-        Destroy(Instantiate(HitParticle, ShotPoint.position, ShotPoint.rotation), 2);
-        StartCoroutine(mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .2f));
+        StartCoroutine(weaponController.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.05f, .1f));
     }
 }

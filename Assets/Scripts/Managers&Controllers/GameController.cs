@@ -100,6 +100,12 @@ public class GameController : MonoBehaviour
 
     private void SetCamera(float cameraOffset)
     {
+        var weaponType = GameManager.instance.playerPrefsManager.GetWeaponType();
+        if (weaponType != Weapon.WeaponType.Launcher)
+        {
+            return;
+        }
+
         int cameraPosition = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.cameraPosition, 0);
         Vector3 cameraTransform = weapon.mainCamera.transform.localPosition;
         float cameraZ = 0;

@@ -61,6 +61,15 @@ public class GameUIController : MonoBehaviour
             });
             blastPowerSlider.value = 17;
         }
+        else if (weaponController.weaponType == Weapon.WeaponType.Turret)
+        {
+            TurretController torretController = weaponController.GetWeapon().GetComponent<TurretController>();
+            launch.onClick.AddListener(() =>
+            {
+                if(gameController.weapon.ableToShot)
+                    torretController.Shot();
+            });
+        }
         StartCoroutine(StartCountdown(0));
         
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));

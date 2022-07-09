@@ -16,7 +16,9 @@ public class PlayerPrefsManager : MonoBehaviour
         music,
         sfx,
         ChosenLevel,
-        stars
+        stars,
+        WeaponName,
+        WeaponType
     }
 
     [Serializable]
@@ -192,4 +194,29 @@ public class PlayerPrefsManager : MonoBehaviour
         return GetInt(PlayerPrefsKeys.stars, 0);
     }
 
+    public void SetWeaponType(Weapon.WeaponType type)
+    {
+        SetString(PlayerPrefsKeys.WeaponType, type.ToString());
+    }
+    
+    public Weapon.WeaponType GetWeaponType()
+    {
+        if (!PlayerPrefs.HasKey(PlayerPrefsKeys.WeaponType.ToString()))
+        {
+            return Weapon.WeaponType.Turret;
+        }
+        string type = GetString(PlayerPrefsKeys.WeaponType, Weapon.WeaponType.Launcher.ToString());
+        var weaponType = Weapon.WeaponType.Launcher;
+        switch (type)
+        {
+            case "Launcher":
+                weaponType = Weapon.WeaponType.Launcher;
+                break;
+            case "Turret":
+                weaponType = Weapon.WeaponType.Turret;
+                break;
+        }
+
+        return weaponType;
+    }
 }

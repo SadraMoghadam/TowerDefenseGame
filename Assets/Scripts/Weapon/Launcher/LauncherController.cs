@@ -8,7 +8,6 @@ public class LauncherController : MonoBehaviour, IWeapon
     public string name;
     public Transform ShotPoint;
     public GameObject Explosion;
-    public Camera mainCamera;
     [SerializeField] private GameObject filterFire;
     [SerializeField] private Transform launcherBodyTransform;
     [SerializeField] private GameObject Cannonball;
@@ -144,7 +143,7 @@ public class LauncherController : MonoBehaviour, IWeapon
         CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * blastPower;
         GameUIController.instance.ammoController.DecreaseAmmo();
         Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
-        StartCoroutine(mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .2f));
+        StartCoroutine(weaponController.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .2f));
     }
 
     
