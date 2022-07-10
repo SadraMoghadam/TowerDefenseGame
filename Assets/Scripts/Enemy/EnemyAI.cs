@@ -160,6 +160,7 @@ public class EnemyAI : MonoBehaviour
     public void Damage(float strength)
     {
         health -= strength;
+        Debug.Log(health);
         healthBar.value = health / enemyType.maxHealth;
         if (healthBar.value <= 0)
         {

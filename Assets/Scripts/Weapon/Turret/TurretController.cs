@@ -9,15 +9,16 @@ public class TurretController : MonoBehaviour, IWeapon
     public GameObject hitParticle;
     [SerializeField] private Transform TurretBodyTransform;
     [SerializeField] private GameObject bullet;
-    [HideInInspector] public float blastPower = 2;
+    [HideInInspector] public float blastPower = 200;
     [HideInInspector] public AudioSource audioSource;
     private float rotationSpeed = 1.5f;
+    private float range = 100;
     private float startRotationTime = 0;
     private bool startToSpeedUp = false;
     private Joystick joystick;
     private WeaponController weaponController;
     private float RPM = .2f;
-    private float minX = 4;
+    private float minX = 25;
     private float maxX = 345;
 
     private void Start()
@@ -157,9 +158,18 @@ public class TurretController : MonoBehaviour, IWeapon
 
     private void shotABullet(Transform shotPoint)
     {
-        GameObject createdBullet = Instantiate(bullet, shotPoint.position, shotPoint.rotation);
-        createdBullet.GetComponent<Rigidbody>().velocity = shotPoint.transform.up * blastPower;
+        RaycastHit hit;
+        // GameObject createdBullet = Instantiate(bullet, shotPoint.position, shotPoint.rotation);
+        // createdBullet.GetComponent<Rigidbody>().velocity = shotPoint.transform.up * blastPower;
+        if (Physics.Raycast(shotPoint.position, shotPoint.transform.up, out hit, range))
+        {
+            if (hit.transform.gameObject.CompareTag("Enemy"))
+            {
+                hit.transform.GetComponent<EnemyAI>().Damage(20);
+            }
+            Destroy(Instantiate(hitParticle, hit.point, Quaternion.LookRotation(hit.normal)), 2f);
+        }
         GameUIController.instance.ammoController.DecreaseAmmo();
-        StartCoroutine(weaponController.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.05f, .1f));
+        StartCoroutine(weaponController.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .1f));
     }
 }

@@ -21,6 +21,11 @@ public class AmmoController : MonoBehaviour
             .GetLevelData(GameController.instance.level).numberOfAmmos;
         pocketAmmoCount = totalAmmo - magazineSpace;
         pocketAmmoCount = pocketAmmoCount < 0 ? 0 : pocketAmmoCount;
+        if (GameController.instance.weapon.weaponType == Weapon.WeaponType.Turret)
+        {
+            totalAmmo *= 10;
+            pocketAmmoCount *= 9;
+        }
         GameUIController.instance.ammoInfo.text = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo).ToString() + "/" + pocketAmmoCount;
     }
 
