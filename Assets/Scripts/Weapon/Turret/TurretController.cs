@@ -9,7 +9,6 @@ public class TurretController : MonoBehaviour, IWeapon
     public GameObject hitParticle;
     [SerializeField] private Transform TurretBodyTransform;
     [SerializeField] private GameObject bullet;
-    [HideInInspector] public float blastPower = 200;
     [HideInInspector] public AudioSource audioSource;
     private float rotationSpeed = 1.5f;
     private float range = 100;
@@ -17,7 +16,7 @@ public class TurretController : MonoBehaviour, IWeapon
     private bool startToSpeedUp = false;
     private Joystick joystick;
     private WeaponController weaponController;
-    private float RPM = .2f;
+    private float RPM = .3f;
     private float minX = 25;
     private float maxX = 345;
 
@@ -36,8 +35,6 @@ public class TurretController : MonoBehaviour, IWeapon
         Move();
     }
     
-    
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -138,6 +135,8 @@ public class TurretController : MonoBehaviour, IWeapon
 
     public void Shot()
     {
+        if (GameUIController.instance.ammoController.isInReload)
+            return;
         StartCoroutine(ShotProcess());
     }
 
@@ -146,28 +145,35 @@ public class TurretController : MonoBehaviour, IWeapon
         weaponController.ableToShot = false;
         GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Cannon);
         yield return new WaitForSeconds(RPM);
-        weaponController.ableToShot = true;
         shotABullet(shotPoints[0]);
         if (shotPoints.Count > 1)
         {
             yield return new WaitForSeconds(RPM);
             shotABullet(shotPoints[1]);
+            weaponController.ableToShot = true;
         }
-        
+        // if (weaponController.weaponType == Weapon.WeaponType.Turret)
+        // {
+        //     TurretController turretController = weaponController.GetWeapon().GetComponent<TurretController>();
+        //     if (GameUIController.instance.isHeldDown && GameController.instance.weapon.ableToShot)
+        //     {
+        //         turretController.Shot();
+        //     }
+        // }
     }
 
     private void shotABullet(Transform shotPoint)
     {
         RaycastHit hit;
-        // GameObject createdBullet = Instantiate(bullet, shotPoint.position, shotPoint.rotation);
+        Destroy(Instantiate(bullet, shotPoint.position, Quaternion.LookRotation(shotPoint.up)), .04f);
         // createdBullet.GetComponent<Rigidbody>().velocity = shotPoint.transform.up * blastPower;
         if (Physics.Raycast(shotPoint.position, shotPoint.transform.up, out hit, range))
         {
             if (hit.transform.gameObject.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<EnemyAI>().Damage(20);
+                hit.transform.GetComponent<EnemyAI>().Damage(10);
             }
-            Destroy(Instantiate(hitParticle, hit.point, Quaternion.LookRotation(hit.normal)), 2f);
+            Destroy(Instantiate(hitParticle, hit.point, Quaternion.LookRotation(hit.normal)), .5f);
         }
         GameUIController.instance.ammoController.DecreaseAmmo();
         StartCoroutine(weaponController.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .1f));

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6110983045699375270}
   - component: {fileID: 6784013402654465326}
   - component: {fileID: 4057197363711993230}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: AttackableTrigger
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 1316320945467419651}
   - component: {fileID: 5552695882239032905}
   - component: {fileID: 8089599162427535468}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: AttackableTrigger
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 1661926165613984619}
   - component: {fileID: 66751702188080893}
   - component: {fileID: 6656169462847020127}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: AttackableTrigger
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 1502871682808747922}
   - component: {fileID: 2385097950545127917}
   - component: {fileID: 5654887038828006423}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: AttackableTrigger
   m_TagString: Wall
   m_Icon: {fileID: 0}

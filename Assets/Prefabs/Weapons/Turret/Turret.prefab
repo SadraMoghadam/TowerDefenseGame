@@ -149,10 +149,9 @@ MonoBehaviour:
   shotPoints:
   - {fileID: 4924355930623249821}
   - {fileID: 6064792079402921812}
-  hitParticle: {fileID: 2771661109152740402, guid: 01cfa450684cc064f8497553eecfb586, type: 3}
+  hitParticle: {fileID: 100002, guid: fc7f8379080d0a844ad699b91bfd56f0, type: 3}
   TurretBodyTransform: {fileID: 577659891818143927}
-  bullet: {fileID: 9180419991414719884, guid: 179007cb3d8fd834da0ffc51453b0ef5, type: 3}
-  blastPower: 0
+  bullet: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
   audioSource: {fileID: 0}
 --- !u!82 &1790094002206533199
 AudioSource:
@@ -274,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2839231440633398079}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.801, y: 7.377, z: 27.71}
+  m_LocalPosition: {x: 1.8, y: 7.25, z: 27.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -391,7 +390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5982914052798248563}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.61, y: 7.377, z: 27.71}
+  m_LocalPosition: {x: -1.61, y: 7.23, z: 27.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

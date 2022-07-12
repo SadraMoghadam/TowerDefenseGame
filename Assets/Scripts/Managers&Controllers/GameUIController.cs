@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GameUIController : MonoBehaviour
 {
     public Slider blastPowerSlider;
-    public Button launch;
+    public Button fire;
     public Button reload;
     public TMP_Text ammoInfo;
     public TMP_Text FPS;
@@ -23,12 +23,14 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private TMP_Text blastPowerSliderValue;
     [HideInInspector] private float timer;
     [HideInInspector] public AudioSource audioSource;
+    [HideInInspector] public bool isHeldDown = false;
 
     public static GameUIController instance;
     [HideInInspector] public AmmoController ammoController;
     private float fpsTimer, fpsRefresh, avgFramerate;
     private GameManager gameManager;
     private GameController gameController;
+    private WeaponController weaponController;
 
     private void Awake()
     {
@@ -43,12 +45,12 @@ public class GameUIController : MonoBehaviour
     {
         timer = gameController.matchLength;
         var timeSpan = TimeSpan.FromSeconds(timer);
-        timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}";
-        WeaponController weaponController = gameController.weapon;
+        timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}"; 
+        weaponController = gameController.weapon;
         if (weaponController.weaponType == Weapon.WeaponType.Launcher)
         {
             LauncherController launcherController = weaponController.GetWeapon().GetComponent<LauncherController>();
-            launch.onClick.AddListener(() =>
+            fire.onClick.AddListener(() =>
             {
                 if(gameController.weapon.ableToShot)
                     launcherController.Shot();
@@ -61,15 +63,6 @@ public class GameUIController : MonoBehaviour
             });
             blastPowerSlider.value = 17;
         }
-        else if (weaponController.weaponType == Weapon.WeaponType.Turret)
-        {
-            TurretController torretController = weaponController.GetWeapon().GetComponent<TurretController>();
-            launch.onClick.AddListener(() =>
-            {
-                if(gameController.weapon.ableToShot)
-                    torretController.Shot();
-            });
-        }
         StartCoroutine(StartCountdown(0));
         
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));
@@ -77,7 +70,7 @@ public class GameUIController : MonoBehaviour
         
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (gameManager.gameSetting.DebugMode)
         {
@@ -89,6 +82,15 @@ public class GameUIController : MonoBehaviour
             }
 
             FPS.text = avgFramerate.ToString() + "fps";
+        }
+        
+        if (weaponController.weaponType == Weapon.WeaponType.Turret)
+        {
+            TurretController turretController = weaponController.GetWeapon().GetComponent<TurretController>();
+            if (isHeldDown && gameController.weapon.ableToShot)
+            {
+                turretController.Shot();
+            }
         }
     }
 
@@ -117,7 +119,7 @@ public class GameUIController : MonoBehaviour
 
     public void DisableTouchableButtons()
     {
-        launch.interactable = false;
+        fire.interactable = false;
         reload.interactable = false;
         settingsButton.interactable = false;
         joystick.enabled = false;
@@ -127,7 +129,7 @@ public class GameUIController : MonoBehaviour
     
     public void EnableTouchableButtons()
     {
-        launch.interactable = true;
+        fire.interactable = true;
         reload.interactable = true;
         settingsButton.interactable = true;
         joystick.enabled = true;
@@ -149,6 +151,18 @@ public class GameUIController : MonoBehaviour
         {
             gameController.WonProcess(true);
         }
+    }
+ 
+    public void onPress ()
+    {
+        isHeldDown = true;
+        Debug.Log(isHeldDown);
+    }
+ 
+    public void onRelease ()
+    {
+        isHeldDown = false;
+        Debug.Log(isHeldDown);
     }
     
 }

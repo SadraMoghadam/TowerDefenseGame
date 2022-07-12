@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 72754390}
   - component: {fileID: 72754389}
   m_Layer: 5
-  m_Name: Launch
+  m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2405,13 +2405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94674f877a1891a4eb1293fb2142dcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - weaponType: 0
-    weaponName: Default
-    weaponGameObject: {fileID: 6447220851442293283, guid: 567da007688f5ed47a0fef1830985567, type: 3}
-  - weaponType: 1
-    weaponName: Default
-    weaponGameObject: {fileID: 1974423379087189579, guid: 26b0647eb7ba29a48b2a3a128fce575e, type: 3}
+  weapons: []
+  weaponsScriptableObject: {fileID: 11400000, guid: 0e39bc8a14f0a13468fb11e6aaed5a44, type: 2}
   ableToShot: 0
   mainCamera: {fileID: 0}
   weaponType: 0
@@ -5447,6 +5442,7 @@ GameObject:
   - component: {fileID: 1513060762}
   - component: {fileID: 1513060761}
   - component: {fileID: 1513060760}
+  - component: {fileID: 1513060763}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -5557,6 +5553,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513060758}
   m_CullTransparentMesh: 1
+--- !u!114 &1513060763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513060758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2061838693}
+          m_TargetAssemblyTypeName: GameUIController, Assembly-CSharp
+          m_MethodName: onPress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2061838693}
+          m_TargetAssemblyTypeName: GameUIController, Assembly-CSharp
+          m_MethodName: onRelease
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1555574357 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9051225534909232901, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
@@ -5863,7 +5904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Launch
+  m_text: Fire
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -7972,7 +8013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blastPowerSlider: {fileID: 427165582}
-  launch: {fileID: 1513060760}
+  fire: {fileID: 1513060760}
   reload: {fileID: 1024369245}
   ammoInfo: {fileID: 1189081091}
   FPS: {fileID: 107760118}
@@ -7989,6 +8030,7 @@ MonoBehaviour:
   settingPanel: {fileID: 4908246014401124747}
   blastPowerSliderValue: {fileID: 1059737649}
   audioSource: {fileID: 0}
+  isHeldDown: 0
   ammoController: {fileID: 0}
 --- !u!4 &2061838694
 Transform:
@@ -8027,6 +8069,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  isInReload: 0
   totalAmmo: 0
   reloadTextObject: {fileID: 1830523225}
   reloadAnimation: {fileID: 757579739}
@@ -9100,26 +9143,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 753309327}
-    - target: {fileID: 641349721505927477, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 1923938517073258309, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2009965076183109741, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2034553790954021803, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2247668444363893431, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 2497841642069326663, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
       propertyPath: healthBar
       value: 
@@ -9128,77 +9151,13 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 166963479}
-    - target: {fileID: 3146432237475449612, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 3212245376427342209, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 3314282483922916895, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389340644103278181, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 5168344546644610965, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 5646602815886578945, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 5735996246570997224, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6085874802193960761, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1384086060}
-    - target: {fileID: 6141386901822503968, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 6168959469333776693, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8013129957879541693, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712167475610760788, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 9051225534296793366, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 9051225534296793369, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9051225534634162908, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 9051225534909232901, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 9051225535281862372, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
       propertyPath: m_Name
       value: Stronghold
-      objectReference: {fileID: 0}
-    - target: {fileID: 9051225535281862372, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9051225535281862373, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
       propertyPath: m_RootOrder
@@ -9243,10 +9202,6 @@ PrefabInstance:
     - target: {fileID: 9051225535281862373, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9051225535525755055, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 833be0457ab66464f84bb3d58e014f85, type: 3}

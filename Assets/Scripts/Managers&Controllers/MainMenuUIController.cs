@@ -10,12 +10,23 @@ public class MainMenuUIController : MonoBehaviour
     public MainMenu mainMenu;
     public SettingPanel settingPanel;
     public AudioSource canvasAudioSource;
+    public Weapons weapons;
     [HideInInspector] public AudioSource audioSource;
+    [HideInInspector] public Weapon currentWeapon;
 
     private void Awake()
     {
         instance = this;
         audioSource = GetComponent<AudioSource>();
+        var currentWeaponType = GameManager.instance.playerPrefsManager.GetWeaponType();
+        foreach (var weapon in weapons.weapons)
+        {
+            if (weapon.weaponType == currentWeaponType)
+            {
+                currentWeapon = weapon;
+                break;
+            }
+        }
     }
 
     private void Start()

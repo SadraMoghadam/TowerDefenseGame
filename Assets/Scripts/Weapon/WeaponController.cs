@@ -8,12 +8,14 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     public List<Weapon> weapons;
+    [SerializeField] private Weapons weaponsScriptableObject;
     private GameObject CurrentWeapon;
     [HideInInspector] public bool ableToShot;
     [HideInInspector] public Camera mainCamera;
     [HideInInspector] public Weapon.WeaponType weaponType;
     private void Awake()
     {
+        weapons = weaponsScriptableObject.weapons;
         ableToShot = true;
         weaponType = GameManager.instance.playerPrefsManager.GetWeaponType();
         string weaponName = "Default";
