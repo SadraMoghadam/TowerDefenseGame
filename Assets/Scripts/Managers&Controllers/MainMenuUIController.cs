@@ -18,6 +18,11 @@ public class MainMenuUIController : MonoBehaviour
     {
         instance = this;
         audioSource = GetComponent<AudioSource>();
+        SetCurrentWeapon();
+    }
+
+    public void SetCurrentWeapon()
+    {
         var currentWeaponType = GameManager.instance.playerPrefsManager.GetWeaponType();
         foreach (var weapon in weapons.weapons)
         {
