@@ -47,7 +47,7 @@ public class AmmoController : MonoBehaviour
         if (gameController.weapon.weaponType == Weapon.WeaponType.Launcher)
         {
             ammos[index].SetActive(false);
-        }
+        } 
 
 
         if (totalAmmo <= 0)
