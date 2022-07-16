@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LauncherController : MonoBehaviour, IWeapon
 {
+    public GameObject ammoContainer;
+    public GameObject[] ammos;
     public string name;
     public Transform ShotPoint;
     public GameObject Explosion;

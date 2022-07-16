@@ -685,14 +685,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042cd65aea01e664986a0abceb20a59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoContainer: {fileID: 316415663684126367}
+  ammos:
+  - {fileID: 6747757649462985567}
+  - {fileID: 5174601241911463272}
+  - {fileID: 9202431082524868971}
+  - {fileID: 9190637185751546222}
+  - {fileID: 4764623500917284342}
+  - {fileID: 7214049372178443193}
+  - {fileID: 5872723188265110048}
+  - {fileID: 6831421141943133079}
   name: Default
   ShotPoint: {fileID: 6190346214576048665}
   Explosion: {fileID: 2771661109152740402, guid: 01cfa450684cc064f8497553eecfb586, type: 3}
-  mainCamera: {fileID: 7703227936619388916}
   filterFire: {fileID: 3481136336840996871}
   launcherBodyTransform: {fileID: 685388748405325123}
   Cannonball: {fileID: 9180419991414719884, guid: b1d56ffb58b17104fae240ab02cefd68, type: 3}
-  ableToShot: 0
   blastPower: 0
   audioSource: {fileID: 0}
 --- !u!120 &6176767039382267772

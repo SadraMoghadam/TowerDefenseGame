@@ -155,12 +155,16 @@ public class GameUIController : MonoBehaviour
  
     public void onPress ()
     {
+        if (weaponController.weaponType == Weapon.WeaponType.Launcher)
+            return;
         isHeldDown = true;
         Debug.Log(isHeldDown);
     }
  
     public void onRelease ()
     {
+        if (weaponController.weaponType == Weapon.WeaponType.Launcher)
+            return;
         isHeldDown = false;
         Debug.Log(isHeldDown);
     }

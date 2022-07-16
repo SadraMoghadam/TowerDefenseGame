@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     [HideInInspector] public float matchLength = 180;
     [HideInInspector] public bool endOfGame = false;
     [HideInInspector] public AudioSource audioSource;
-    // [SerializeField] private Camera camera;
+    private Camera camera;
     // private int cameraFieldOfViewCoefficient = 3;
 
     public enum EnemyTypes
@@ -47,9 +47,10 @@ public class GameController : MonoBehaviour
         Debug.Log("Level: " + level);
     }
 
-    private void OnEnable()
+    private void Start()
     {
         GetLevelInformation();
+        camera = Camera.main;
         SetCamera(3);
         gameManager.audioController.PlayMusic(audioSource, AudioController.MusicType.Wind, true);
     }
@@ -107,7 +108,7 @@ public class GameController : MonoBehaviour
         }
 
         int cameraPosition = gameManager.playerPrefsManager.GetInt(PlayerPrefsManager.PlayerPrefsKeys.cameraPosition, 0);
-        Vector3 cameraTransform = weapon.mainCamera.transform.localPosition;
+        Vector3 cameraTransform = camera.transform.localPosition;
         float cameraZ = 0;
         if (cameraPosition == 1)
         {
@@ -117,7 +118,7 @@ public class GameController : MonoBehaviour
         {
             cameraZ = -cameraOffset;
         }
-        weapon.mainCamera.transform.localPosition = new Vector3(cameraTransform.x, cameraTransform.y, cameraZ);
+        camera.transform.localPosition = new Vector3(cameraTransform.x, cameraTransform.y, cameraZ);
     }
     
 }

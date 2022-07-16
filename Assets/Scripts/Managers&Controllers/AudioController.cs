@@ -13,7 +13,8 @@ public class AudioController : MonoBehaviour
         StartGame = 1,
         Wick = 2,
         Explosion = 3,
-        Cannon = 4
+        Cannon = 4,
+        TurretShot = 5
     }
 
     public enum MusicType

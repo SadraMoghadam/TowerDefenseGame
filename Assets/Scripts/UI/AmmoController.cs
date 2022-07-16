@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class AmmoController : MonoBehaviour
 {
-    public GameObject ammoContainer;
-    public GameObject[] ammos;
     public bool isInReload;
     private int magazineSpace = 8;
     private int pocketAmmoCount;
@@ -15,6 +13,8 @@ public class AmmoController : MonoBehaviour
     [SerializeField] private GameObject reloadTextObject;
     [SerializeField] private Animator reloadAnimation;
     private GameController gameController;
+    private GameObject ammoContainer;
+    private GameObject[] ammos;
 
 
     private void Start()
@@ -24,7 +24,13 @@ public class AmmoController : MonoBehaviour
         gameManager = GameManager.instance;
         totalAmmo = gameManager.levelDataReader
             .GetLevelData(gameController.level).numberOfAmmos;
-        if (gameController.weapon.weaponType == Weapon.WeaponType.Turret)
+        if (gameController.weapon.weaponType == Weapon.WeaponType.Launcher)
+        {
+            var launcherController = gameController.weapon.GetWeapon().GetComponent<LauncherController>();
+            ammos = launcherController.ammos;
+            ammoContainer = launcherController.ammoContainer;
+        }
+        else if (gameController.weapon.weaponType == Weapon.WeaponType.Turret)
         {
             totalAmmo *= 10;
             magazineSpace = 50;

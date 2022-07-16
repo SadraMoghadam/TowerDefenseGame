@@ -143,12 +143,13 @@ public class TurretController : MonoBehaviour, IWeapon
     private IEnumerator ShotProcess()
     {
         weaponController.ableToShot = false;
-        GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Cannon);
         yield return new WaitForSeconds(RPM);
+        GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.TurretShot);
         shotABullet(shotPoints[0]);
         if (shotPoints.Count > 1)
         {
             yield return new WaitForSeconds(RPM);
+            GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.TurretShot);
             shotABullet(shotPoints[1]);
             weaponController.ableToShot = true;
         }

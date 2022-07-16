@@ -22,7 +22,7 @@ public class CannonBallController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Launcher")
+        if(collision.gameObject.name.Contains("Launcher"))
             return;
         if (!explosionHappened && !gameManager.gameSetting.slowMotionOnExplosion)
         {
