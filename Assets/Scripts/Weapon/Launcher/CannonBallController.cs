@@ -44,15 +44,16 @@ public class CannonBallController : MonoBehaviour
     private void ExplosionProcess()
     {
         gameManager.audioController.PlaySfx(audioSource, AudioController.SFXType.Explosion);
+        Collider[] collisions = new Collider[40];
         for (int i = 0; i < explosionRadius.Length; i++)
         {
-            var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius[i]);
-            foreach (var surroundingObject in surroundingObjects)
+            var surroundingObjectsCount = Physics.OverlapSphereNonAlloc(transform.position, explosionRadius[i], collisions);
+            for (int j = 0; j < surroundingObjectsCount; j++)
             {
-                if (surroundingObject.gameObject.tag == "Enemy")
+                if (collisions[j].gameObject.CompareTag("Enemy"))
                 {
-                    EnemyAI enemy = surroundingObject.gameObject.GetComponent<EnemyAI>();
-                    Rigidbody rigidbody = surroundingObject.GetComponent<Rigidbody>();
+                    EnemyAI enemy = collisions[j].gameObject.GetComponent<EnemyAI>();
+                    Rigidbody rigidbody = collisions[j].GetComponent<Rigidbody>();
                     if (enemy == null || rigidbody == null)
                     {
                         return;
@@ -61,10 +62,10 @@ public class CannonBallController : MonoBehaviour
                     rigidbody.AddExplosionForce(explosionForce[i], transform.position + Vector3.down, explosionRadius[i]);
                 }
 
-                if (surroundingObject.gameObject.tag == "Launcher")
-                {
-                    StartCoroutine(GameController.instance.weapon.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.3f, .2f));
-                }
+                // if (collisions[j].gameObject.CompareTag("Launcher"))
+                // {
+                //     StartCoroutine(GameController.instance.weapon.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.3f, .2f));
+                // }
             }
         }
         

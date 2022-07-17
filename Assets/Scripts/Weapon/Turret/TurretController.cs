@@ -16,12 +16,20 @@ public class TurretController : MonoBehaviour, IWeapon
     private bool startToSpeedUp = false;
     private Joystick joystick;
     private WeaponController weaponController;
-    private float RPM = .3f;
+    private float RPM = .15f;
     private float minX = 25;
     private float maxX = 345;
+    private GameManager gameManager;
+    private GameUIController gameUIController;
+    private Camera camera;
+    private Transform _transform;
+    
 
     private void Start()
     {
+        _transform = transform;
+        gameManager = GameManager.instance;
+        gameUIController = GameUIController.instance;
         weaponController = transform.parent.GetComponent<WeaponController>();
         weaponController.ableToShot = true;
         startRotationTime = 0;
@@ -30,7 +38,7 @@ public class TurretController : MonoBehaviour, IWeapon
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Move();
     }
@@ -135,7 +143,7 @@ public class TurretController : MonoBehaviour, IWeapon
 
     public void Shot()
     {
-        if (GameUIController.instance.ammoController.isInReload)
+        if (gameUIController.ammoController.isInReload)
             return;
         StartCoroutine(ShotProcess());
     }
@@ -144,39 +152,30 @@ public class TurretController : MonoBehaviour, IWeapon
     {
         weaponController.ableToShot = false;
         yield return new WaitForSeconds(RPM);
-        GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.TurretShot);
+        gameManager.audioController.PlaySfx(audioSource, AudioController.SFXType.TurretShot);
         shotABullet(shotPoints[0]);
         if (shotPoints.Count > 1)
         {
             yield return new WaitForSeconds(RPM);
-            GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.TurretShot);
+            gameManager.audioController.PlaySfx(audioSource, AudioController.SFXType.TurretShot);
             shotABullet(shotPoints[1]);
             weaponController.ableToShot = true;
         }
-        // if (weaponController.weaponType == Weapon.WeaponType.Turret)
-        // {
-        //     TurretController turretController = weaponController.GetWeapon().GetComponent<TurretController>();
-        //     if (GameUIController.instance.isHeldDown && GameController.instance.weapon.ableToShot)
-        //     {
-        //         turretController.Shot();
-        //     }
-        // }
     }
 
     private void shotABullet(Transform shotPoint)
     {
         RaycastHit hit;
         Destroy(Instantiate(bullet, shotPoint.position, Quaternion.LookRotation(shotPoint.up)), .04f);
-        // createdBullet.GetComponent<Rigidbody>().velocity = shotPoint.transform.up * blastPower;
         if (Physics.Raycast(shotPoint.position, shotPoint.transform.up, out hit, range))
         {
             if (hit.transform.gameObject.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<EnemyAI>().Damage(10);
+                hit.transform.GetComponent<EnemyAI>().Damage(20);
             }
             Destroy(Instantiate(hitParticle, hit.point, Quaternion.LookRotation(hit.normal)), .5f);
         }
-        GameUIController.instance.ammoController.DecreaseAmmo();
-        StartCoroutine(weaponController.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .1f));
+        gameUIController.ammoController.DecreaseAmmo();
+        // StartCoroutine(weaponController.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .1f));
     }
 }

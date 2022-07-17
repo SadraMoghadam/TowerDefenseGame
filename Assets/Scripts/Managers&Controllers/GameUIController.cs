@@ -70,7 +70,7 @@ public class GameUIController : MonoBehaviour
         
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (gameManager.gameSetting.DebugMode)
         {
@@ -158,7 +158,7 @@ public class GameUIController : MonoBehaviour
         if (weaponController.weaponType == Weapon.WeaponType.Launcher)
             return;
         isHeldDown = true;
-        Debug.Log(isHeldDown);
+        // Debug.Log(isHeldDown);
     }
  
     public void onRelease ()
@@ -166,7 +166,7 @@ public class GameUIController : MonoBehaviour
         if (weaponController.weaponType == Weapon.WeaponType.Launcher)
             return;
         isHeldDown = false;
-        Debug.Log(isHeldDown);
+        // Debug.Log(isHeldDown);
     }
     
 }

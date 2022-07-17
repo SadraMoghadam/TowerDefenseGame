@@ -1817,6 +1817,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.0001
       objectReference: {fileID: 0}
@@ -1830,7 +1838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1903393974512537868, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
       propertyPath: m_RootOrder

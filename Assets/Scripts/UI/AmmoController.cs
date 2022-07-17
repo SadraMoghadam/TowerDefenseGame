@@ -15,6 +15,7 @@ public class AmmoController : MonoBehaviour
     private GameController gameController;
     private GameObject ammoContainer;
     private GameObject[] ammos;
+    private GameUIController gameUIController;
 
 
     private void Start()
@@ -22,6 +23,7 @@ public class AmmoController : MonoBehaviour
         isInReload = false;
         gameController = GameController.instance;
         gameManager = GameManager.instance;
+        gameUIController = GameUIController.instance;
         totalAmmo = gameManager.levelDataReader
             .GetLevelData(gameController.level).numberOfAmmos;
         if (gameController.weapon.weaponType == Weapon.WeaponType.Launcher)
@@ -37,7 +39,7 @@ public class AmmoController : MonoBehaviour
         }
         pocketAmmoCount = totalAmmo - magazineSpace;
         pocketAmmoCount = pocketAmmoCount < 0 ? 0 : pocketAmmoCount;
-        GameUIController.instance.ammoInfo.text = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo).ToString() + "/" + pocketAmmoCount;
+        gameUIController.ammoInfo.text = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo).ToString() + "/" + pocketAmmoCount;
     }
 
     public void DecreaseAmmo()
@@ -48,14 +50,12 @@ public class AmmoController : MonoBehaviour
         int inMagAmmo = totalAmmo - pocketAmmoCount;
         if (inMagAmmo < 0)
             inMagAmmo = 0;
-        GameUIController.instance.ammoInfo.text = inMagAmmo.ToString() + "/" + pocketAmmoCount;
+        gameUIController.ammoInfo.text = inMagAmmo.ToString() + "/" + pocketAmmoCount;
         int index = inMagAmmo % magazineSpace;
         if (gameController.weapon.weaponType == Weapon.WeaponType.Launcher)
         {
             ammos[index].SetActive(false);
         } 
-
-
         if (totalAmmo <= 0)
         {
             gameController.weapon.ableToShot = false;   
@@ -78,11 +78,11 @@ public class AmmoController : MonoBehaviour
         reloadTextObject.SetActive(false);
         int inMagAmmo = totalAmmo - pocketAmmoCount;
         gameController.weapon.ableToShot = false;
-        GameUIController.instance.fire.interactable = false;
+        gameUIController.fire.interactable = false;
         isInReload = true;
         yield return new WaitForSeconds((float)(magazineSpace - inMagAmmo) * .4f % 8);
         isInReload = false;
-        GameUIController.instance.fire.interactable = true;
+        gameUIController.fire.interactable = true;
         gameController.weapon.ableToShot = true;
         int index = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo);
 
@@ -99,7 +99,7 @@ public class AmmoController : MonoBehaviour
         reloadAnimation.gameObject.SetActive(false);
         reloadTextObject.SetActive(true);
         pocketAmmoCount -= (index - inMagAmmo);
-        GameUIController.instance.ammoInfo.text = (index).ToString() + "/" + pocketAmmoCount.ToString();
+        gameUIController.ammoInfo.text = (index).ToString() + "/" + pocketAmmoCount.ToString();
         StopAllCoroutines();
     }
 }

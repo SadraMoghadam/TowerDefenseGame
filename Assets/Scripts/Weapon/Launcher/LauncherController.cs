@@ -21,11 +21,16 @@ public class LauncherController : MonoBehaviour, IWeapon
     private Joystick joystick;
 
     private WeaponController weaponController;
-    // private float yAxisTurnSpeed = 2f;
-    // private float xAxisTurnSpeed = 25f;
+    private GameManager gameManager;
+    private GameUIController gameUIController;
+    private Camera camera;
+    private Transform _transform;
 
     private void Start()
     {
+        _transform = transform;
+        gameManager = GameManager.instance;
+        gameUIController = GameUIController.instance;
         weaponController = transform.parent.GetComponent<WeaponController>();
         weaponController.ableToShot = true;
         filterFire.SetActive(false);
@@ -33,15 +38,15 @@ public class LauncherController : MonoBehaviour, IWeapon
         startToSpeedUp = false;
         joystick = GameUIController.instance.joystick;
         audioSource = GetComponent<AudioSource>();
+        camera = weaponController.mainCamera;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Move();
     }
     
     
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -72,7 +77,7 @@ public class LauncherController : MonoBehaviour, IWeapon
         float HorizontalJoystickRotation = joystick.Horizontal;
         float VericalJoystickRotation = joystick.Vertical;
         var launcherBodyTransformRotation = launcherBodyTransform.rotation;
-        var transformRotation = transform.rotation;
+        var transformRotation = _transform.rotation;
         if (HorizontalJoystickRotation > .3f || HorizontalJoystickRotation < -.3f)
         {
             if (HorizontalJoystickRotation >= .8f || HorizontalJoystickRotation <= -.8f)
@@ -82,7 +87,7 @@ public class LauncherController : MonoBehaviour, IWeapon
                     startToSpeedUp = true;
                     startRotationTime = Time.time;
                 }
-
+            
                 float timeOut = Time.time - startRotationTime;
                 
                 if (timeOut > 1f)
@@ -91,19 +96,19 @@ public class LauncherController : MonoBehaviour, IWeapon
                     {
                         timeOut = 2f;
                     }
-                    transform.rotation = Quaternion.Euler(transformRotation.eulerAngles + 
-                                                          new Vector3(0, HorizontalJoystickRotation * rotationSpeed * timeOut, 0));
+                    _transform.rotation = Quaternion.Euler(transformRotation.eulerAngles + 
+                                                           new Vector3(0, HorizontalJoystickRotation * rotationSpeed * timeOut, 0));
                 }
                 else
                 {
-                    transform.rotation = Quaternion.Euler(transformRotation.eulerAngles + 
-                                                          new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
+                    _transform.rotation = Quaternion.Euler(transformRotation.eulerAngles + 
+                                                           new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
                 }
             }
             else
             {
-                transform.rotation = Quaternion.Euler(transformRotation.eulerAngles + 
-                                                      new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
+                _transform.rotation = Quaternion.Euler(transformRotation.eulerAngles + 
+                                                       new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
                 startToSpeedUp = false;
             }
         }
@@ -134,18 +139,20 @@ public class LauncherController : MonoBehaviour, IWeapon
 
     private IEnumerator ShotProcess()
     {
+        GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
+        CreatedCannonball.SetActive(false);
         weaponController.ableToShot = false;
         filterFire.SetActive(true);
-        GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Wick);
+        gameManager.audioController.PlaySfx(audioSource, AudioController.SFXType.Wick);
         yield return new WaitForSeconds(1f);
         filterFire.SetActive(false);
-        GameManager.instance.audioController.PlaySfx(audioSource, AudioController.SFXType.Cannon);
+        gameManager.audioController.PlaySfx(audioSource, AudioController.SFXType.Cannon);
         weaponController.ableToShot = true;
-        GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
+        CreatedCannonball.SetActive(true);
         CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * blastPower;
-        GameUIController.instance.ammoController.DecreaseAmmo();
+        gameUIController.ammoController.DecreaseAmmo();
         Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
-        StartCoroutine(weaponController.mainCamera.gameObject.GetComponent<CameraShake>().Shake(.1f, .2f));
+        // StartCoroutine(camera.gameObject.GetComponent<CameraShake>().Shake(.1f, .2f));
     }
 
     
