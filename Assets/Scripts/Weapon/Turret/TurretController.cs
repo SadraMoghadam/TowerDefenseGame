@@ -10,7 +10,7 @@ public class TurretController : MonoBehaviour, IWeapon
     [SerializeField] private Transform TurretBodyTransform;
     [SerializeField] private GameObject bullet;
     [HideInInspector] public AudioSource audioSource;
-    private float rotationSpeed = 1.5f;
+    private float rotationSpeed = 1f;
     private float range = 100;
     private float startRotationTime = 0;
     private bool startToSpeedUp = false;
@@ -85,58 +85,61 @@ public class TurretController : MonoBehaviour, IWeapon
         float HorizontalJoystickRotation = joystick.Horizontal;
         float VericalJoystickRotation = joystick.Vertical;
         var turretBodyTransformRotation = TurretBodyTransform.rotation;
-        if (HorizontalJoystickRotation > .3f || HorizontalJoystickRotation < -.3f)
+        if (TurretBodyTransform.rotation.eulerAngles.x > maxX || TurretBodyTransform.rotation.eulerAngles.x < minX)
         {
+            float timeOut = Time.time - startRotationTime;
+            float newRotationSpeed = rotationSpeed;
+            if (HorizontalJoystickRotation < .3f || HorizontalJoystickRotation > -.3f ||
+                VericalJoystickRotation < .3f || VericalJoystickRotation > -.3f)
+            {
+                if (timeOut < 1f)
+                {
+                    newRotationSpeed *= timeOut;
+                }
+                else
+                {
+                    newRotationSpeed = rotationSpeed;
+                }
+            }
             if (HorizontalJoystickRotation >= .8f || HorizontalJoystickRotation <= -.8f)
             {
                 if (!startToSpeedUp)
-                {
+                { 
                     startToSpeedUp = true;
                     startRotationTime = Time.time;
                 }
-
-                float timeOut = Time.time - startRotationTime;
-                
                 if (timeOut > 1f)
-                {
+                { 
                     if (timeOut > 2f)
                     {
                         timeOut = 2f;
                     }
-                    TurretBodyTransform.rotation = Quaternion.Euler(turretBodyTransformRotation.eulerAngles + 
-                                                                    new Vector3(0, HorizontalJoystickRotation * rotationSpeed * timeOut, 0));
+
+                    newRotationSpeed *= timeOut;
                 }
                 else
                 {
-                    TurretBodyTransform.rotation = Quaternion.Euler(turretBodyTransformRotation.eulerAngles + 
-                                                                    new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
+                    newRotationSpeed = rotationSpeed;
                 }
             }
             else
             {
-                TurretBodyTransform.rotation = Quaternion.Euler(turretBodyTransformRotation.eulerAngles + 
-                                                                new Vector3(0, HorizontalJoystickRotation * rotationSpeed, 0));
+                newRotationSpeed = rotationSpeed;
                 startToSpeedUp = false;
             }
-        }
-        if (TurretBodyTransform.rotation.eulerAngles.x > maxX || TurretBodyTransform.rotation.eulerAngles.x < minX)
-        {
-            if (VericalJoystickRotation > .3f || VericalJoystickRotation < -.3f)
+            var newx = TurretBodyTransform.rotation.eulerAngles.x - VericalJoystickRotation * rotationSpeed;
+            if (newx > minX && newx < minX + 2)
             {
-                var newx = TurretBodyTransform.rotation.eulerAngles.x - VericalJoystickRotation * rotationSpeed;
-                if (newx > minX && newx < minX + 2)
-                {
-                    TurretBodyTransform.rotation = Quaternion.Euler(minX - .1f, turretBodyTransformRotation.eulerAngles.y, turretBodyTransformRotation.eulerAngles.z);
-                }
-                else if (newx < maxX && newx > maxX - 2)
-                {
-                    TurretBodyTransform.rotation = Quaternion.Euler(maxX + .1f, turretBodyTransformRotation.eulerAngles.y, turretBodyTransformRotation.eulerAngles.z);
-                }
-                else
-                {
-                    TurretBodyTransform.rotation = Quaternion.Euler(turretBodyTransformRotation.eulerAngles +
-                                                                    new Vector3(-VericalJoystickRotation * rotationSpeed, 0, 0));
-                }
+                TurretBodyTransform.rotation = Quaternion.Euler(minX - .1f, turretBodyTransformRotation.eulerAngles.y + HorizontalJoystickRotation * newRotationSpeed, turretBodyTransformRotation.eulerAngles.z);
+            }
+            else if (newx < maxX && newx > maxX - 2)
+            {
+                TurretBodyTransform.rotation = Quaternion.Euler(maxX + .1f, turretBodyTransformRotation.eulerAngles.y + HorizontalJoystickRotation * newRotationSpeed, turretBodyTransformRotation.eulerAngles.z);
+            }
+            else
+            {
+                TurretBodyTransform.rotation = Quaternion.Euler(turretBodyTransformRotation.eulerAngles +
+                                                                new Vector3(-VericalJoystickRotation * rotationSpeed, HorizontalJoystickRotation * newRotationSpeed, 0));
             }
         }
     }
