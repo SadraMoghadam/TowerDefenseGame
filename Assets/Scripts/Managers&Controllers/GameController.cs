@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
 
     private void SetCamera(float cameraOffset)
     {
-        var weaponType = GameManager.instance.playerPrefsManager.GetWeaponType();
+        var weaponType = GameManager.instance.playerPrefsManager.GetCurrentWeaponType();
         if (weaponType != Weapon.WeaponType.Launcher)
         {
             return;

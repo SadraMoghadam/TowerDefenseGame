@@ -57,7 +57,7 @@ public class SettingPanel : MonoBehaviour
         });
         cameraPosition.onValueChanged.AddListener((value) =>
         {
-            var weaponType = GameManager.instance.playerPrefsManager.GetWeaponType();
+            var weaponType = GameManager.instance.playerPrefsManager.GetCurrentWeaponType();
             if (weaponType == Weapon.WeaponType.Launcher)
             {
                 gameManager.playerPrefsManager.SetInt(PlayerPrefsManager.PlayerPrefsKeys.cameraPosition, value);

@@ -29,7 +29,7 @@ public class WeaponsPanel : MonoBehaviour
 
     private void OnWeaponOptionButtonClick(Weapon.WeaponType weaponType)
     {
-        GameManager.instance.playerPrefsManager.SetWeaponType(weaponType);
+        GameManager.instance.playerPrefsManager.SetCurrentWeaponType(weaponType);
         MainMenuUIController.instance.SetCurrentWeapon();
         MainMenuUIController.instance.OnButtonClickSFX();
     }

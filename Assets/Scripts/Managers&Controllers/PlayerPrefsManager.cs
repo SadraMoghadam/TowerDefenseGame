@@ -17,8 +17,11 @@ public class PlayerPrefsManager : MonoBehaviour
         sfx,
         ChosenLevel,
         stars,
-        WeaponName,
-        WeaponType
+        weaponName1,
+        weaponType1,
+        weaponName2,
+        weaponType2,
+        currentWeaponType
     }
 
     [Serializable]
@@ -194,19 +197,58 @@ public class PlayerPrefsManager : MonoBehaviour
         return GetInt(PlayerPrefsKeys.stars, 0);
     }
 
-    public void SetWeaponType(Weapon.WeaponType type)
+    // public void SetWeaponType(Weapon.WeaponType type)
+    // {
+    //     SetString(PlayerPrefsKeys.weaponType1, type.ToString());
+    // }
+    
+    public Weapon.WeaponType GetWeaponType(int weaponNum)
     {
-        SetString(PlayerPrefsKeys.WeaponType, type.ToString());
+        PlayerPrefsKeys WeaponType;
+        if (weaponNum == 1)
+        {
+            WeaponType = PlayerPrefsKeys.weaponType1;
+        }
+        else
+        {
+            WeaponType = PlayerPrefsKeys.weaponType2;
+        }
+        if (!PlayerPrefs.HasKey(WeaponType.ToString()))
+        {
+            if (weaponNum == 1)
+            {
+                return Weapon.WeaponType.Launcher;   
+            }
+            if (weaponNum == 2)
+            {
+                return Weapon.WeaponType.Turret;   
+            }
+        }
+        string type = GetString(WeaponType, Weapon.WeaponType.Launcher.ToString());
+        var weaponType = Weapon.WeaponType.Launcher;
+        switch (type)
+        {
+            case "Launcher":
+                weaponType = Weapon.WeaponType.Launcher;
+                break;
+            case "Turret":
+                weaponType = Weapon.WeaponType.Turret;
+                break;
+        }
+
+        return weaponType;
     }
     
-    public Weapon.WeaponType GetWeaponType()
+    public void SetCurrentWeaponType(Weapon.WeaponType type)
     {
-        if (!PlayerPrefs.HasKey(PlayerPrefsKeys.WeaponType.ToString()))
-        {
-            return Weapon.WeaponType.Turret;
-        }
-        string type = GetString(PlayerPrefsKeys.WeaponType, Weapon.WeaponType.Launcher.ToString());
+        
+        SetString(PlayerPrefsKeys.currentWeaponType, type.ToString());
+    }
+    
+    public Weapon.WeaponType GetCurrentWeaponType()
+    {
         var weaponType = Weapon.WeaponType.Launcher;
+        string type = GetString(PlayerPrefsKeys.currentWeaponType, Weapon.WeaponType.Launcher.ToString());
         switch (type)
         {
             case "Launcher":

@@ -11,6 +11,7 @@ public class GameUIController : MonoBehaviour
     public Slider blastPowerSlider;
     public Button fire;
     public Button reload;
+    public Button changeWeapon;
     public TMP_Text ammoInfo;
     public TMP_Text FPS;
     public Button settingsButton;
@@ -47,26 +48,22 @@ public class GameUIController : MonoBehaviour
         var timeSpan = TimeSpan.FromSeconds(timer);
         timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}"; 
         weaponController = gameController.weapon;
-        if (weaponController.weaponType == Weapon.WeaponType.Launcher)
+        if (weaponController.currentWeaponType == Weapon.WeaponType.Launcher)
         {
-            LauncherController launcherController = weaponController.GetWeapon().GetComponent<LauncherController>();
-            fire.onClick.AddListener(() =>
-            {
-                if(gameController.weapon.ableToShot)
-                    launcherController.Shot();
-            });
-            launcherController.blastPower = blastPowerSlider.value;
-            blastPowerSlider.onValueChanged.AddListener((value) =>
-            {
-                launcherController.blastPower = value;
-                blastPowerSliderValue.text = value.ToString();
-            });
-            blastPowerSlider.value = 17;
+            LauncherUIBehaviour();
         }
         StartCoroutine(StartCountdown(0));
         
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));
         reload.onClick.AddListener((() => ammoController.Reload()));
+        changeWeapon.onClick.AddListener((() =>
+        {
+            weaponController.ChangeWeapon();
+            if (weaponController.currentWeaponType == Weapon.WeaponType.Launcher)
+            {
+                LauncherUIBehaviour();
+            }
+        }));
         
     }
 
@@ -84,7 +81,7 @@ public class GameUIController : MonoBehaviour
             FPS.text = avgFramerate.ToString() + "fps";
         }
         
-        if (weaponController.weaponType == Weapon.WeaponType.Turret)
+        if (weaponController.currentWeaponType == Weapon.WeaponType.Turret)
         {
             TurretController turretController = weaponController.GetWeapon().GetComponent<TurretController>();
             if (isHeldDown && gameController.weapon.ableToShot)
@@ -115,6 +112,23 @@ public class GameUIController : MonoBehaviour
             EnableTouchableButtons();
             StartCoroutine(StartTimer());
         }
+    }
+
+    private void LauncherUIBehaviour()
+    {
+        LauncherController launcherController = weaponController.GetWeapon().GetComponent<LauncherController>();
+        fire.onClick.AddListener(() =>
+        {
+            if(gameController.weapon.ableToShot)
+                launcherController.Shot();
+        });
+        launcherController.blastPower = blastPowerSlider.value;
+        blastPowerSlider.onValueChanged.AddListener((value) =>
+        {
+            launcherController.blastPower = value;
+            blastPowerSliderValue.text = value.ToString();
+        });
+        blastPowerSlider.value = 17;
     }
 
     public void DisableTouchableButtons()
@@ -155,7 +169,7 @@ public class GameUIController : MonoBehaviour
  
     public void onPress ()
     {
-        if (weaponController.weaponType == Weapon.WeaponType.Launcher)
+        if (weaponController.currentWeaponType == Weapon.WeaponType.Launcher)
             return;
         isHeldDown = true;
         // Debug.Log(isHeldDown);
@@ -163,7 +177,7 @@ public class GameUIController : MonoBehaviour
  
     public void onRelease ()
     {
-        if (weaponController.weaponType == Weapon.WeaponType.Launcher)
+        if (weaponController.currentWeaponType == Weapon.WeaponType.Launcher)
             return;
         isHeldDown = false;
         // Debug.Log(isHeldDown);

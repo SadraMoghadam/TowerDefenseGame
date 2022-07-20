@@ -26,13 +26,13 @@ public class AmmoController : MonoBehaviour
         gameUIController = GameUIController.instance;
         totalAmmo = gameManager.levelDataReader
             .GetLevelData(gameController.level).numberOfAmmos;
-        if (gameController.weapon.weaponType == Weapon.WeaponType.Launcher)
+        if (gameController.weapon.weaponType1 == Weapon.WeaponType.Launcher || gameController.weapon.weaponType2== Weapon.WeaponType.Launcher)
         {
             var launcherController = gameController.weapon.GetWeapon().GetComponent<LauncherController>();
             ammos = launcherController.ammos;
             ammoContainer = launcherController.ammoContainer;
         }
-        else if (gameController.weapon.weaponType == Weapon.WeaponType.Turret)
+        else if (gameController.weapon.weaponType1 == Weapon.WeaponType.Turret || gameController.weapon.weaponType2 == Weapon.WeaponType.Turret)
         {
             totalAmmo *= 10;
             magazineSpace = 50;
@@ -52,7 +52,7 @@ public class AmmoController : MonoBehaviour
             inMagAmmo = 0;
         gameUIController.ammoInfo.text = inMagAmmo.ToString() + "/" + pocketAmmoCount;
         int index = inMagAmmo % magazineSpace;
-        if (gameController.weapon.weaponType == Weapon.WeaponType.Launcher)
+        if (gameController.weapon.weaponType1 == Weapon.WeaponType.Launcher || gameController.weapon.weaponType2 == Weapon.WeaponType.Launcher)
         {
             ammos[index].SetActive(false);
         } 
@@ -86,7 +86,7 @@ public class AmmoController : MonoBehaviour
         gameController.weapon.ableToShot = true;
         int index = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo);
 
-        if (gameController.weapon.weaponType == Weapon.WeaponType.Launcher)
+        if (gameController.weapon.weaponType1 == Weapon.WeaponType.Launcher || gameController.weapon.weaponType2 == Weapon.WeaponType.Launcher)
         {
             for (int i = inMagAmmo; i < index; i++)
             {

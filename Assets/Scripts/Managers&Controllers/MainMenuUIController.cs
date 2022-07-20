@@ -23,7 +23,7 @@ public class MainMenuUIController : MonoBehaviour
 
     public void SetCurrentWeapon()
     {
-        var currentWeaponType = GameManager.instance.playerPrefsManager.GetWeaponType();
+        var currentWeaponType = GameManager.instance.playerPrefsManager.GetCurrentWeaponType();
         foreach (var weapon in weapons.weapons)
         {
             if (weapon.weaponType == currentWeaponType)
