@@ -16,7 +16,7 @@ public class TurretController : MonoBehaviour, IWeapon
     private bool startToSpeedUp = false;
     private Joystick joystick;
     private WeaponController weaponController;
-    private float RPM = .15f;
+    private float RPM = .1f;
     private float minX = 25;
     private float maxX = 345;
     private GameManager gameManager;
@@ -38,7 +38,7 @@ public class TurretController : MonoBehaviour, IWeapon
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
     }
@@ -171,7 +171,9 @@ public class TurretController : MonoBehaviour, IWeapon
         {
             if (hit.transform.gameObject.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<EnemyAI>().Damage(20);
+                var enemyAI = hit.transform.GetComponent<EnemyAI>();
+                if(enemyAI != null)
+                    enemyAI.Damage(20);
             }
             Destroy(Instantiate(hitParticle, hit.point, Quaternion.LookRotation(hit.normal)), .5f);
         }

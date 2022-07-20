@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class WallController : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
-    private float health;
+    [HideInInspector] public float health;
     private float maxHealth;
     private GameManager gameManager;
 

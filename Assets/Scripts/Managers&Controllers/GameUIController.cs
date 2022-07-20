@@ -22,6 +22,8 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private List<GameObject> CountdownNumbers;
     [SerializeField] private SettingPanel settingPanel;
     [SerializeField] private TMP_Text blastPowerSliderValue;
+    [SerializeField] private Animator changeWeaponAnimation;
+    [SerializeField] private TMP_Text changeWeaponText;
     [HideInInspector] private float timer;
     [HideInInspector] public AudioSource audioSource;
     [HideInInspector] public bool isHeldDown = false;
@@ -44,6 +46,7 @@ public class GameUIController : MonoBehaviour
 
     private void Start()
     {
+        blastPowerSlider.gameObject.SetActive(false);
         timer = gameController.matchLength;
         var timeSpan = TimeSpan.FromSeconds(timer);
         timerText.text = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}"; 
@@ -52,17 +55,15 @@ public class GameUIController : MonoBehaviour
         {
             LauncherUIBehaviour();
         }
+        changeWeaponText.text = gameController.weapon.currentWeaponType == gameController.weapon.weaponType1 ? 
+            gameController.weapon.weaponType2.ToString() : gameController.weapon.weaponType1.ToString();
         StartCoroutine(StartCountdown(0));
         
         settingsButton.onClick.AddListener((() => settingPanel.gameObject.SetActive(true)));
         reload.onClick.AddListener((() => ammoController.Reload()));
         changeWeapon.onClick.AddListener((() =>
         {
-            weaponController.ChangeWeapon();
-            if (weaponController.currentWeaponType == Weapon.WeaponType.Launcher)
-            {
-                LauncherUIBehaviour();
-            }
+            StartCoroutine(ChangeWeaponProcess());
         }));
         
     }
@@ -114,8 +115,29 @@ public class GameUIController : MonoBehaviour
         }
     }
 
+    private IEnumerator ChangeWeaponProcess()
+    {
+        changeWeaponAnimation.gameObject.SetActive(true);
+        changeWeaponText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
+        changeWeaponAnimation.gameObject.SetActive(false);
+        changeWeaponText.gameObject.SetActive(true);
+        weaponController.ChangeWeapon();
+        fire.onClick.RemoveAllListeners();
+        blastPowerSlider.gameObject.SetActive(false);
+        changeWeaponText.text = gameController.weapon.currentWeaponType == gameController.weapon.weaponType1 ? 
+            gameController.weapon.weaponType2.ToString() : gameController.weapon.weaponType1.ToString();
+        // changeWeaponText.text = gameController.weapon.currentWeaponType.ToString();
+        if (weaponController.currentWeaponType == Weapon.WeaponType.Launcher)
+        {
+            LauncherUIBehaviour();
+        }
+        ammoController.SetAmmoByType();
+    }
+    
     private void LauncherUIBehaviour()
     {
+        blastPowerSlider.gameObject.SetActive(true);
         LauncherController launcherController = weaponController.GetWeapon().GetComponent<LauncherController>();
         fire.onClick.AddListener(() =>
         {
@@ -136,6 +158,7 @@ public class GameUIController : MonoBehaviour
         fire.interactable = false;
         reload.interactable = false;
         settingsButton.interactable = false;
+        changeWeapon.interactable = false;
         joystick.enabled = false;
         blastPowerSlider.enabled = false;
     }
@@ -146,6 +169,7 @@ public class GameUIController : MonoBehaviour
         fire.interactable = true;
         reload.interactable = true;
         settingsButton.interactable = true;
+        changeWeapon.interactable = true;
         joystick.enabled = true;
         blastPowerSlider.enabled = true;
     }

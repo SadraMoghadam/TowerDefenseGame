@@ -76,7 +76,6 @@ public class WeaponController : MonoBehaviour
         currentWeaponType = GameManager.instance.playerPrefsManager.GetCurrentWeaponType();
         if (currentWeaponType == weaponType1)
         {
-            
             currentWeaponType = weaponType2;
             CurrentWeapon = weaponsObject[1];
             weaponsObject[1].SetActive(true);
@@ -89,6 +88,7 @@ public class WeaponController : MonoBehaviour
             weaponsObject[0].SetActive(true);
             weaponsObject[1].SetActive(false);
         }
+        GameManager.instance.playerPrefsManager.SetCurrentWeaponType(currentWeaponType);
     }
 
     public GameObject GetWeapon()

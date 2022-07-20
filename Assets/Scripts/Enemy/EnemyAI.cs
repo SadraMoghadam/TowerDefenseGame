@@ -160,10 +160,11 @@ public class EnemyAI : MonoBehaviour
     public void Damage(float strength)
     {
         health -= strength;
-        Debug.Log(health);
+        // Debug.Log(health);
         healthBar.value = health / enemyType.maxHealth;
         if (healthBar.value <= 0)
         {
+            this.gameObject.layer = LayerMask.NameToLayer ("Ignore Raycast");
             rigidbody.freezeRotation = false;
             isAlive = false;
             RagdollActivation(true);
@@ -173,7 +174,13 @@ public class EnemyAI : MonoBehaviour
 
     public IEnumerator DestoryDeadEnemy()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
+        var rigColliders = GetComponentsInChildren<Collider>();
+        for (int i = 0; i < rigColliders.Length; i++)
+        {
+            rigColliders[i].enabled = false;
+        }
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
         int numOfEnemies = --GameController.instance.numberOfEnemiesAlive;
         if (numOfEnemies <= 0)

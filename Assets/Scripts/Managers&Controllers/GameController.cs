@@ -15,7 +15,6 @@ public class GameController : MonoBehaviour
     [HideInInspector] public LevelData levelData;
     private GameManager gameManager;
     public static GameController instance;
-
     [HideInInspector] public float matchLength = 180;
     [HideInInspector] public bool endOfGame = false;
     [HideInInspector] public AudioSource audioSource;
@@ -50,7 +49,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         GetLevelInformation();
-        camera = Camera.main;
+        camera = weapon.mainCamera;
         SetCamera(3);
         gameManager.audioController.PlayMusic(audioSource, AudioController.MusicType.Wind, true);
     }
@@ -69,11 +68,12 @@ public class GameController : MonoBehaviour
     
     public void WonProcess(bool timeOut = false)
     {
-        if (timeOut == true || GameUIController.instance.ammoController.totalAmmo < 3)
+        List<int> damages = WallsDamage();
+        if (timeOut == true)
         {
             stars = 1;
         }
-        else if (GameUIController.instance.ammoController.totalAmmo < 6)
+        else if (damages.Min() <= 20)
         {
             stars = 2;
         }
@@ -89,6 +89,17 @@ public class GameController : MonoBehaviour
         GameManager.instance.playerPrefsManager.AddLevelsCompleted(level, stars);
         GameUIController.instance.endOfGamePanel.EOGPanelShow(true);
         endOfGame = true;
+    }
+
+    public List<int> WallsDamage()
+    {
+        List<int> damages = new List<int>();
+        for (int i = 0; i < walls.Count; i++)
+        {
+            damages.Add((int)walls[i].GetComponent<WallController>().health);
+        }
+
+        return damages;
     }
     
     public IEnumerator SlowMotion(float slowMotionCoefficient, float slowMotionTime)

@@ -9,7 +9,8 @@ public class AmmoController : MonoBehaviour
     private int magazineSpace = 8;
     private int pocketAmmoCount;
     private GameManager gameManager;
-    [HideInInspector] public int totalAmmo;
+    // [HideInInspector] public int totalAmmo;
+    [HideInInspector] public int inMagAmmo;
     [SerializeField] private GameObject reloadTextObject;
     [SerializeField] private Animator reloadAnimation;
     private GameController gameController;
@@ -17,51 +18,33 @@ public class AmmoController : MonoBehaviour
     private GameObject[] ammos;
     private GameUIController gameUIController;
 
-
+    
     private void Start()
     {
         isInReload = false;
         gameController = GameController.instance;
         gameManager = GameManager.instance;
         gameUIController = GameUIController.instance;
-        totalAmmo = gameManager.levelDataReader
-            .GetLevelData(gameController.level).numberOfAmmos;
-        if (gameController.weapon.weaponType1 == Weapon.WeaponType.Launcher || gameController.weapon.weaponType2== Weapon.WeaponType.Launcher)
-        {
-            var launcherController = gameController.weapon.GetWeapon().GetComponent<LauncherController>();
-            ammos = launcherController.ammos;
-            ammoContainer = launcherController.ammoContainer;
-        }
-        else if (gameController.weapon.weaponType1 == Weapon.WeaponType.Turret || gameController.weapon.weaponType2 == Weapon.WeaponType.Turret)
-        {
-            totalAmmo *= 10;
-            magazineSpace = 50;
-        }
-        pocketAmmoCount = totalAmmo - magazineSpace;
+        // totalAmmo = gameManager.levelDataReader
+        //     .GetLevelData(gameController.level).numberOfAmmos;
+        SetAmmoByType();
         pocketAmmoCount = pocketAmmoCount < 0 ? 0 : pocketAmmoCount;
-        gameUIController.ammoInfo.text = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo).ToString() + "/" + pocketAmmoCount;
     }
 
     public void DecreaseAmmo()
     {
         // if (totalAmmo - pocketAmmoCount <= 0)
         //     return;
-        totalAmmo--;
-        int inMagAmmo = totalAmmo - pocketAmmoCount;
+        inMagAmmo--;
         if (inMagAmmo < 0)
             inMagAmmo = 0;
-        gameUIController.ammoInfo.text = inMagAmmo.ToString() + "/" + pocketAmmoCount;
+        gameUIController.ammoInfo.text = inMagAmmo.ToString() + "/inf";
         int index = inMagAmmo % magazineSpace;
-        if (gameController.weapon.weaponType1 == Weapon.WeaponType.Launcher || gameController.weapon.weaponType2 == Weapon.WeaponType.Launcher)
+        if (gameController.weapon.currentWeaponType == Weapon.WeaponType.Launcher)
         {
             ammos[index].SetActive(false);
         } 
-        if (totalAmmo <= 0)
-        {
-            gameController.weapon.ableToShot = false;   
-            gameController.LostProcess();
-        }
-        if (index == 0 && totalAmmo > 0)
+        if (index == 0)
         {
             Reload();
         }
@@ -69,6 +52,8 @@ public class AmmoController : MonoBehaviour
 
     public void Reload()
     {
+        if (inMagAmmo == magazineSpace)
+            return;
         StartCoroutine(ReloadProcess());
     }
     
@@ -76,17 +61,17 @@ public class AmmoController : MonoBehaviour
     {
         reloadAnimation.gameObject.SetActive(true);
         reloadTextObject.SetActive(false);
-        int inMagAmmo = totalAmmo - pocketAmmoCount;
+        inMagAmmo = magazineSpace;
         gameController.weapon.ableToShot = false;
         gameUIController.fire.interactable = false;
         isInReload = true;
-        yield return new WaitForSeconds((float)(magazineSpace - inMagAmmo) * .4f % 8);
+        yield return new WaitForSeconds((float)(3));
         isInReload = false;
         gameUIController.fire.interactable = true;
         gameController.weapon.ableToShot = true;
-        int index = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo);
+        int index = magazineSpace;
 
-        if (gameController.weapon.weaponType1 == Weapon.WeaponType.Launcher || gameController.weapon.weaponType2 == Weapon.WeaponType.Launcher)
+        if (gameController.weapon.currentWeaponType == Weapon.WeaponType.Launcher)
         {
             for (int i = inMagAmmo; i < index; i++)
             {
@@ -99,7 +84,111 @@ public class AmmoController : MonoBehaviour
         reloadAnimation.gameObject.SetActive(false);
         reloadTextObject.SetActive(true);
         pocketAmmoCount -= (index - inMagAmmo);
-        gameUIController.ammoInfo.text = (index).ToString() + "/" + pocketAmmoCount.ToString();
+        gameUIController.ammoInfo.text = (index).ToString() + "/inf";
         StopAllCoroutines();
     }
+
+
+    public void SetAmmoByType()
+    {
+        if (gameController.weapon.currentWeaponType == Weapon.WeaponType.Launcher)
+        {
+            var launcherController = gameController.weapon.GetWeapon().GetComponent<LauncherController>();
+            ammos = launcherController.ammos;
+            ammoContainer = launcherController.ammoContainer;
+            magazineSpace = 8;
+        }
+        else if (gameController.weapon.currentWeaponType == Weapon.WeaponType.Turret)
+        {
+            magazineSpace = 50;
+        }
+        gameUIController.ammoInfo.text = magazineSpace.ToString() + "/inf";
+        inMagAmmo = magazineSpace;
+    }
+    
+
+    // private void Start()
+    // {
+    //     isInReload = false;
+    //     gameController = GameController.instance;
+    //     gameManager = GameManager.instance;
+    //     gameUIController = GameUIController.instance;
+    //     totalAmmo = gameManager.levelDataReader
+    //         .GetLevelData(gameController.level).numberOfAmmos;
+    //     if (gameController.weapon.weaponType1 == Weapon.WeaponType.Launcher || gameController.weapon.weaponType2== Weapon.WeaponType.Launcher)
+    //     {
+    //         var launcherController = gameController.weapon.GetWeapon().GetComponent<LauncherController>();
+    //         ammos = launcherController.ammos;
+    //         ammoContainer = launcherController.ammoContainer;
+    //     }
+    //     else if (gameController.weapon.weaponType1 == Weapon.WeaponType.Turret || gameController.weapon.weaponType2 == Weapon.WeaponType.Turret)
+    //     {
+    //         totalAmmo *= 10;
+    //         magazineSpace = 50;
+    //     }
+    //     pocketAmmoCount = totalAmmo - magazineSpace;
+    //     pocketAmmoCount = pocketAmmoCount < 0 ? 0 : pocketAmmoCount;
+    //     gameUIController.ammoInfo.text = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo).ToString() + "/" + pocketAmmoCount;
+    // }
+    //
+    // public void DecreaseAmmo()
+    // {
+    //     // if (totalAmmo - pocketAmmoCount <= 0)
+    //     //     return;
+    //     totalAmmo--;
+    //     int inMagAmmo = totalAmmo - pocketAmmoCount;
+    //     if (inMagAmmo < 0)
+    //         inMagAmmo = 0;
+    //     gameUIController.ammoInfo.text = inMagAmmo.ToString() + "/" + pocketAmmoCount;
+    //     int index = inMagAmmo % magazineSpace;
+    //     if (gameController.weapon.weaponType1 == Weapon.WeaponType.Launcher || gameController.weapon.weaponType2 == Weapon.WeaponType.Launcher)
+    //     {
+    //         ammos[index].SetActive(false);
+    //     } 
+    //     if (totalAmmo <= 0)
+    //     {
+    //         gameController.weapon.ableToShot = false;   
+    //         gameController.LostProcess();
+    //     }
+    //     if (index == 0 && totalAmmo > 0)
+    //     {
+    //         Reload();
+    //     }
+    // }
+    //
+    // public void Reload()
+    // {
+    //     StartCoroutine(ReloadProcess());
+    // }
+    //
+    // private IEnumerator ReloadProcess()
+    // {
+    //     reloadAnimation.gameObject.SetActive(true);
+    //     reloadTextObject.SetActive(false);
+    //     int inMagAmmo = totalAmmo - pocketAmmoCount;
+    //     gameController.weapon.ableToShot = false;
+    //     gameUIController.fire.interactable = false;
+    //     isInReload = true;
+    //     yield return new WaitForSeconds((float)(magazineSpace - inMagAmmo) * .4f % 8);
+    //     isInReload = false;
+    //     gameUIController.fire.interactable = true;
+    //     gameController.weapon.ableToShot = true;
+    //     int index = (totalAmmo >= magazineSpace ? magazineSpace : totalAmmo);
+    //
+    //     if (gameController.weapon.weaponType1 == Weapon.WeaponType.Launcher || gameController.weapon.weaponType2 == Weapon.WeaponType.Launcher)
+    //     {
+    //         for (int i = inMagAmmo; i < index; i++)
+    //         {
+    //             if (pocketAmmoCount == 0)
+    //                 break;
+    //             ammos[i].SetActive(true);
+    //         }
+    //     }
+    //
+    //     reloadAnimation.gameObject.SetActive(false);
+    //     reloadTextObject.SetActive(true);
+    //     pocketAmmoCount -= (index - inMagAmmo);
+    //     gameUIController.ammoInfo.text = (index).ToString() + "/" + pocketAmmoCount.ToString();
+    //     StopAllCoroutines();
+    // }
 }

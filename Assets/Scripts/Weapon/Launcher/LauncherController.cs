@@ -41,7 +41,7 @@ public class LauncherController : MonoBehaviour, IWeapon
         camera = weaponController.mainCamera;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
     }
@@ -144,7 +144,7 @@ public class LauncherController : MonoBehaviour, IWeapon
         weaponController.ableToShot = false;
         filterFire.SetActive(true);
         gameManager.audioController.PlaySfx(audioSource, AudioController.SFXType.Wick);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.8f);
         filterFire.SetActive(false);
         gameManager.audioController.PlaySfx(audioSource, AudioController.SFXType.Cannon);
         weaponController.ableToShot = true;
