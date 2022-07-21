@@ -1431,7 +1431,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 200
+  far clip plane: 150
   field of view: 70
   orthographic: 0
   orthographic size: 5
@@ -1813,32 +1813,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 8215440505373665450}
     m_Modifications:
     - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: ShapeModule.angle
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: ShapeModule.m_Scale.z
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: ShapeModule.alignToDirection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 514861385339646158, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1903393974512537868, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
       propertyPath: m_RootOrder
@@ -1884,45 +1860,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2061793061260123309, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453642584210540542, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453642584210540542, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453642584210540542, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.00419
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453642584210540542, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453642584210540542, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453642584210540542, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
-      objectReference: {fileID: 0}
     - target: {fileID: 7347398391958475736, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
       propertyPath: m_Name
       value: FilterFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347398391958475736, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8402000568781262234, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}
-      propertyPath: m_MaxParticleSize
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6447d20fc9908584fb43b63044183bd3, type: 3}

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class WallController : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
+    [SerializeField] private TMP_Text healthBarText;
     [HideInInspector] public float health;
     private float maxHealth;
     private GameManager gameManager;
@@ -18,7 +19,7 @@ public class WallController : MonoBehaviour
         health = maxHealth;
         gameManager = GameManager.instance;
         healthBar.value = health / maxHealth;
-        healthBar.gameObject.GetComponentsInChildren<TMP_Text>()[0].text = (healthBar.value * 100).ToString() + "%";
+        healthBarText.text = (healthBar.value * 100).ToString() + "%";
     }
 
     public void Damage(float hitStrength)
@@ -29,7 +30,7 @@ public class WallController : MonoBehaviour
             return;
         }
         healthBar.value = health / maxHealth;
-        healthBar.gameObject.GetComponentsInChildren<TMP_Text>()[0].text = (healthBar.value * 100).ToString() + "%";
+        healthBarText.text = (healthBar.value * 100).ToString() + "%";
         // Debug.Log(health);
         if (health <= 0)
         {

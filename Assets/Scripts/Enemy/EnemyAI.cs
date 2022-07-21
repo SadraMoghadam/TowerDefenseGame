@@ -20,6 +20,8 @@ public class EnemyAI : MonoBehaviour
     private GameManager gameManager;
     private List<GameObject> walls;
     private float health;
+    private WallController reachedWall;
+    private bool isWallChanged;
     
     public enum HitType
     {
@@ -33,6 +35,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
+        isWallChanged = true;
         isAlive = true;
         gameManager = GameManager.instance;
         enemyAnimator = GetComponent<Animator>();
@@ -98,6 +101,7 @@ public class EnemyAI : MonoBehaviour
             return;
         if (other.gameObject.tag == "Wall")
         {
+            isWallChanged = true;
             reachedWalls = false;
             enemyAnimator.SetInteger("HitType", 0);
         }
@@ -115,7 +119,11 @@ public class EnemyAI : MonoBehaviour
     {
         if (!isAlive)
             return;
-        WallController reachedWall = GetReachedWall();
+        if (isWallChanged)
+        {
+            isWallChanged = false;
+            reachedWall = GetReachedWall();
+        }
         if (reachedWall == null)
         {
             return;
@@ -125,11 +133,11 @@ public class EnemyAI : MonoBehaviour
 
     private WallController GetReachedWall()
     {
-        foreach (var wall in walls)
+        for (int i = 0; i < walls.Count; i++)
         {
-            if (wall != null && wall.name == reachedWallName)
+            if (walls[i] != null && walls[i].name == reachedWallName)
             {
-                return wall.GetComponent<WallController>();
+                return walls[i].GetComponent<WallController>();
             }
         }
 
