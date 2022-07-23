@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using GeneralTools.Randomize;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,7 +48,7 @@ public class EnemyGenerator : MonoBehaviour
     private IEnumerator GenerateOnTime(int numberOfEnemies)
     {
         yield return new WaitForSeconds(3f);
-        float waitTime = levelData.difficulty == "Hard" ? 10 : levelData.difficulty == "Normal" ? 11 : 12;
+        float waitTime = levelData.difficulty == "Hard" ? 9 : levelData.difficulty == "Medium" ? 10 : 12;
         float randomPosX = Random.Range(minPositiveX, maxPositiveX);
         float randomNegX = Random.Range(minNegativeX, maxNegativeX);
         float randomPosZ = Random.Range(minPositiveZ, maxPositiveZ);
@@ -95,13 +96,27 @@ public class EnemyGenerator : MonoBehaviour
             }
             enemyPosition += 2 * Vector3.right;
             int enemyId = (int)GameController.EnemyTypes.Default;
-            if (levelData.enemyTypeIds.Count > 1)
+            int enemyRnd = 0;
+            if (levelData.enemyTypeIds.Count >= 1)
             {
-                enemyId = Random.Range(0, levelData.enemyTypeIds.Count);
-                maxBosses = levelData.difficulty == "Hard" ? 2 : levelData.difficulty == "Normal" ? 1 : 0;
+                enemyRnd = Random.Range(0, levelData.enemyTypeIds.Count);
+                if (enemyId == 3)
+                {
+                    float random = Random.Range(0, 100);
+                    if (random < 50)
+                    {
+                        enemyRnd--;
+                    }
+                }
+                enemyId = levelData.enemyTypeIds[enemyRnd];
+                maxBosses = levelData.difficulty == "Hard" ? 3 : levelData.difficulty == "Medium" ? 2 : 1;
                 if (numOfBosses >= maxBosses && enemyId == (int)GameController.EnemyTypes.Boss)
                 {
-                    enemyId--;
+                    // levelData.enemyTypeIds.RemoveAll(x => x == 3);
+                    if (levelData.enemyTypeIds.Count != 0 && levelData.enemyTypeIds[enemyRnd] == (int)GameController.EnemyTypes.Boss)
+                    {
+                        enemyRnd--;
+                    }
                 }
             }
 
@@ -109,7 +124,13 @@ public class EnemyGenerator : MonoBehaviour
             {
                 numOfBosses++;
             }
-            enemyObject = Instantiate(EnemyTypes.enemyTypes[levelData.enemyTypeIds[enemyId]].prefab, enemyPosition,
+
+            if (levelData.numberOfEnemies - i - 1 <= maxBosses - numOfBosses)
+            {
+                numOfBosses++;
+                enemyRnd = levelData.enemyTypeIds.Count - 1;
+            }
+            enemyObject = Instantiate(EnemyTypes.enemyTypes[levelData.enemyTypeIds[enemyRnd]].prefab, enemyPosition,
                 Quaternion.identity);
             enemyObject.transform.parent = enemiesContainer;
             counter++;

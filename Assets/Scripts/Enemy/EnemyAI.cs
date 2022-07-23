@@ -182,7 +182,7 @@ public class EnemyAI : MonoBehaviour
 
     public IEnumerator DestoryDeadEnemy()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         var rigColliders = GetComponentsInChildren<Collider>();
         for (int i = 0; i < rigColliders.Length; i++)
         {
