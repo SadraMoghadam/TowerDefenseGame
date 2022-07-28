@@ -553,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &107760117
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7929,6 +7929,7 @@ MonoBehaviour:
   - {fileID: 813203967}
   - {fileID: 1555574357}
   - {fileID: 1868424076}
+  enemiesContainer: {fileID: 414288718}
   level: 1
   stars: 0
   numberOfEnemiesAlive: 0

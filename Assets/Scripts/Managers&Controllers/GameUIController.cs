@@ -70,6 +70,11 @@ public class GameUIController : MonoBehaviour
 
     private void Update()
     {
+        int numOfEnemies = GameController.instance.numberOfEnemiesAlive;
+        if (numOfEnemies <= 0)
+        {
+            GameController.instance.WonProcess();
+        }
         if (gameManager.gameSetting.DebugMode)
         {
             float timeLapse = Time.smoothDeltaTime;

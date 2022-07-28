@@ -17,7 +17,7 @@ public class LevelsPanel : MonoBehaviour
     public GameObject levelSelectPopUp;
     public TMP_Text levelText;
     public TMP_Text enemiesText;
-    public TMP_Text ammoText;
+    public TMP_Text enemyTypesText;
     public TMP_Text difficultyText;
     public Button startGame;
     private List<LevelData> levelsData;
@@ -140,7 +140,17 @@ public class LevelsPanel : MonoBehaviour
         LevelData levelData = GameManager.instance.levelDataReader.GetLevelData(level);
         levelText.text = "Level : " + level;
         enemiesText.text = "Number Of Enemies : " + levelData.numberOfEnemies;
-        ammoText.text = "Ammo : " + levelData.numberOfAmmos;
+        string enemyTypes = "";
+        for (int i = 0; i < levelData.enemyTypeIds.Count; i++)
+        {
+            var enemyType = (GameController.EnemyTypes)levelData.enemyTypeIds[i];
+            enemyTypes += enemyType.ToString();
+            if (i != levelData.enemyTypeIds.Count - 1)
+            {
+                enemyTypes += ", ";
+            }
+        }
+        enemyTypesText.text = "Enemy Types : " + enemyTypes;
         difficultyText.text = "Difficulty : " + levelData.difficulty;
         GameManager.instance.playerPrefsManager.SetInt(PlayerPrefsManager.PlayerPrefsKeys.ChosenLevel, level);
         startGame.onClick.AddListener((() =>

@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 {
     public WeaponController weapon;
     public List<GameObject> walls;
+    public Transform enemiesContainer;
     [HideInInspector] public int level = 1;
     [HideInInspector] public int stars = 2;
     [HideInInspector] public int numberOfEnemiesAlive;

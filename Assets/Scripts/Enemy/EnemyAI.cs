@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     private bool reachedWalls;
     private string reachedWallName;
     private GameManager gameManager;
+    private GameController gameController;
     private List<GameObject> walls;
     private float health;
     private WallController reachedWall;
@@ -38,11 +39,12 @@ public class EnemyAI : MonoBehaviour
         isWallChanged = true;
         isAlive = true;
         gameManager = GameManager.instance;
+        gameController = GameController.instance;
         enemyAnimator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
-        target = GameController.instance.weapon.gameObject.transform;
+        target = gameController.weapon.gameObject.transform;
         reachedWalls = false;
-        walls = GameController.instance.walls;
+        walls = gameController.walls;
         SetBodyActivation(false);
         health = enemyType.maxHealth;
         healthBar.value = health / enemyType.maxHealth;
@@ -188,13 +190,14 @@ public class EnemyAI : MonoBehaviour
         {
             rigColliders[i].enabled = false;
         }
+        // int numOfEnemies = --GameController.instance.numberOfEnemiesAlive;
+        // if (numOfEnemies <= 0)
+        // {
+        //     GameController.instance.WonProcess();
+        // }
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
-        int numOfEnemies = --GameController.instance.numberOfEnemiesAlive;
-        if (numOfEnemies <= 0)
-        {
-            GameController.instance.WonProcess();
-        }
+        GameController.instance.numberOfEnemiesAlive -= 1;
     }
 
     private void RagdollActivation(bool activate)

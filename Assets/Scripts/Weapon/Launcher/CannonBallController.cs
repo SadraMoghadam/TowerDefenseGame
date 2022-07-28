@@ -44,7 +44,7 @@ public class CannonBallController : MonoBehaviour
     private void ExplosionProcess()
     {
         gameManager.audioController.PlaySfx(audioSource, AudioController.SFXType.Explosion);
-        Collider[] collisions = new Collider[40];
+        Collider[] collisions = new Collider[100];
         for (int i = 0; i < explosionRadius.Length; i++)
         {
             var surroundingObjectsCount = Physics.OverlapSphereNonAlloc(transform.position, explosionRadius[i], collisions);
