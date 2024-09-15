@@ -3629,6 +3629,8 @@ GameObject:
   - component: {fileID: 9218395805329446898}
   - component: {fileID: 9218395805329446897}
   - component: {fileID: 9218395805329446896}
+  - component: {fileID: 7196850206522226019}
+  - component: {fileID: -6162288580623239737}
   m_Layer: 0
   m_Name: StrongEnemy
   m_TagString: Enemy
@@ -3664,10 +3666,10 @@ BoxCollider:
   m_GameObject: {fileID: 9218395805329446902}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.9923487, z: 0.84750336}
-  m_Center: {x: -0.0074266195, y: 0.9827962, z: 0.02760464}
+  m_Center: {x: -0.0074266195, y: 1.1, z: 0.02760464}
 --- !u!54 &9218395805329446898
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3676,7 +3678,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9218395805329446902}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 120
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -3725,3 +3727,50 @@ MonoBehaviour:
   - {fileID: 4206458740233100837}
   healthBar: {fileID: 8897068602351867560}
   enemyType: {fileID: 11400000, guid: 6103253697818d6468db544203a4b495, type: 2}
+--- !u!114 &7196850206522226019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218395805329446902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 131ebceea939ddf479f334b5c4b5a141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+  outsideUpdate: 0
+  increasedAccuracy: 1
+  fixKnee: 1
+  footConstraint: 1
+  m_MaxStepHeight: 0.7
+  m_FootHeightOffset: 0
+  leftEnabled: 1
+  rightEnabled: 1
+  m_DistancePower: 1
+  m_SmoothingAngle: 2
+  m_GlobalSmoothingPower: 0
+  type: 0
+  sphereRadius: 0.05
+  rotationType: 3
+  leftTarget: {fileID: 0}
+  leftKneeTarget: {fileID: 0}
+  rightTarget: {fileID: 0}
+  rightKneeTarget: {fileID: 0}
+--- !u!136 &-6162288580623239737
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218395805329446902}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.55
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.02, z: 0}

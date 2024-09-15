@@ -48,9 +48,10 @@ public class EnemyAI : MonoBehaviour
         SetBodyActivation(false);
         health = enemyType.maxHealth;
         healthBar.value = health / enemyType.maxHealth;
+        // SetColliders();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (gameObject.activeSelf && isAlive)
         {
@@ -61,6 +62,7 @@ public class EnemyAI : MonoBehaviour
             }
             Vector3 direction = (target.position - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(direction);
+            transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         }
     }
 
@@ -91,6 +93,7 @@ public class EnemyAI : MonoBehaviour
             return;
         if (other.gameObject.CompareTag("Wall"))
         {
+            GetComponent<CapsuleCollider>().radius = .01f;
             reachedWalls = true;
             reachedWallName = other.gameObject.transform.parent.name;
             SelectRandomHit();
@@ -179,6 +182,16 @@ public class EnemyAI : MonoBehaviour
             isAlive = false;
             RagdollActivation(true);
             StartCoroutine(DestoryDeadEnemy());
+        }
+    }
+
+    public void SetColliders()
+    {
+        
+        var rigColliders = GetComponentsInChildren<Collider>();
+        for (int i = 0; i < rigColliders.Length; i++)
+        {
+            rigColliders[i].enabled = true;
         }
     }
 
